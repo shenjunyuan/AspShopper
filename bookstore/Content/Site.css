@@ -1,0 +1,103 @@
+﻿.message-box {
+    width: 800px !important;
+}
+
+.register-box {
+    width: 600px !important;
+}
+
+.login-box {
+    width: 450px !important;
+}
+
+.logo-image {
+    width: 64px;
+    height: auto;
+    padding-right: 3px;
+}
+
+.logo-text {
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
+
+.side-logo {
+    color: orange !important;
+}
+
+.user-logo-image {
+    width: 40px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.menu-module-text {
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    color: white;
+}
+
+.menu-program-text {
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    color: white;
+}
+
+.dash-nav-dropdown-item {
+    padding: 8px 20px 8px 43px !important;
+}
+
+.btn, .form-control, .control-label, .input-group > .form-control {
+    font-size: medium !important;
+}
+
+.panel-heading {
+    padding-bottom: 18px !important;
+}
+
+.control-label {
+    padding-top: 5px !important;
+    padding-right: 5px !important;
+}
+
+.account-profile-table {
+    width: 100%;
+    font-size: medium;
+}
+
+.account-profile-box {
+    text-align: left;
+    vertical-align: top;
+}
+
+.account-profile-box-image {
+    width: 150px;
+}
+
+.account-profile-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.account-profile-button {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.account-profile-box-detail-header {
+    width: 100px;
+    padding-right: 5px;
+}
+
+.data-list th, .data-list td {
+    width: 10px;
+    white-space: nowrap;
+    font-size: medium;
+}
+
+.data-list-max {
+    width:100% !important;
+}
