@@ -11,15 +11,42 @@ namespace bookstore.Controllers
     public class ModuleController : Controller
     {
         //[SecurityAuthorize(SecurityMode = enumSecuritys.Browse)]
-        public ActionResult Index(int page = 1 , int pageSize = 10)
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
             using (tblModules modules = new tblModules())
             {
-                var model = modules.repo.ReadAll().OrderBy(m => m.module_no)
-                    .ToPagedList(page, pageSize);
+                int int_index = 0;
+                SessionService.SetCurrentPage(int_index, page);
+                var model = modules.GetModuleList(int_index);
                 ViewBag.PanelWidth = SessionService.SetPrgInfo("資料列表");
-                return View(model);
+                var models = model.ToPagedList(page, pageSize);
+                return View(models);
             }
+        }
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        /// <param name="id">欄位名稱</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult ColumnSort(string id)
+        {
+            int int_index = 0;
+            var sort = SessionService.GetColumnSort(int_index);
+            if (sort.SortColumn == id)
+            {
+                if (sort.SortDirection == enumSortDirection.Asc)
+                    SessionService.SetColumnSort(int_index, sort.Page, id, enumSortDirection.Desc);
+                else
+                    SessionService.SetColumnSort(int_index, sort.Page, id, enumSortDirection.Asc);
+            }
+            else
+            {
+                SessionService.SetColumnSort(int_index, sort.Page, id, enumSortDirection.Asc);
+            }
+            var sortData = SessionService.GetColumnSort(int_index);
+            return RedirectToAction("Index", new { page = sortData.Page });
         }
 
         /// <summary>

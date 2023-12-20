@@ -7,6 +7,11 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
 <div class="row pt-3">
     <div class="col-md-12">
         <div class="card">
@@ -17,16 +22,28 @@
                             @Html.ActionLink("新增", "Add", "Module", new { Area = "" }, new { @class = "btn btn-primary" })
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.is_enabled)
+                            <a href="@Url.Action("ColumnSort" , new { id = "is_enabled"})">
+                                @Html.DisplayNameFor(model => model.is_enabled)
+                            </a>
+                            @SessionService.GetColumnSortIcon(0, "is_enabled")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.module_no)
+                            <a href="@Url.Action("ColumnSort" , new { id = "module_no"})">
+                                @Html.DisplayNameFor(model => model.module_no)
+                            </a>
+                            @SessionService.GetColumnSortIcon(0, "module_no")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.module_name)
+                            <a href="@Url.Action("ColumnSort" , new { id = "module_name"})">
+                                @Html.DisplayNameFor(model => model.module_name)
+                            </a>
+                            @SessionService.GetColumnSortIcon(0, "module_name")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.icon_name)
+                            <a href="@Url.Action("ColumnSort" , new { id = "icon_name"})">
+                                @Html.DisplayNameFor(model => model.icon_name)
+                            </a>
+                            @SessionService.GetColumnSortIcon(0, "icon_name")
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.remark)
@@ -38,7 +55,7 @@
                         <tr>
                             <td>
                                 @Html.ActionLink("修改", "Edit", "Module", new { id = item.rowid }, new { @class = "btn btn-primary" })
-                                @Html.ActionLink("刪除", "Delete", "Module", new { id = item.rowid }, new { @class = "btn btn-danger" , onclick = "return confirm('是否確定要刪除');" })
+                                @Html.ActionLink("刪除", "Delete", "Module", new { id = item.rowid }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?');" })
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.is_enabled)

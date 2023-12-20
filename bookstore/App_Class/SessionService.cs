@@ -27,6 +27,26 @@ public static class SessionService
     /// 是否已登入
     /// </summary>
     public static bool IsLogined { get { return GetSessionBoolValue("IsLogined", false); } set { HttpContext.Current.Session["IsLogined"] = value; } }
+
+
+    /// <summary>
+    /// 欄位排序方式
+    /// </summary>
+    public static List<DataSort> ColumnSort
+    {
+        get
+        {
+            if (HttpContext.Current.Session["ColumnSort"] == null)
+            {
+                return new List<DataSort>() { new DataSort() { SortID = 0, Page = 1, SortColumn = "", SortDirection = enumSortDirection.Asc } };
+            }
+            return (List<DataSort>)HttpContext.Current.Session["ColumnSort"];
+        }
+        set { HttpContext.Current.Session["ColumnSort"] = value; }
+    }
+
+
+
     /// <summary>
     /// 模組代號
     /// </summary>
@@ -248,4 +268,82 @@ public static class SessionService
         if (panelWidth <= 0 || panelWidth > 12) panelWidth = 12;
         return string.Format("col-md-{0}", panelWidth);
     }
+
+    /// <summary>
+    /// 取得指定 ID 的排序方式
+    /// </summary>
+    /// <param name="index">欄位 ID</param>
+    /// <returns></returns>
+    public static DataSort GetColumnSort(int index)
+    {
+        if (ColumnSort == null || ColumnSort.Count < 10)
+        {
+            List<DataSort> datas = new List<DataSort>();
+            for (int i = 0; i < 10; i++)
+            {
+                datas.Add(new DataSort() { SortID = i, Page = 1, SortColumn = "", SortDirection = enumSortDirection.Asc });
+            }
+            ColumnSort = datas;
+        }
+        return ColumnSort[index];
+    }
+
+    /// <summary>
+    /// 設定欄位排序方式
+    /// </summary>
+    /// <param name="index">欄位 ID</param>
+    /// <param name="page">頁數</param>
+    /// <param name="sortColumn">欄位名稱</param>
+    /// <param name="sortDirection">排序方向</param>
+    public static void SetColumnSort(int index, int page, string sortColumn, enumSortDirection sortDirection)
+    {
+        DataSort dataSort = new DataSort();
+        dataSort.SortID = index;
+        dataSort.Page = page;
+        dataSort.SortColumn = sortColumn;
+        dataSort.SortDirection = sortDirection;
+        ColumnSort[index] = dataSort;
+    }
+
+    /// <summary>
+    /// 設定目前頁數
+    /// </summary>
+    /// <param name="index">陣列索引</param>
+    /// <param name="page">頁數</param>
+    /// <param name="searchText">查詢文字</param>
+    /// <param name="recordCount">記錄筆數</param>
+    /// <param name="pageCount">總頁數</param>
+    public static void SetCurrentPage(int index, int page)
+    {
+        DataSort dataPage = new DataSort();
+        dataPage = ColumnSort[index];
+        dataPage.Page = page;
+        ColumnSort[index] = dataPage;
+    }
+
+
+
+    /// <summary>
+    /// 取得欄位排序圖示
+    /// </summary>
+    /// <param name="index">欄位 ID</param>
+    /// <param name="columnName">欄位名稱</param>
+    /// <returns></returns>
+    public static string GetColumnSortIcon(int index, string columnName)
+    {
+        string str_value = "";
+        if (ColumnSort[index].SortColumn == columnName)
+        {
+            if (ColumnSort[index].SortDirection == enumSortDirection.Asc)
+                str_value = "▲";
+            else
+                str_value = "▼";
+        }
+        return str_value;
+    }
+
+
+
+
+
 }
