@@ -11,16 +11,13 @@ namespace bookstore.Controllers
     public class ModuleController : Controller
     {
         //[SecurityAuthorize(SecurityMode = enumSecuritys.Browse)]
-        public ActionResult Index(int page = 1, int pageSize = 10)
+        public ActionResult Index(int page = 1, int pageSize = 10, string searchText = "")
         {
+            ViewBag.PanelWidth = SessionService.SetPrgInfo("資料列表");
             using (tblModules modules = new tblModules())
             {
-                int int_index = 0;
-                SessionService.SetCurrentPage(int_index, page);
-                var model = modules.GetModuleList(int_index);
-                ViewBag.PanelWidth = SessionService.SetPrgInfo("資料列表");
-                var models = model.ToPagedList(page, pageSize);
-                return View(models);
+                var model = modules.GetModelList(0, page, pageSize, searchText);
+                return View(model);
             }
         }
 
@@ -129,6 +126,19 @@ namespace bookstore.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        /// <summary>
+        /// 查詢
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Search()
+        {
+            string str_text = Request.Form["search_text"].ToString(); // 從 html Form ID 傳回來的文字
+            return RedirectToAction("Index", "Module", new { searchText = str_text });
+        }
+
+
 
     }
 }

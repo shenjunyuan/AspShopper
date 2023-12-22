@@ -28,7 +28,6 @@ public static class SessionService
     /// </summary>
     public static bool IsLogined { get { return GetSessionBoolValue("IsLogined", false); } set { HttpContext.Current.Session["IsLogined"] = value; } }
 
-
     /// <summary>
     /// 欄位排序方式
     /// </summary>
@@ -44,8 +43,6 @@ public static class SessionService
         }
         set { HttpContext.Current.Session["ColumnSort"] = value; }
     }
-
-
 
     /// <summary>
     /// 模組代號
@@ -75,7 +72,7 @@ public static class SessionService
     /// 程式資訊
     /// </summary>
     public static string PrgInfo { get { return (string.Format("{0} {1}", PrgNo, PrgName)); } }
-        /// <summary>
+    /// <summary>
     /// 事件資訊
     /// </summary>
     public static string ActionInfo { 
@@ -151,8 +148,6 @@ public static class SessionService
                 str_file += string.Format(@"?t={0}", str_now);
                 return str_file;
             }
-
-
             return string.Format(@"{0}\user.jpg", str_path);
         }
     }
@@ -313,15 +308,16 @@ public static class SessionService
     /// <param name="searchText">查詢文字</param>
     /// <param name="recordCount">記錄筆數</param>
     /// <param name="pageCount">總頁數</param>
-    public static void SetCurrentPage(int index, int page)
+    public static void SetCurrentPage(int index, int page, string searchText, int recordCount, int pageCount)
     {
         DataSort dataPage = new DataSort();
         dataPage = ColumnSort[index];
         dataPage.Page = page;
+        dataPage.SearchText = searchText;
+        dataPage.RecordCount = recordCount;
+        dataPage.PageCount = pageCount;
         ColumnSort[index] = dataPage;
     }
-
-
 
     /// <summary>
     /// 取得欄位排序圖示
@@ -343,7 +339,16 @@ public static class SessionService
     }
 
 
-
-
+    /// <summary>
+    /// 取得頁數資訊
+    /// </summary>
+    /// <param name="index">陣列索引</param>
+    public static string GetPageInfo(int index)
+    {
+        int int_record_count = ColumnSort[index].RecordCount;
+        int int_page = ColumnSort[index].Page;
+        int int_page_count = ColumnSort[index].PageCount;
+        return string.Format("共{0}筆,第{1}/{2}頁", int_record_count, int_page, int_page_count);
+    }
 
 }

@@ -153,6 +153,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
+    <Compile Include="Controllers\TitlesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +194,7 @@
     </Compile>
     <Compile Include="Models\MetadataModel\mdAdmin.cs" />
     <Compile Include="Models\MetadataModel\mdModules.cs" />
+    <Compile Include="Models\MetadataModel\mdTitles.cs" />
     <Compile Include="Models\Modules.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
@@ -217,6 +219,7 @@
     <Compile Include="Models\RepositoryModel\tblSecuritys.cs" />
     <Compile Include="Models\RepositoryModel\tblTitles.cs" />
     <Compile Include="Models\RepositoryModel\tblUsers.cs" />
+    <Compile Include="Models\RepositoryModel\testClass.cs" />
     <Compile Include="Models\Securitys.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
@@ -234,6 +237,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Class\特別功能用的.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -310,6 +314,7 @@
     <Content Include="Images\Account\admin.jpg" />
     <Content Include="Images\Account\user.jpg" />
     <Content Include="Images\Application\applogo.jpg" />
+    <Content Include="Models\AppModel\紀錄參數用的class.txt" />
     <Content Include="Models\bookstoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>bookstoreModel.Context.cs</LastGenOutput>
@@ -327,6 +332,8 @@
     <Content Include="Models\bookstoreModel.edmx.diagram">
       <DependentUpon>bookstoreModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\MetadataModel\設定Table欄位相關的Meta.txt" />
+    <Content Include="Models\RepositoryModel\專門處理CRUD.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.js" />
@@ -348,6 +355,18 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Edit.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Empty.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
+    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.vb.include.t4" />
+    <None Include="Properties\PublishProfiles\localhost_web_bookstore.pubxml" />
+    <None Include="Properties\PublishProfiles\remote_web_bookstore.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\datepicker-zh-TW.js" />
     <Content Include="Scripts\datepicker.js" />
@@ -488,6 +507,7 @@
     <Content Include="Scripts\moment-with-locales.min.js.map" />
     <Content Include="Views\Module\Add.cshtml" />
     <Content Include="Views\Module\Edit.cshtml" />
+    <Content Include="Views\Titles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
