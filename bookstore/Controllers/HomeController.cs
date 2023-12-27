@@ -8,10 +8,12 @@ namespace bookstore.Controllers
 {
     public class HomeController : Controller
     {
-        [LoginAuthorize(RoleNo = "Member")]
+        //[LoginAuthorize(RoleNo ="")]
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            return View();
+            vmHome model = new vmHome();
+            return View(model);
         }
 
         public ActionResult About()

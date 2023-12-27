@@ -27,6 +27,23 @@ public static class SessionService
     /// 是否已登入
     /// </summary>
     public static bool IsLogined { get { return GetSessionBoolValue("IsLogined", false); } set { HttpContext.Current.Session["IsLogined"] = value; } }
+
+    /// <summary>
+    /// 欄位排序方式
+    /// </summary>
+    public static List<DataSort> ColumnSort
+    {
+        get
+        {
+            if (HttpContext.Current.Session["ColumnSort"] == null)
+            {
+                return new List<DataSort>() { new DataSort() { SortID = 0, Page = 1, SortColumn = "", SortDirection = enumSortDirection.Asc } };
+            }
+            return (List<DataSort>)HttpContext.Current.Session["ColumnSort"];
+        }
+        set { HttpContext.Current.Session["ColumnSort"] = value; }
+    }
+
     /// <summary>
     /// 模組代號
     /// </summary>
@@ -55,7 +72,7 @@ public static class SessionService
     /// 程式資訊
     /// </summary>
     public static string PrgInfo { get { return (string.Format("{0} {1}", PrgNo, PrgName)); } }
-        /// <summary>
+    /// <summary>
     /// 事件資訊
     /// </summary>
     public static string ActionInfo { 
@@ -131,8 +148,6 @@ public static class SessionService
                 str_file += string.Format(@"?t={0}", str_now);
                 return str_file;
             }
-
-
             return string.Format(@"{0}\user.jpg", str_path);
         }
     }
@@ -156,6 +171,25 @@ public static class SessionService
     /// 網站網址
     /// </summary>
     public static string WebSiteUrl { get { return GetAppSettings("WebSiteUrl", ""); } }
+
+    /// <summary>
+    /// 取得首頁資訊 
+    /// </summary>
+    /// <param name="infoType">類別</param>
+    /// <returns></returns>
+    public static string GetHomePageInfo(string infoType) 
+    {
+        using (tblApplications applications = new tblApplications())
+        {
+            if (infoType == "ShopName") return applications.GetApplicationsData().shop_name;
+            if (infoType == "ShopAddress") return applications.GetApplicationsData().contact_address;
+            if (infoType == "ShopTel") return applications.GetApplicationsData().contact_tel;
+            if (infoType == "ShopEmail") return applications.GetApplicationsData().contact_email;
+            return "";
+        }   
+    }
+
+
     /// <summary>
     /// 取得 Web.config 中的 appSettings 的值
     /// </summary>
@@ -248,4 +282,92 @@ public static class SessionService
         if (panelWidth <= 0 || panelWidth > 12) panelWidth = 12;
         return string.Format("col-md-{0}", panelWidth);
     }
+
+    /// <summary>
+    /// 取得指定 ID 的排序方式
+    /// </summary>
+    /// <param name="index">欄位 ID</param>
+    /// <returns></returns>
+    public static DataSort GetColumnSort(int index)
+    {
+        if (ColumnSort == null || ColumnSort.Count < 10)
+        {
+            List<DataSort> datas = new List<DataSort>();
+            for (int i = 0; i < 10; i++)
+            {
+                datas.Add(new DataSort() { SortID = i, Page = 1, SortColumn = "", SortDirection = enumSortDirection.Asc });
+            }
+            ColumnSort = datas;
+        }
+        return ColumnSort[index];
+    }
+
+    /// <summary>
+    /// 設定欄位排序方式
+    /// </summary>
+    /// <param name="index">欄位 ID</param>
+    /// <param name="page">頁數</param>
+    /// <param name="sortColumn">欄位名稱</param>
+    /// <param name="sortDirection">排序方向</param>
+    public static void SetColumnSort(int index, int page, string sortColumn, enumSortDirection sortDirection)
+    {
+        DataSort dataSort = new DataSort();
+        dataSort.SortID = index;
+        dataSort.Page = page;
+        dataSort.SortColumn = sortColumn;
+        dataSort.SortDirection = sortDirection;
+        ColumnSort[index] = dataSort;
+    }
+
+    /// <summary>
+    /// 設定目前頁數
+    /// </summary>
+    /// <param name="index">陣列索引</param>
+    /// <param name="page">頁數</param>
+    /// <param name="searchText">查詢文字</param>
+    /// <param name="recordCount">記錄筆數</param>
+    /// <param name="pageCount">總頁數</param>
+    public static void SetCurrentPage(int index, int page, string searchText, int recordCount, int pageCount)
+    {
+        DataSort dataPage = new DataSort();
+        dataPage = ColumnSort[index];
+        dataPage.Page = page;
+        dataPage.SearchText = searchText;
+        dataPage.RecordCount = recordCount;
+        dataPage.PageCount = pageCount;
+        ColumnSort[index] = dataPage;
+    }
+
+    /// <summary>
+    /// 取得欄位排序圖示
+    /// </summary>
+    /// <param name="index">欄位 ID</param>
+    /// <param name="columnName">欄位名稱</param>
+    /// <returns></returns>
+    public static string GetColumnSortIcon(int index, string columnName)
+    {
+        string str_value = "";
+        if (ColumnSort[index].SortColumn == columnName)
+        {
+            if (ColumnSort[index].SortDirection == enumSortDirection.Asc)
+                str_value = "▲";
+            else
+                str_value = "▼";
+        }
+        return str_value;
+    }
+
+
+    /// <summary>
+    /// 取得頁數資訊
+    /// </summary>
+    /// <param name="index">陣列索引</param>
+    public static string GetPageInfo(int index)
+    {
+        int int_record_count = ColumnSort[index].RecordCount;
+        int int_page = ColumnSort[index].Page;
+        int int_page_count = ColumnSort[index].PageCount;
+        return string.Format("共{0}筆,第{1}/{2}頁", int_record_count, int_page, int_page_count);
+    }
+
 }

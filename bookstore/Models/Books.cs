@@ -22,6 +22,7 @@ namespace bookstore.Models
         public System.DateTime publish_date { get; set; }
         public string publisher_no { get; set; }
         public string language_no { get; set; }
+        public string category_no { get; set; }
         public int sale_price { get; set; }
         public string content_text { get; set; }
         public string detail_text { get; set; }

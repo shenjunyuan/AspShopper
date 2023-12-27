@@ -37,6 +37,13 @@ public class LoginAuthorize : AuthorizeAttribute
     protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
     {
         // 設定要執行的Result
-        filterContext.Result = new RedirectResult("/Account/Login");
+        string url = HttpContext.Current.Request.Url.AbsoluteUri; // 抓目前的 url 判斷在 VS 執行 or 發佈執行
+        string str_url = "";
+        if (url.Contains("http://localhost:2349"))
+            str_url = "/Admin/Index";
+        else
+            str_url = "/bookstore/Admin/Index";
+
+        filterContext.Result = new RedirectResult(str_url);
     }
 }

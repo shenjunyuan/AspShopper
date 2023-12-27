@@ -1,0 +1,55 @@
+﻿@model bookstore.Models.Books
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+}
+
+@using (Html.BeginForm("AddToCart", "Shop", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    // HiddenFor 隱藏紀錄值用
+    @Html.HiddenFor(m => m.book_no)
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Url.Content(ShopService.GetProductImageUrl(Model.book_no))" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <h5 class="text-black">
+                <span>商品編號：@Model.book_no</span><br />
+                <span>書籍名稱：@Model.book_name</span><br />
+                <span>書本語言：@Model.language_name </span><br />
+                <span>出版社名：@Model.publisher_name </span><br />
+                <span>作者姓名：@Model.author_name </span><br />
+                <span>出版日期：@Model.publish_date.ToString("yyyy/mm/dd")</span><br />
+            </h5>
+            <h5 class="text-black">
+                <span>銷售單價：<strong class="text-primary h4">@Model.sale_price</strong></span>
+            </h5>
+            <div class="mb-5">
+                <div class="input-group mb-3" style="max-width: 120px;">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                    </div>
+                    <input id="Quantity" name="Quantity" type="text" class="form-control text-center" value="1" placeholder="" aria-label="Price" aria-describedby="button-addon1">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                    </div>
+                </div>
+            </div>
+            <p>
+                <input type="submit" value="加入購物車" class="buy-now btn btn-sm btn-primary" />
+                <a href="@Url.Action("Index", "Shop")" class="buy-now btn btn-sm btn-success">繼續購物</a>
+            </p>
+        </div>
+    </div>
+}
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h5>
+            詳細規格：
+        </h5>
+        @Model.detail_text
+    </div>
+</div>

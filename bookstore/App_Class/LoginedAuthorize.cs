@@ -23,6 +23,7 @@ public class LoginedAuthorize : AuthorizeAttribute
     protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
     {
         // 設定要執行的Result
-        filterContext.Result = new RedirectResult("/Account/Login");
+        filterContext.Result = new RedirectResult("/Admin/Index");
+        
     }
 }
