@@ -188,8 +188,9 @@ namespace bookstore.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Payment(vmOrders model)
+        public ActionResult Payment(vmOrders model, FormCollection form)
         {
+          
             if (!ModelState.IsValid)
             {
                 using (tblPayments payments = new tblPayments())
@@ -209,8 +210,11 @@ namespace bookstore.Controllers
             CartService.CartPayment(model);
             CartService.ClearCart();
             CartService.NewLotNo();
-            return Redirect("~/ECPayment.aspx");
-            //return RedirectToAction("CheckoutReport");
+
+            string pay_no = form["payment_no"];
+            if(pay_no == "01" || pay_no =="03") return Redirect("~/ECPayment.aspx");
+
+            return RedirectToAction("CheckoutReport");
         }
 
         public ActionResult PaymentReport()
