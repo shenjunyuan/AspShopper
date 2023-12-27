@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using bookstore.Models;
+using PagedList;
 
 public class tblPrograms : BaseClass
 {
@@ -56,4 +57,63 @@ public class tblPrograms : BaseClass
             return str_value;
         }
     }
+
+
+    /// <summary>
+    /// 取得程式資料集
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    public IPagedList<Programs> GetModelList(int index, int page, int pageSize, string searchText) // IPagedList 有分頁的型別
+    {
+        var model = repo.ReadAll();
+        var dataSort = SessionService.GetColumnSort(index);
+        if (!string.IsNullOrEmpty(searchText))
+        {
+            // 要搜尋的欄位
+            model = model.Where(m =>
+            m.module_no.Contains(searchText) ||        
+            m.program_no.Contains(searchText) ||
+            m.program_name.Contains(searchText) ||
+            //m.module_name.Contains(searchText) ||
+            //m.program_type_name.Contains(searchText) ||
+            m.area_name.Contains(searchText) ||          
+            m.controller_name.Contains(searchText) ||
+            m.action_name.Contains(searchText) ||
+            m.remark.Contains(searchText));
+        }
+        if (model != null)
+        {
+            // 要排序的欄位
+            if (string.IsNullOrEmpty(dataSort.SortColumn)) dataSort.SortColumn = "program_no";
+            if (dataSort.SortColumn == "is_enabled" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.is_enabled);
+            if (dataSort.SortColumn == "is_enabled" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.is_enabled);
+            if (dataSort.SortColumn == "module_no" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.module_no);
+            if (dataSort.SortColumn == "module_no" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.module_no);
+            if (dataSort.SortColumn == "program_no" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.program_no);
+            if (dataSort.SortColumn == "program_no" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.program_no);
+            if (dataSort.SortColumn == "program_name" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.program_name);
+            if (dataSort.SortColumn == "program_name" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.program_name);
+            if (dataSort.SortColumn == "area_name" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.area_name);
+            if (dataSort.SortColumn == "area_name" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.area_name);
+            if (dataSort.SortColumn == "controller_name" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.controller_name);
+            if (dataSort.SortColumn == "controller_name" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.controller_name);
+            if (dataSort.SortColumn == "action_name" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.action_name);
+            if (dataSort.SortColumn == "action_name" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.action_name);
+            if (dataSort.SortColumn == "remark" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.remark);
+            if (dataSort.SortColumn == "remark" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.remark);
+
+            //if (dataSort.SortColumn == "module_name" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.module_name);
+            //if (dataSort.SortColumn == "module_name" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.module_name);
+            if (dataSort.SortColumn == "program_type_name" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.program_type_name);
+            if (dataSort.SortColumn == "program_type_name" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.program_type_name);
+
+        }
+
+        var datas = model.ToPagedList(page, pageSize);
+        SessionService.SetCurrentPage(index, page, searchText, model.ToList().Count, datas.PageCount); // model.ToList().Count : 總筆數
+        return datas;
+    }
+
+
 }

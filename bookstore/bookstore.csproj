@@ -164,6 +164,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
+    <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\TitlesController.cs" />
     <Compile Include="ECPayment.aspx.cs">
@@ -232,6 +233,7 @@
     <Compile Include="Models\MetadataModel\mdCategorys.cs" />
     <Compile Include="Models\MetadataModel\mdFeatureds.cs" />
     <Compile Include="Models\MetadataModel\mdModules.cs" />
+    <Compile Include="Models\MetadataModel\mdPrograms.cs" />
     <Compile Include="Models\MetadataModel\mdTitles.cs" />
     <Compile Include="Models\Modules.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
@@ -733,6 +735,9 @@
     <Content Include="Views\Shop\Cart.cshtml" />
     <Content Include="Views\Shop\Payment.cshtml" />
     <Content Include="Views\Shop\CheckoutReport.cshtml" />
+    <Content Include="Views\Programs\Create.cshtml" />
+    <Content Include="Views\Programs\Edit.cshtml" />
+    <Content Include="Views\Programs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

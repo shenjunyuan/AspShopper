@@ -114,7 +114,7 @@ namespace <#= Namespace #>
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Create()
         {
             <#= entitySetName #> model = new <#= entitySetName #>();
             ViewBag.PanelWidth = SessionService.SetPrgInfo("新增", 6);
@@ -127,7 +127,7 @@ namespace <#= Namespace #>
         /// <param name="model">Module 資料物件</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Add(<#= entitySetName #> model)
+        public ActionResult Create(<#= entitySetName #> model)
         {
             if (!ModelState.IsValid) return View(model);
             using (tbl<#= entitySetName #> models = new tbl<#= entitySetName #>())

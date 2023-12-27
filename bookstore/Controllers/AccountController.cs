@@ -25,9 +25,6 @@ namespace bookstore.Controllers
         }
 
 
-
-
-
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(vmLogin model)
@@ -92,6 +89,7 @@ namespace bookstore.Controllers
                         ModelState.AddModelError("ContactEmail", "此電子郵件已有註冊記錄!!");
                         return View(model);
                     }
+
                     //新增未驗證信箱的會員資料
                     string str_validate_code = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 20);
                     string str_password = crpy.SHA256Encode(model.Password);
@@ -271,12 +269,26 @@ namespace bookstore.Controllers
         /// <returns></returns>
         [LoginedAuthorize()]
         [HttpPost]
-        public ActionResult ProfileEdit(vmAccountProfile model)
+        public ActionResult ProfileEdit(vmAccountProfile model, FormCollection form)
         {
             using (AccountService account = new AccountService())
             {
-                account.UpdateAccountProfile(model);
-                return RedirectToAction("AccountProfile");
+                string email = form["ContactEmail"];
+                using (DapperRepository db = new DapperRepository())
+                {
+                    string query = $"select * from users where contact_email = '{email}'";
+                    int cnt = db.GetTable<Users>(query).Count();
+                    if (cnt > 0)
+                    {
+                        ModelState.AddModelError("ContactEmail", "此信箱已使用");
+                        return View(model);
+                    }
+                    else
+                    {
+                        account.UpdateAccountProfile(model);
+                        return RedirectToAction("AccountProfile");
+                    }
+                }                       
             }
         }
 
