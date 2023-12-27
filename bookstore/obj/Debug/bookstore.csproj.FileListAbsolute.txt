@@ -374,3 +374,5 @@ C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\obj\Debug\bookstore.cspr
 C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\obj\Debug\bookstore.csproj.CopyComplete
 C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\obj\Debug\bookstore.dll
 C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\obj\Debug\bookstore.pdb
+C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\bin\Dapper.dll
+C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\bin\Dapper.xml

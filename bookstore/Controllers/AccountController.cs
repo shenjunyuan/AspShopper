@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
 using bookstore.Models;
+using Dapper;
 
 namespace bookstore.Controllers
 {
@@ -13,11 +17,16 @@ namespace bookstore.Controllers
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Login()
-        {
+        {         
             SessionService.Logout();
             vmLogin model = new vmLogin();
+
             return View(model);
         }
+
+
+
+
 
         [AllowAnonymous]
         [HttpPost]
@@ -39,9 +48,16 @@ namespace bookstore.Controllers
 
                             //檢查登入角色
                             string str_password = cryp.SHA256Encode(model.Password);
-                            if (admins.CheckAccountLogin(model.AccountNo, str_password)) return RedirectToAction("Index", "Admin");
-                            if (users.CheckAccountLogin(model.AccountNo, str_password)) return RedirectToAction("Index", "Admin");
-                            if (members.CheckAccountLogin(model.AccountNo, str_password)) return RedirectToAction("Index", "Admin");
+                            if (admins.CheckAccountLogin(model.AccountNo, str_password))  return RedirectToAction("Index", "Admin");
+                            if (users.CheckAccountLogin(model.AccountNo, str_password))  return RedirectToAction("Index", "Admin");
+                            if (members.CheckAccountLogin(model.AccountNo, str_password))
+                            {
+                                SessionService.AccountNo = model.AccountNo;
+                                // 登入時將現有遊客的購物車加入客戶的購物車
+                                CartService.LoginCart();                               
+                                return RedirectToAction("Index", "Home");
+                            }
+                           
                             //引發一段錯誤訊息
                             ModelState.AddModelError("AccountNo", "帳號或密碼輸入錯誤!!");
                             return View(model);
@@ -119,12 +135,13 @@ namespace bookstore.Controllers
         [HttpGet]
         public ActionResult ValidateCode(string id)
         {
+          
             ViewBag.MessageText = "";
             if (string.IsNullOrEmpty(id)) { ViewBag.MessageText = "驗證碼空白!!"; return View(); }
             using (bookstoreEntities db = new bookstoreEntities())
             {
                 var memberData = db.Members.Where(m => m.validate_code == id).FirstOrDefault();
-                //檢查是否合法驗證
+                //檢查是否合法驗證               
                 if (memberData == null) { ViewBag.MessageText = "驗證碼不存在!!"; return View(); }
                 bool bln_validate = (memberData.is_validate == null) ? false : memberData.is_validate.GetValueOrDefault();
                 if (bln_validate) { ViewBag.MessageText = "會員已驗證，不可重覆驗證!!"; return View(); }

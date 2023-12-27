@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -105,12 +106,30 @@ public class EFGenericRepository<TEntity> : IRepository<TEntity>
     /// </summary>
     public void SaveChanges()
     {
-        Context.SaveChanges();
-
-        // 因為Update 單一model需要先關掉validation，因此重新打開
-        if (Context.Configuration.ValidateOnSaveEnabled == false)
-        {
-            Context.Configuration.ValidateOnSaveEnabled = true;
+        try
+        {   // Update 資料 Meta Data欄位定義 要正確才能 update
+            Context.SaveChanges();       
+            // 因為Update 單一 model 需要先關掉validation，因此重新打開
+            if (Context.Configuration.ValidateOnSaveEnabled == false)
+            {
+                Context.Configuration.ValidateOnSaveEnabled = true;
+            }
         }
+        catch (DbEntityValidationException e)
+        {
+            foreach (var eve in e.EntityValidationErrors)
+            {
+                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                foreach (var ve in eve.ValidationErrors)
+                {
+                    Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                        ve.PropertyName, ve.ErrorMessage);
+                }
+            }
+            Console.WriteLine("end");
+        }
+
+        
     }
 }

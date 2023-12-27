@@ -1,22 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="bookstoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Books">
-    <Key>
-      <PropertyRef Name="rowid" />
-    </Key>
-    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="book_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="isbn_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="book_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="language_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="sale_price" Type="Int32" Nullable="false" />
-    <Property Name="content_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="detail_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="Departments">
     <Key>
       <PropertyRef Name="rowid" />
@@ -81,20 +64,6 @@
     <Property Name="icon_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="Publishers">
-    <Key>
-      <PropertyRef Name="rowid" />
-    </Key>
-    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="publisher_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="boss_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="contact_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="company_telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="contact_telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="company_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="Titles">
     <Key>
       <PropertyRef Name="rowid" />
@@ -113,29 +82,38 @@
     <Property Name="user_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="department_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="department_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="title_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="in_date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="contact_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="contact_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="contact_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="contact_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="validate_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityContainer Name="bookstoreEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Books" EntityType="Self.Books" />
     <EntitySet Name="Departments" EntityType="Self.Departments" />
     <EntitySet Name="Languages" EntityType="Self.Languages" />
     <EntitySet Name="MemberTypes" EntityType="Self.MemberTypes" />
     <EntitySet Name="Modules" EntityType="Self.Modules" />
     <EntitySet Name="Programs" EntityType="Self.Programs" />
     <EntitySet Name="ProgramTypes" EntityType="Self.ProgramTypes" />
-    <EntitySet Name="Publishers" EntityType="Self.Publishers" />
     <EntitySet Name="Titles" EntityType="Self.Titles" />
     <EntitySet Name="Users" EntityType="Self.Users" />
     <EntitySet Name="Members" EntityType="bookstoreModel.Members" />
     <EntitySet Name="Admins" EntityType="bookstoreModel.Admins" />
     <EntitySet Name="Securitys" EntityType="bookstoreModel.Securitys" />
+    <EntitySet Name="Applications" EntityType="bookstoreModel.Applications" />
+    <EntitySet Name="BigSales" EntityType="bookstoreModel.BigSales" />
+    <EntitySet Name="Categorys" EntityType="bookstoreModel.Categorys" />
+    <EntitySet Name="Featureds" EntityType="bookstoreModel.Featureds" />
+    <EntitySet Name="Books" EntityType="bookstoreModel.Books" />
+    <EntitySet Name="Payments" EntityType="bookstoreModel.Payments" />
+    <EntitySet Name="Shippings" EntityType="bookstoreModel.Shippings" />
+    <EntitySet Name="Publishers" EntityType="bookstoreModel.Publishers" />
+    <EntitySet Name="Carts" EntityType="bookstoreModel.Carts" />
+    <EntitySet Name="OrdersDetail" EntityType="bookstoreModel.OrdersDetail" />
+    <EntitySet Name="Orders" EntityType="bookstoreModel.Orders" />
   </EntityContainer>
   <EntityType Name="Members">
     <Key>
@@ -152,7 +130,7 @@
     <Property Name="contact_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="contact_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="contact_zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="contact_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="contact_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="validate_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
@@ -185,6 +163,158 @@
     <Property Name="is_download" Type="Boolean" Nullable="false" />
     <Property Name="is_confirm" Type="Boolean" Nullable="false" />
     <Property Name="is_undo" Type="Boolean" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Applications">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="shop_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="banner_header" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="banner_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="shipping_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="return_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="support_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="contact_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="contact_tel" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="contact_email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="shop_about" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BigSales">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sort_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="start_time" Type="DateTime" Precision="3" />
+    <Property Name="end_time" Type="DateTime" Precision="3" />
+    <Property Name="sale_price" Type="Int32" />
+    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Categorys">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="is_enabled" Type="Boolean" Nullable="false" />
+    <Property Name="parentno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Featureds">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="is_enabled" Type="Boolean" Nullable="false" />
+    <Property Name="sort_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="book_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isbn_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="book_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="language_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sale_price" Type="Int32" Nullable="false" />
+    <Property Name="content_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="detail_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Shippings">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Publishers">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="publisher_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="boss_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contact_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="company_telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contact_telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="company_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Carts">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lot_no" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="user_no" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="product_no" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="product_spec" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="qty" Type="Int32" />
+    <Property Name="price" Type="Int32" />
+    <Property Name="create_time" Type="DateTime" Precision="3" />
+    <Property Name="amount" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="OrdersDetail">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="vendor_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="product_spec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int32" />
+    <Property Name="qty" Type="Int32" />
+    <Property Name="amount" Type="Int32" />
+    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_date" Type="DateTime" Precision="3" />
+    <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_no" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="shipping_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="receive_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="receive_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="receive_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="amount" Type="Int32" />
+    <Property Name="taxs" Type="Int32" />
+    <Property Name="totals" Type="Int32" />
+    <Property Name="order_closed" Type="Int32" />
+    <Property Name="order_validate" Type="Int32" />
+    <Property Name="order_guid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="receive_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

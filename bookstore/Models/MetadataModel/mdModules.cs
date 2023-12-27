@@ -17,7 +17,7 @@ namespace bookstore.Models
             [Required(ErrorMessage = "模組代號不可空白!!")]
             public string module_no { get; set; }
             [Display(Name = "模組名稱")]
-            [Required(ErrorMessage = "模組名稱不可空白!!")]
+            //[Required(ErrorMessage = "模組名稱不可空白!!")]
             public string module_name { get; set; }
             [Display(Name = "模組圖示")]
             public string icon_name { get; set; }

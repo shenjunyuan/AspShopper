@@ -171,6 +171,25 @@ public static class SessionService
     /// 網站網址
     /// </summary>
     public static string WebSiteUrl { get { return GetAppSettings("WebSiteUrl", ""); } }
+
+    /// <summary>
+    /// 取得首頁資訊 
+    /// </summary>
+    /// <param name="infoType">類別</param>
+    /// <returns></returns>
+    public static string GetHomePageInfo(string infoType) 
+    {
+        using (tblApplications applications = new tblApplications())
+        {
+            if (infoType == "ShopName") return applications.GetApplicationsData().shop_name;
+            if (infoType == "ShopAddress") return applications.GetApplicationsData().contact_address;
+            if (infoType == "ShopTel") return applications.GetApplicationsData().contact_tel;
+            if (infoType == "ShopEmail") return applications.GetApplicationsData().contact_email;
+            return "";
+        }   
+    }
+
+
     /// <summary>
     /// 取得 Web.config 中的 appSettings 的值
     /// </summary>

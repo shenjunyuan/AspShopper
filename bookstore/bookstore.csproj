@@ -48,6 +48,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.1.24\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="ECPay.Payment.Integration, Version=1.0.0.7, Culture=neutral, PublicKeyToken=afb33c1e6a3b1bbd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ECPay.Payment.Integration.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -135,7 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Class\AccountService.cs" />
+    <Compile Include="App_Class\ApplicationService.cs" />
     <Compile Include="App_Class\BaseClass.cs" />
+    <Compile Include="App_Class\CartService.cs" />
     <Compile Include="App_Class\Cryptographys.cs" />
     <Compile Include="App_Class\GmailService.cs" />
     <Compile Include="App_Class\LoginAuthorize.cs" />
@@ -143,6 +152,8 @@
     <Compile Include="App_Class\SecurityAuthorize.cs" />
     <Compile Include="App_Class\SendMailService.cs" />
     <Compile Include="App_Class\SessionService.cs" />
+    <Compile Include="App_Class\ShopECPay.cs" />
+    <Compile Include="App_Class\ShopService.cs" />
     <Compile Include="App_Enum\enumSecuritys.cs" />
     <Compile Include="App_Enum\enumSortDirection.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -153,15 +164,29 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\TitlesController.cs" />
+    <Compile Include="ECPayment.aspx.cs">
+      <DependentUpon>ECPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ECPayment.aspx.designer.cs">
+      <DependentUpon>ECPayment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admins.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Applications.cs">
+      <DependentUpon>bookstoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AppModel\AccountSecurity.cs" />
     <Compile Include="Models\AppModel\DataSort.cs" />
+    <Compile Include="Models\BigSales.cs">
+      <DependentUpon>bookstoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Books.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
@@ -180,7 +205,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bookstoreModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Carts.cs">
+      <DependentUpon>bookstoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Categorys.cs">
+      <DependentUpon>bookstoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DapperRepository\DapperRepository.cs" />
     <Compile Include="Models\Departments.cs">
+      <DependentUpon>bookstoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Featureds.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Languages.cs">
@@ -193,9 +228,21 @@
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MetadataModel\mdAdmin.cs" />
+    <Compile Include="Models\MetadataModel\mdBooks.cs" />
+    <Compile Include="Models\MetadataModel\mdCategorys.cs" />
+    <Compile Include="Models\MetadataModel\mdFeatureds.cs" />
     <Compile Include="Models\MetadataModel\mdModules.cs" />
     <Compile Include="Models\MetadataModel\mdTitles.cs" />
     <Compile Include="Models\Modules.cs">
+      <DependentUpon>bookstoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Orders.cs">
+      <DependentUpon>bookstoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrdersDetail.cs">
+      <DependentUpon>bookstoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Payments.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Programs.cs">
@@ -210,17 +257,31 @@
     <Compile Include="Models\RepositoryModel\EFGenericRepository.cs" />
     <Compile Include="Models\RepositoryModel\IRepository.cs" />
     <Compile Include="Models\RepositoryModel\tblAdmins.cs" />
+    <Compile Include="Models\RepositoryModel\tblApplications.cs" />
+    <Compile Include="Models\RepositoryModel\tblBigSales.cs" />
+    <Compile Include="Models\RepositoryModel\tblBooks.cs" />
+    <Compile Include="Models\RepositoryModel\tblCarts.cs" />
+    <Compile Include="Models\RepositoryModel\tblCategorys.cs" />
     <Compile Include="Models\RepositoryModel\tblDepartments.cs" />
+    <Compile Include="Models\RepositoryModel\tblFeatureds.cs" />
+    <Compile Include="Models\RepositoryModel\tblLanguages.cs" />
     <Compile Include="Models\RepositoryModel\tblMembers.cs" />
     <Compile Include="Models\RepositoryModel\tblMemberTypes.cs" />
     <Compile Include="Models\RepositoryModel\tblModules.cs" />
+    <Compile Include="Models\RepositoryModel\tblOrders.cs" />
+    <Compile Include="Models\RepositoryModel\tblOrdersDetail.cs" />
+    <Compile Include="Models\RepositoryModel\tblPayments.cs" />
     <Compile Include="Models\RepositoryModel\tblPrograms.cs" />
     <Compile Include="Models\RepositoryModel\tblProgramTypes.cs" />
+    <Compile Include="Models\RepositoryModel\tblPublishers.cs" />
     <Compile Include="Models\RepositoryModel\tblSecuritys.cs" />
+    <Compile Include="Models\RepositoryModel\tblShippings.cs" />
     <Compile Include="Models\RepositoryModel\tblTitles.cs" />
     <Compile Include="Models\RepositoryModel\tblUsers.cs" />
-    <Compile Include="Models\RepositoryModel\testClass.cs" />
     <Compile Include="Models\Securitys.cs">
+      <DependentUpon>bookstoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Shippings.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Titles.cs">
@@ -231,9 +292,12 @@
     </Compile>
     <Compile Include="Models\ViewModel\vmAccountProfile.cs" />
     <Compile Include="Models\ViewModel\vmForget.cs" />
+    <Compile Include="Models\ViewModel\vmHome.cs" />
     <Compile Include="Models\ViewModel\vmLogin.cs" />
+    <Compile Include="Models\ViewModel\vmOrders.cs" />
     <Compile Include="Models\ViewModel\vmRegister.cs" />
     <Compile Include="Models\ViewModel\vmResetPassword.cs" />
+    <Compile Include="Models\ViewModel\vmShopIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +371,7 @@
     <Content Include="easion\index.html" />
     <Content Include="easion\js\chart-js-config.js" />
     <Content Include="easion\js\easion.js" />
+    <Content Include="ECPayment.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -314,12 +379,23 @@
     <Content Include="Images\Account\admin.jpg" />
     <Content Include="Images\Account\user.jpg" />
     <Content Include="Images\Application\applogo.jpg" />
+    <Content Include="Images\Categorys\Information.jpg" />
+    <Content Include="Images\Categorys\Photo.jpg" />
+    <Content Include="Images\Categorys\Travel.jpg" />
+    <Content Include="Images\Product\B001.jpg" />
+    <Content Include="Images\Product\B002.jpg" />
+    <Content Include="Images\Product\B003.jpg" />
+    <Content Include="Images\Product\B004.jpg" />
+    <Content Include="Images\Product\B005.png" />
+    <Content Include="Images\Product\B006.jpg" />
+    <Content Include="Images\Product\None.jpg" />
     <Content Include="Models\AppModel\紀錄參數用的class.txt" />
     <Content Include="Models\bookstoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>bookstoreModel.Context.cs</LastGenOutput>
       <DependentUpon>bookstoreModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\bookstoreModel.edmx.sql" />
     <Content Include="Models\bookstoreModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>bookstoreModel.edmx</DependentUpon>
@@ -457,6 +533,53 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="shoppers\about.html" />
+    <Content Include="shoppers\cart.html" />
+    <Content Include="shoppers\checkout.html" />
+    <Content Include="shoppers\contact.html" />
+    <Content Include="shoppers\css\aos.css" />
+    <Content Include="shoppers\css\bootstrap.min.css" />
+    <Content Include="shoppers\css\bootstrap\bootstrap-grid.css" />
+    <Content Include="shoppers\css\bootstrap\bootstrap-reboot.css" />
+    <Content Include="shoppers\css\jquery-ui.css" />
+    <Content Include="shoppers\css\magnific-popup.css" />
+    <Content Include="shoppers\css\owl.carousel.min.css" />
+    <Content Include="shoppers\css\owl.theme.default.min.css" />
+    <Content Include="shoppers\css\style.css" />
+    <Content Include="shoppers\fonts\icomoon\demo-files\demo.css" />
+    <Content Include="shoppers\fonts\icomoon\demo-files\demo.js" />
+    <Content Include="shoppers\fonts\icomoon\demo.html" />
+    <Content Include="shoppers\fonts\icomoon\fonts\icomoon.svg" />
+    <Content Include="shoppers\fonts\icomoon\Read Me.txt" />
+    <Content Include="shoppers\fonts\icomoon\style.css" />
+    <Content Include="shoppers\images\blog_1.jpg" />
+    <Content Include="shoppers\images\children.jpg" />
+    <Content Include="shoppers\images\cloth_1.jpg" />
+    <Content Include="shoppers\images\cloth_2.jpg" />
+    <Content Include="shoppers\images\cloth_3.jpg" />
+    <Content Include="shoppers\images\hero_1.jpg" />
+    <Content Include="shoppers\images\hero_1.png" />
+    <Content Include="shoppers\images\men.jpg" />
+    <Content Include="shoppers\images\person_1.jpg" />
+    <Content Include="shoppers\images\person_2.jpg" />
+    <Content Include="shoppers\images\person_3.jpg" />
+    <Content Include="shoppers\images\person_4.jpg" />
+    <Content Include="shoppers\images\shoe.png" />
+    <Content Include="shoppers\images\shoe_1.jpg" />
+    <Content Include="shoppers\images\women.jpg" />
+    <Content Include="shoppers\index.html" />
+    <Content Include="shoppers\js\aos.js" />
+    <Content Include="shoppers\js\bootstrap.min.js" />
+    <Content Include="shoppers\js\jquery-3.3.1.min.js" />
+    <Content Include="shoppers\js\jquery-ui.js" />
+    <Content Include="shoppers\js\jquery.magnific-popup.min.js" />
+    <Content Include="shoppers\js\main.js" />
+    <Content Include="shoppers\js\owl.carousel.min.js" />
+    <Content Include="shoppers\js\popper.min.js" />
+    <Content Include="shoppers\js\slick.min.js" />
+    <Content Include="shoppers\shop-single.html" />
+    <Content Include="shoppers\shop.html" />
+    <Content Include="shoppers\thankyou.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -508,6 +631,108 @@
     <Content Include="Views\Module\Add.cshtml" />
     <Content Include="Views\Module\Edit.cshtml" />
     <Content Include="Views\Titles\Index.cshtml" />
+    <Content Include="shoppers\.DS_Store" />
+    <Content Include="shoppers\fonts\icomoon\fonts\icomoon.eot" />
+    <Content Include="shoppers\fonts\icomoon\fonts\icomoon.ttf" />
+    <Content Include="shoppers\fonts\icomoon\fonts\icomoon.woff" />
+    <Content Include="shoppers\fonts\icomoon\selection.json" />
+    <Content Include="shoppers\prepros-6.config" />
+    <Content Include="shoppers\scss\.DS_Store" />
+    <Content Include="shoppers\scss\bootstrap\.DS_Store" />
+    <Content Include="shoppers\scss\bootstrap\bootstrap-grid.scss" />
+    <Content Include="shoppers\scss\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="shoppers\scss\bootstrap\bootstrap.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_alert.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_badge.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_buttons.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_caret.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_float.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_forms.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_gradients.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_grid.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_hover.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_image.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_list-group.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_lists.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_pagination.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_resize.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_screen-reader.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_size.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_table-row.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_text-hide.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_transition.scss" />
+    <Content Include="shoppers\scss\bootstrap\mixins\_visibility.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_align.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_background.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_borders.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_clearfix.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_display.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_embed.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_flex.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_float.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_position.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_screenreaders.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_shadows.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_sizing.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_spacing.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_text.scss" />
+    <Content Include="shoppers\scss\bootstrap\utilities\_visibility.scss" />
+    <Content Include="shoppers\scss\bootstrap\_alert.scss" />
+    <Content Include="shoppers\scss\bootstrap\_badge.scss" />
+    <Content Include="shoppers\scss\bootstrap\_breadcrumb.scss" />
+    <Content Include="shoppers\scss\bootstrap\_button-group.scss" />
+    <Content Include="shoppers\scss\bootstrap\_buttons.scss" />
+    <Content Include="shoppers\scss\bootstrap\_card.scss" />
+    <Content Include="shoppers\scss\bootstrap\_carousel.scss" />
+    <Content Include="shoppers\scss\bootstrap\_close.scss" />
+    <Content Include="shoppers\scss\bootstrap\_code.scss" />
+    <Content Include="shoppers\scss\bootstrap\_custom-forms.scss" />
+    <Content Include="shoppers\scss\bootstrap\_dropdown.scss" />
+    <Content Include="shoppers\scss\bootstrap\_forms.scss" />
+    <Content Include="shoppers\scss\bootstrap\_functions.scss" />
+    <Content Include="shoppers\scss\bootstrap\_grid.scss" />
+    <Content Include="shoppers\scss\bootstrap\_images.scss" />
+    <Content Include="shoppers\scss\bootstrap\_input-group.scss" />
+    <Content Include="shoppers\scss\bootstrap\_jumbotron.scss" />
+    <Content Include="shoppers\scss\bootstrap\_list-group.scss" />
+    <Content Include="shoppers\scss\bootstrap\_media.scss" />
+    <Content Include="shoppers\scss\bootstrap\_mixins.scss" />
+    <Content Include="shoppers\scss\bootstrap\_modal.scss" />
+    <Content Include="shoppers\scss\bootstrap\_nav.scss" />
+    <Content Include="shoppers\scss\bootstrap\_navbar.scss" />
+    <Content Include="shoppers\scss\bootstrap\_pagination.scss" />
+    <Content Include="shoppers\scss\bootstrap\_popover.scss" />
+    <Content Include="shoppers\scss\bootstrap\_print.scss" />
+    <Content Include="shoppers\scss\bootstrap\_progress.scss" />
+    <Content Include="shoppers\scss\bootstrap\_reboot.scss" />
+    <Content Include="shoppers\scss\bootstrap\_root.scss" />
+    <Content Include="shoppers\scss\bootstrap\_tables.scss" />
+    <Content Include="shoppers\scss\bootstrap\_tooltip.scss" />
+    <Content Include="shoppers\scss\bootstrap\_transitions.scss" />
+    <Content Include="shoppers\scss\bootstrap\_type.scss" />
+    <Content Include="shoppers\scss\bootstrap\_utilities.scss" />
+    <Content Include="shoppers\scss\bootstrap\_variables.scss" />
+    <Content Include="shoppers\scss\style.scss" />
+    <Content Include="shoppers\scss\_site-base.scss" />
+    <Content Include="shoppers\scss\_site-blocks.scss" />
+    <Content Include="shoppers\scss\_site-navbar.scss" />
+    <Content Include="Views\Shared\_LayoutShop.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Shared\_PartialShopPage.cshtml" />
+    <Content Include="Views\Shop\Detail.cshtml" />
+    <Content Include="Views\Shop\Cart.cshtml" />
+    <Content Include="Views\Shop\Payment.cshtml" />
+    <Content Include="Views\Shop\CheckoutReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,26 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="bookstoreModelStoreContainer" CdmEntityContainer="bookstoreEntities">
-    <EntitySetMapping Name="Books">
-      <EntityTypeMapping TypeName="bookstoreModel.Books">
-        <MappingFragment StoreEntitySet="Books">
-          <ScalarProperty Name="rowid" ColumnName="rowid" />
-          <ScalarProperty Name="book_no" ColumnName="book_no" />
-          <ScalarProperty Name="isbn_no" ColumnName="isbn_no" />
-          <ScalarProperty Name="book_name" ColumnName="book_name" />
-          <ScalarProperty Name="author_name" ColumnName="author_name" />
-          <ScalarProperty Name="publish_date" ColumnName="publish_date" />
-          <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
-          <ScalarProperty Name="language_no" ColumnName="language_no" />
-          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
-          <ScalarProperty Name="content_text" ColumnName="content_text" />
-          <ScalarProperty Name="detail_text" ColumnName="detail_text" />
-          <ScalarProperty Name="remark" ColumnName="remark" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Departments">
-      <EntityTypeMapping TypeName="bookstoreModel.Departments">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Departments)">
         <MappingFragment StoreEntitySet="Departments">
           <ScalarProperty Name="rowid" ColumnName="rowid" />
           <ScalarProperty Name="department_no" ColumnName="department_no" />
@@ -30,7 +12,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Languages">
-      <EntityTypeMapping TypeName="bookstoreModel.Languages">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Languages)">
         <MappingFragment StoreEntitySet="Languages">
           <ScalarProperty Name="rowid" ColumnName="rowid" />
           <ScalarProperty Name="language_no" ColumnName="language_no" />
@@ -40,7 +22,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MemberTypes">
-      <EntityTypeMapping TypeName="bookstoreModel.MemberTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.MemberTypes)">
         <MappingFragment StoreEntitySet="MemberTypes">
           <ScalarProperty Name="rowid" ColumnName="rowid" />
           <ScalarProperty Name="type_no" ColumnName="type_no" />
@@ -50,7 +32,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Modules">
-      <EntityTypeMapping TypeName="bookstoreModel.Modules">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Modules)">
         <MappingFragment StoreEntitySet="Modules">
           <ScalarProperty Name="rowid" ColumnName="rowid" />
           <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
@@ -62,7 +44,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Programs">
-      <EntityTypeMapping TypeName="bookstoreModel.Programs">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Programs)">
         <MappingFragment StoreEntitySet="Programs">
           <ScalarProperty Name="rowid" ColumnName="rowid" />
           <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
@@ -79,7 +61,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProgramTypes">
-      <EntityTypeMapping TypeName="bookstoreModel.ProgramTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.ProgramTypes)">
         <MappingFragment StoreEntitySet="ProgramTypes">
           <ScalarProperty Name="rowid" ColumnName="rowid" />
           <ScalarProperty Name="type_no" ColumnName="type_no" />
@@ -89,23 +71,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Publishers">
-      <EntityTypeMapping TypeName="bookstoreModel.Publishers">
-        <MappingFragment StoreEntitySet="Publishers">
-          <ScalarProperty Name="rowid" ColumnName="rowid" />
-          <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
-          <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
-          <ScalarProperty Name="boss_name" ColumnName="boss_name" />
-          <ScalarProperty Name="contact_name" ColumnName="contact_name" />
-          <ScalarProperty Name="company_telphone" ColumnName="company_telphone" />
-          <ScalarProperty Name="contact_telphone" ColumnName="contact_telphone" />
-          <ScalarProperty Name="company_address" ColumnName="company_address" />
-          <ScalarProperty Name="remark" ColumnName="remark" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Titles">
-      <EntityTypeMapping TypeName="bookstoreModel.Titles">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Titles)">
         <MappingFragment StoreEntitySet="Titles">
           <ScalarProperty Name="rowid" ColumnName="rowid" />
           <ScalarProperty Name="title_no" ColumnName="title_no" />
@@ -115,7 +82,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="bookstoreModel.Users">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Users)">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="rowid" ColumnName="rowid" />
           <ScalarProperty Name="is_validate" ColumnName="is_validate" />
@@ -134,54 +101,217 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Members">
-      <EntityTypeMapping TypeName="bookstoreModel.Members">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Members)">
         <MappingFragment StoreEntitySet="Members">
-          <ScalarProperty Name="remark" ColumnName="remark" />
-          <ScalarProperty Name="validate_code" ColumnName="validate_code" />
-          <ScalarProperty Name="contact_address" ColumnName="contact_address" />
-          <ScalarProperty Name="contact_zip" ColumnName="contact_zip" />
-          <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
-          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
-          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
-          <ScalarProperty Name="gender_code" ColumnName="gender_code" />
-          <ScalarProperty Name="member_password" ColumnName="member_password" />
-          <ScalarProperty Name="member_type_no" ColumnName="member_type_no" />
-          <ScalarProperty Name="member_name" ColumnName="member_name" />
-          <ScalarProperty Name="member_no" ColumnName="member_no" />
-          <ScalarProperty Name="is_validate" ColumnName="is_validate" />
           <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+          <ScalarProperty Name="member_no" ColumnName="member_no" />
+          <ScalarProperty Name="member_name" ColumnName="member_name" />
+          <ScalarProperty Name="member_type_no" ColumnName="member_type_no" />
+          <ScalarProperty Name="member_password" ColumnName="member_password" />
+          <ScalarProperty Name="gender_code" ColumnName="gender_code" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+          <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
+          <ScalarProperty Name="contact_zip" ColumnName="contact_zip" />
+          <ScalarProperty Name="contact_address" ColumnName="contact_address" />
+          <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Admins">
-      <EntityTypeMapping TypeName="bookstoreModel.Admins">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Admins)">
         <MappingFragment StoreEntitySet="Admins">
-          <ScalarProperty Name="remark" ColumnName="remark" />
-          <ScalarProperty Name="validate_code" ColumnName="validate_code" />
-          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
-          <ScalarProperty Name="admin_password" ColumnName="admin_password" />
-          <ScalarProperty Name="admin_name" ColumnName="admin_name" />
-          <ScalarProperty Name="admin_no" ColumnName="admin_no" />
-          <ScalarProperty Name="is_validate" ColumnName="is_validate" />
           <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+          <ScalarProperty Name="admin_no" ColumnName="admin_no" />
+          <ScalarProperty Name="admin_name" ColumnName="admin_name" />
+          <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+          <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Securitys">
-      <EntityTypeMapping TypeName="bookstoreModel.Securitys">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Securitys)">
         <MappingFragment StoreEntitySet="Securitys">
-          <ScalarProperty Name="remark" ColumnName="remark" />
-          <ScalarProperty Name="is_undo" ColumnName="is_undo" />
-          <ScalarProperty Name="is_confirm" ColumnName="is_confirm" />
-          <ScalarProperty Name="is_download" ColumnName="is_download" />
-          <ScalarProperty Name="is_upload" ColumnName="is_upload" />
-          <ScalarProperty Name="is_print" ColumnName="is_print" />
-          <ScalarProperty Name="is_delete" ColumnName="is_delete" />
-          <ScalarProperty Name="is_edit" ColumnName="is_edit" />
-          <ScalarProperty Name="is_add" ColumnName="is_add" />
-          <ScalarProperty Name="program_no" ColumnName="program_no" />
-          <ScalarProperty Name="module_no" ColumnName="module_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
           <ScalarProperty Name="account_no" ColumnName="account_no" />
+          <ScalarProperty Name="module_no" ColumnName="module_no" />
+          <ScalarProperty Name="program_no" ColumnName="program_no" />
+          <ScalarProperty Name="is_add" ColumnName="is_add" />
+          <ScalarProperty Name="is_edit" ColumnName="is_edit" />
+          <ScalarProperty Name="is_delete" ColumnName="is_delete" />
+          <ScalarProperty Name="is_print" ColumnName="is_print" />
+          <ScalarProperty Name="is_upload" ColumnName="is_upload" />
+          <ScalarProperty Name="is_download" ColumnName="is_download" />
+          <ScalarProperty Name="is_confirm" ColumnName="is_confirm" />
+          <ScalarProperty Name="is_undo" ColumnName="is_undo" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Applications">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Applications)">
+        <MappingFragment StoreEntitySet="Applications">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="shop_name" ColumnName="shop_name" />
+          <ScalarProperty Name="banner_header" ColumnName="banner_header" />
+          <ScalarProperty Name="banner_description" ColumnName="banner_description" />
+          <ScalarProperty Name="shipping_description" ColumnName="shipping_description" />
+          <ScalarProperty Name="return_description" ColumnName="return_description" />
+          <ScalarProperty Name="support_description" ColumnName="support_description" />
+          <ScalarProperty Name="contact_address" ColumnName="contact_address" />
+          <ScalarProperty Name="contact_tel" ColumnName="contact_tel" />
+          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+          <ScalarProperty Name="shop_about" ColumnName="shop_about" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BigSales">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.BigSales)">
+        <MappingFragment StoreEntitySet="BigSales">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="sort_no" ColumnName="sort_no" />
+          <ScalarProperty Name="product_no" ColumnName="product_no" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorys">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Categorys)">
+        <MappingFragment StoreEntitySet="Categorys">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+          <ScalarProperty Name="parentno" ColumnName="parentno" />
+          <ScalarProperty Name="mno" ColumnName="mno" />
+          <ScalarProperty Name="mname" ColumnName="mname" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Featureds">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Featureds)">
+        <MappingFragment StoreEntitySet="Featureds">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+          <ScalarProperty Name="sort_no" ColumnName="sort_no" />
+          <ScalarProperty Name="product_no" ColumnName="product_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Books)">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="book_no" ColumnName="book_no" />
+          <ScalarProperty Name="isbn_no" ColumnName="isbn_no" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="author_name" ColumnName="author_name" />
+          <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+          <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
+          <ScalarProperty Name="language_no" ColumnName="language_no" />
+          <ScalarProperty Name="category_no" ColumnName="category_no" />
+          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+          <ScalarProperty Name="content_text" ColumnName="content_text" />
+          <ScalarProperty Name="detail_text" ColumnName="detail_text" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="bookstoreModel.Payments">
+        <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="mname" ColumnName="mname" />
+          <ScalarProperty Name="mno" ColumnName="mno" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shippings">
+      <EntityTypeMapping TypeName="bookstoreModel.Shippings">
+        <MappingFragment StoreEntitySet="Shippings">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="mname" ColumnName="mname" />
+          <ScalarProperty Name="mno" ColumnName="mno" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publishers">
+      <EntityTypeMapping TypeName="bookstoreModel.Publishers">
+        <MappingFragment StoreEntitySet="Publishers">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="company_address" ColumnName="company_address" />
+          <ScalarProperty Name="contact_telphone" ColumnName="contact_telphone" />
+          <ScalarProperty Name="company_telphone" ColumnName="company_telphone" />
+          <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+          <ScalarProperty Name="boss_name" ColumnName="boss_name" />
+          <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
+          <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="bookstoreModel.Carts">
+        <MappingFragment StoreEntitySet="Carts">
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="product_spec" ColumnName="product_spec" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_no" ColumnName="product_no" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="lot_no" ColumnName="lot_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrdersDetail">
+      <EntityTypeMapping TypeName="bookstoreModel.OrdersDetail">
+        <MappingFragment StoreEntitySet="OrdersDetail">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="product_spec" ColumnName="product_spec" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_no" ColumnName="product_no" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="vendor_no" ColumnName="vendor_no" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="bookstoreModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="receive_email" ColumnName="receive_email" />
+          <ScalarProperty Name="order_guid" ColumnName="order_guid" />
+          <ScalarProperty Name="order_validate" ColumnName="order_validate" />
+          <ScalarProperty Name="order_closed" ColumnName="order_closed" />
+          <ScalarProperty Name="totals" ColumnName="totals" />
+          <ScalarProperty Name="taxs" ColumnName="taxs" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="receive_address" ColumnName="receive_address" />
+          <ScalarProperty Name="receive_mail" ColumnName="receive_mail" />
+          <ScalarProperty Name="receive_name" ColumnName="receive_name" />
+          <ScalarProperty Name="shipping_no" ColumnName="shipping_no" />
+          <ScalarProperty Name="payment_no" ColumnName="payment_no" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
           <ScalarProperty Name="rowid" ColumnName="rowid" />
         </MappingFragment>
       </EntityTypeMapping>

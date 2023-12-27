@@ -18,6 +18,34 @@
           <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shop_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="banner_header" Type="nvarchar" MaxLength="250" />
+          <Property Name="banner_description" Type="nvarchar(max)" />
+          <Property Name="shipping_description" Type="nvarchar(max)" />
+          <Property Name="return_description" Type="nvarchar(max)" />
+          <Property Name="support_description" Type="nvarchar(max)" />
+          <Property Name="contact_address" Type="nvarchar" MaxLength="250" />
+          <Property Name="contact_tel" Type="nvarchar" MaxLength="250" />
+          <Property Name="contact_email" Type="nvarchar" MaxLength="250" />
+          <Property Name="shop_about" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BigSales">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sort_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="start_time" Type="datetime" />
+          <Property Name="end_time" Type="datetime" />
+          <Property Name="sale_price" Type="int" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="Books">
           <Key>
             <PropertyRef Name="rowid" />
@@ -30,9 +58,36 @@
           <Property Name="publish_date" Type="datetime" Nullable="false" />
           <Property Name="publisher_no" Type="nvarchar" MaxLength="50" />
           <Property Name="language_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="category_no" Type="nvarchar" MaxLength="50" />
           <Property Name="sale_price" Type="int" Nullable="false" />
           <Property Name="content_text" Type="nvarchar(max)" />
           <Property Name="detail_text" Type="nvarchar(max)" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Carts">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lot_no" Type="nvarchar" MaxLength="250" />
+          <Property Name="user_no" Type="nvarchar" MaxLength="250" />
+          <Property Name="product_no" Type="nchar" MaxLength="10" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="250" />
+          <Property Name="product_spec" Type="nvarchar" MaxLength="250" />
+          <Property Name="qty" Type="int" />
+          <Property Name="price" Type="int" />
+          <Property Name="create_time" Type="datetime" />
+          <Property Name="amount" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Categorys">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_enabled" Type="bit" Nullable="false" />
+          <Property Name="parentno" Type="nvarchar" MaxLength="50" />
+          <Property Name="mno" Type="nvarchar" MaxLength="50" />
+          <Property Name="mname" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Departments">
@@ -43,6 +98,15 @@
           <Property Name="department_no" Type="nvarchar" MaxLength="50" />
           <Property Name="department_name" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Featureds">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_enabled" Type="bit" Nullable="false" />
+          <Property Name="sort_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Languages">
           <Key>
@@ -68,7 +132,7 @@
           <Property Name="contact_email" Type="nvarchar" MaxLength="50" />
           <Property Name="contact_phone" Type="nvarchar" MaxLength="50" />
           <Property Name="contact_zip" Type="nvarchar" MaxLength="50" />
-          <Property Name="contact_address" Type="nvarchar" MaxLength="250" />
+          <Property Name="contact_address" Type="nvarchar" MaxLength="50" />
           <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
         </EntityType>
@@ -90,6 +154,54 @@
           <Property Name="module_no" Type="nvarchar" MaxLength="50" />
           <Property Name="module_name" Type="nvarchar" MaxLength="50" />
           <Property Name="icon_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_date" Type="datetime" />
+          <Property Name="order_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="payment_no" Type="nchar" MaxLength="10" />
+          <Property Name="shipping_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_address" Type="nvarchar" MaxLength="50" />
+          <Property Name="amount" Type="int" />
+          <Property Name="taxs" Type="int" />
+          <Property Name="totals" Type="int" />
+          <Property Name="order_closed" Type="int" />
+          <Property Name="order_validate" Type="int" />
+          <Property Name="order_guid" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="OrdersDetail">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="vendor_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_spec" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="int" />
+          <Property Name="qty" Type="int" />
+          <Property Name="amount" Type="int" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mno" Type="nvarchar" MaxLength="50" />
+          <Property Name="mname" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Programs">
@@ -150,6 +262,15 @@
           <Property Name="is_undo" Type="bit" Nullable="false" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="Shippings">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mno" Type="varchar" MaxLength="50" />
+          <Property Name="mname" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="Titles">
           <Key>
             <PropertyRef Name="rowid" />
@@ -168,27 +289,36 @@
           <Property Name="user_no" Type="nvarchar" MaxLength="50" />
           <Property Name="user_name" Type="nvarchar" MaxLength="50" />
           <Property Name="user_password" Type="nvarchar" MaxLength="50" />
-          <Property Name="department_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="department_no" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="title_no" Type="nvarchar" MaxLength="50" />
           <Property Name="in_date" Type="datetime" Nullable="false" />
           <Property Name="contact_email" Type="nvarchar" MaxLength="50" />
           <Property Name="contact_phone" Type="nvarchar" MaxLength="50" />
-          <Property Name="contact_address" Type="nvarchar" MaxLength="250" />
+          <Property Name="contact_address" Type="nvarchar" MaxLength="50" />
           <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityContainer Name="bookstoreModelStoreContainer">
           <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BigSales" EntityType="Self.BigSales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Featureds" EntityType="Self.Featureds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Languages" EntityType="Self.Languages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberTypes" EntityType="Self.MemberTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdersDetail" EntityType="Self.OrdersDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgramTypes" EntityType="Self.ProgramTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Publishers" EntityType="Self.Publishers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Securitys" EntityType="Self.Securitys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shippings" EntityType="Self.Shippings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Titles" EntityType="Self.Titles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -196,23 +326,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="bookstoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Books">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="book_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="isbn_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="book_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="language_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sale_price" Type="Int32" Nullable="false" />
-          <Property Name="content_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="detail_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="rowid" />
@@ -277,20 +390,6 @@
           <Property Name="icon_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Publishers">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="publisher_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="boss_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="contact_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="company_telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="contact_telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="company_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Titles">
           <Key>
             <PropertyRef Name="rowid" />
@@ -309,29 +408,38 @@
           <Property Name="user_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="department_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="department_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="title_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="in_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="contact_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="contact_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="contact_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="contact_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="validate_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="bookstoreEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Books" EntityType="Self.Books" />
           <EntitySet Name="Departments" EntityType="Self.Departments" />
           <EntitySet Name="Languages" EntityType="Self.Languages" />
           <EntitySet Name="MemberTypes" EntityType="Self.MemberTypes" />
           <EntitySet Name="Modules" EntityType="Self.Modules" />
           <EntitySet Name="Programs" EntityType="Self.Programs" />
           <EntitySet Name="ProgramTypes" EntityType="Self.ProgramTypes" />
-          <EntitySet Name="Publishers" EntityType="Self.Publishers" />
           <EntitySet Name="Titles" EntityType="Self.Titles" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="Members" EntityType="bookstoreModel.Members" />
           <EntitySet Name="Admins" EntityType="bookstoreModel.Admins" />
           <EntitySet Name="Securitys" EntityType="bookstoreModel.Securitys" />
+          <EntitySet Name="Applications" EntityType="bookstoreModel.Applications" />
+          <EntitySet Name="BigSales" EntityType="bookstoreModel.BigSales" />
+          <EntitySet Name="Categorys" EntityType="bookstoreModel.Categorys" />
+          <EntitySet Name="Featureds" EntityType="bookstoreModel.Featureds" />
+          <EntitySet Name="Books" EntityType="bookstoreModel.Books" />
+          <EntitySet Name="Payments" EntityType="bookstoreModel.Payments" />
+          <EntitySet Name="Shippings" EntityType="bookstoreModel.Shippings" />
+          <EntitySet Name="Publishers" EntityType="bookstoreModel.Publishers" />
+          <EntitySet Name="Carts" EntityType="bookstoreModel.Carts" />
+          <EntitySet Name="OrdersDetail" EntityType="bookstoreModel.OrdersDetail" />
+          <EntitySet Name="Orders" EntityType="bookstoreModel.Orders" />
         </EntityContainer>
         <EntityType Name="Members">
           <Key>
@@ -348,7 +456,7 @@
           <Property Name="contact_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="contact_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="contact_zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="contact_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="contact_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="validate_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -383,200 +491,481 @@
           <Property Name="is_undo" Type="Boolean" Nullable="false" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shop_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="banner_header" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="banner_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="shipping_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="return_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="support_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="contact_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="contact_tel" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="contact_email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="shop_about" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BigSales">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sort_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="start_time" Type="DateTime" Precision="3" />
+          <Property Name="end_time" Type="DateTime" Precision="3" />
+          <Property Name="sale_price" Type="Int32" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Categorys">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="parentno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Featureds">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="sort_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="book_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isbn_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="book_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="language_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sale_price" Type="Int32" Nullable="false" />
+          <Property Name="content_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="detail_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Shippings">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Publishers">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="publisher_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="boss_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contact_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="company_telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contact_telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="company_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Carts">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lot_no" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="user_no" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="product_no" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="product_spec" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="create_time" Type="DateTime" Precision="3" />
+          <Property Name="amount" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="OrdersDetail">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vendor_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_spec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_date" Type="DateTime" Precision="3" />
+          <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="payment_no" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="shipping_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="taxs" Type="Int32" />
+          <Property Name="totals" Type="Int32" />
+          <Property Name="order_closed" Type="Int32" />
+          <Property Name="order_validate" Type="Int32" />
+          <Property Name="order_guid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bookstoreModelStoreContainer" CdmEntityContainer="bookstoreEntities">
-          <EntitySetMapping Name="Books">
-            <EntityTypeMapping TypeName="bookstoreModel.Books">
-              <MappingFragment StoreEntitySet="Books">
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-                <ScalarProperty Name="book_no" ColumnName="book_no" />
-                <ScalarProperty Name="isbn_no" ColumnName="isbn_no" />
-                <ScalarProperty Name="book_name" ColumnName="book_name" />
-                <ScalarProperty Name="author_name" ColumnName="author_name" />
-                <ScalarProperty Name="publish_date" ColumnName="publish_date" />
-                <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
-                <ScalarProperty Name="language_no" ColumnName="language_no" />
-                <ScalarProperty Name="sale_price" ColumnName="sale_price" />
-                <ScalarProperty Name="content_text" ColumnName="content_text" />
-                <ScalarProperty Name="detail_text" ColumnName="detail_text" />
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bookstoreModelStoreContainer" CdmEntityContainer="bookstoreEntities">
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Departments)">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="department_no" ColumnName="department_no" />
+          <ScalarProperty Name="department_name" ColumnName="department_name" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Languages">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Languages)">
+        <MappingFragment StoreEntitySet="Languages">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="language_no" ColumnName="language_no" />
+          <ScalarProperty Name="language_name" ColumnName="language_name" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.MemberTypes)">
+        <MappingFragment StoreEntitySet="MemberTypes">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="type_no" ColumnName="type_no" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modules">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Modules)">
+        <MappingFragment StoreEntitySet="Modules">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+          <ScalarProperty Name="module_no" ColumnName="module_no" />
+          <ScalarProperty Name="module_name" ColumnName="module_name" />
+          <ScalarProperty Name="icon_name" ColumnName="icon_name" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programs">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Programs)">
+        <MappingFragment StoreEntitySet="Programs">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+          <ScalarProperty Name="module_no" ColumnName="module_no" />
+          <ScalarProperty Name="program_no" ColumnName="program_no" />
+          <ScalarProperty Name="program_name" ColumnName="program_name" />
+          <ScalarProperty Name="program_type_no" ColumnName="program_type_no" />
+          <ScalarProperty Name="area_name" ColumnName="area_name" />
+          <ScalarProperty Name="controller_name" ColumnName="controller_name" />
+          <ScalarProperty Name="action_name" ColumnName="action_name" />
+          <ScalarProperty Name="parameter_value" ColumnName="parameter_value" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.ProgramTypes)">
+        <MappingFragment StoreEntitySet="ProgramTypes">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="type_no" ColumnName="type_no" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="icon_name" ColumnName="icon_name" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Titles">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Titles)">
+        <MappingFragment StoreEntitySet="Titles">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="title_no" ColumnName="title_no" />
+          <ScalarProperty Name="title_name" ColumnName="title_name" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Users)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+          <ScalarProperty Name="user_no" ColumnName="user_no" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="department_no" ColumnName="department_no" />
+          <ScalarProperty Name="title_no" ColumnName="title_no" />
+          <ScalarProperty Name="in_date" ColumnName="in_date" />
+          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+          <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
+          <ScalarProperty Name="contact_address" ColumnName="contact_address" />
+          <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Members)">
+        <MappingFragment StoreEntitySet="Members">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+          <ScalarProperty Name="member_no" ColumnName="member_no" />
+          <ScalarProperty Name="member_name" ColumnName="member_name" />
+          <ScalarProperty Name="member_type_no" ColumnName="member_type_no" />
+          <ScalarProperty Name="member_password" ColumnName="member_password" />
+          <ScalarProperty Name="gender_code" ColumnName="gender_code" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+          <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
+          <ScalarProperty Name="contact_zip" ColumnName="contact_zip" />
+          <ScalarProperty Name="contact_address" ColumnName="contact_address" />
+          <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Admins)">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+          <ScalarProperty Name="admin_no" ColumnName="admin_no" />
+          <ScalarProperty Name="admin_name" ColumnName="admin_name" />
+          <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+          <ScalarProperty Name="validate_code" ColumnName="validate_code" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Securitys">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Securitys)">
+        <MappingFragment StoreEntitySet="Securitys">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="account_no" ColumnName="account_no" />
+          <ScalarProperty Name="module_no" ColumnName="module_no" />
+          <ScalarProperty Name="program_no" ColumnName="program_no" />
+          <ScalarProperty Name="is_add" ColumnName="is_add" />
+          <ScalarProperty Name="is_edit" ColumnName="is_edit" />
+          <ScalarProperty Name="is_delete" ColumnName="is_delete" />
+          <ScalarProperty Name="is_print" ColumnName="is_print" />
+          <ScalarProperty Name="is_upload" ColumnName="is_upload" />
+          <ScalarProperty Name="is_download" ColumnName="is_download" />
+          <ScalarProperty Name="is_confirm" ColumnName="is_confirm" />
+          <ScalarProperty Name="is_undo" ColumnName="is_undo" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Applications">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Applications)">
+        <MappingFragment StoreEntitySet="Applications">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="shop_name" ColumnName="shop_name" />
+          <ScalarProperty Name="banner_header" ColumnName="banner_header" />
+          <ScalarProperty Name="banner_description" ColumnName="banner_description" />
+          <ScalarProperty Name="shipping_description" ColumnName="shipping_description" />
+          <ScalarProperty Name="return_description" ColumnName="return_description" />
+          <ScalarProperty Name="support_description" ColumnName="support_description" />
+          <ScalarProperty Name="contact_address" ColumnName="contact_address" />
+          <ScalarProperty Name="contact_tel" ColumnName="contact_tel" />
+          <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+          <ScalarProperty Name="shop_about" ColumnName="shop_about" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BigSales">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.BigSales)">
+        <MappingFragment StoreEntitySet="BigSales">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="sort_no" ColumnName="sort_no" />
+          <ScalarProperty Name="product_no" ColumnName="product_no" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorys">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Categorys)">
+        <MappingFragment StoreEntitySet="Categorys">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+          <ScalarProperty Name="parentno" ColumnName="parentno" />
+          <ScalarProperty Name="mno" ColumnName="mno" />
+          <ScalarProperty Name="mname" ColumnName="mname" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Featureds">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Featureds)">
+        <MappingFragment StoreEntitySet="Featureds">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+          <ScalarProperty Name="sort_no" ColumnName="sort_no" />
+          <ScalarProperty Name="product_no" ColumnName="product_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Books)">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+          <ScalarProperty Name="book_no" ColumnName="book_no" />
+          <ScalarProperty Name="isbn_no" ColumnName="isbn_no" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="author_name" ColumnName="author_name" />
+          <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+          <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
+          <ScalarProperty Name="language_no" ColumnName="language_no" />
+          <ScalarProperty Name="category_no" ColumnName="category_no" />
+          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+          <ScalarProperty Name="content_text" ColumnName="content_text" />
+          <ScalarProperty Name="detail_text" ColumnName="detail_text" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="bookstoreModel.Payments">
+              <MappingFragment StoreEntitySet="Payments">
                 <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="mname" ColumnName="mname" />
+                <ScalarProperty Name="mno" ColumnName="mno" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="bookstoreModel.Departments">
-              <MappingFragment StoreEntitySet="Departments">
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-                <ScalarProperty Name="department_no" ColumnName="department_no" />
-                <ScalarProperty Name="department_name" ColumnName="department_name" />
+          <EntitySetMapping Name="Shippings">
+            <EntityTypeMapping TypeName="bookstoreModel.Shippings">
+              <MappingFragment StoreEntitySet="Shippings">
                 <ScalarProperty Name="remark" ColumnName="remark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Languages">
-            <EntityTypeMapping TypeName="bookstoreModel.Languages">
-              <MappingFragment StoreEntitySet="Languages">
+                <ScalarProperty Name="mname" ColumnName="mname" />
+                <ScalarProperty Name="mno" ColumnName="mno" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
-                <ScalarProperty Name="language_no" ColumnName="language_no" />
-                <ScalarProperty Name="language_name" ColumnName="language_name" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MemberTypes">
-            <EntityTypeMapping TypeName="bookstoreModel.MemberTypes">
-              <MappingFragment StoreEntitySet="MemberTypes">
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-                <ScalarProperty Name="type_no" ColumnName="type_no" />
-                <ScalarProperty Name="type_name" ColumnName="type_name" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Modules">
-            <EntityTypeMapping TypeName="bookstoreModel.Modules">
-              <MappingFragment StoreEntitySet="Modules">
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-                <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
-                <ScalarProperty Name="module_no" ColumnName="module_no" />
-                <ScalarProperty Name="module_name" ColumnName="module_name" />
-                <ScalarProperty Name="icon_name" ColumnName="icon_name" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Programs">
-            <EntityTypeMapping TypeName="bookstoreModel.Programs">
-              <MappingFragment StoreEntitySet="Programs">
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-                <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
-                <ScalarProperty Name="module_no" ColumnName="module_no" />
-                <ScalarProperty Name="program_no" ColumnName="program_no" />
-                <ScalarProperty Name="program_name" ColumnName="program_name" />
-                <ScalarProperty Name="program_type_no" ColumnName="program_type_no" />
-                <ScalarProperty Name="area_name" ColumnName="area_name" />
-                <ScalarProperty Name="controller_name" ColumnName="controller_name" />
-                <ScalarProperty Name="action_name" ColumnName="action_name" />
-                <ScalarProperty Name="parameter_value" ColumnName="parameter_value" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProgramTypes">
-            <EntityTypeMapping TypeName="bookstoreModel.ProgramTypes">
-              <MappingFragment StoreEntitySet="ProgramTypes">
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-                <ScalarProperty Name="type_no" ColumnName="type_no" />
-                <ScalarProperty Name="type_name" ColumnName="type_name" />
-                <ScalarProperty Name="icon_name" ColumnName="icon_name" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Publishers">
             <EntityTypeMapping TypeName="bookstoreModel.Publishers">
               <MappingFragment StoreEntitySet="Publishers">
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-                <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
-                <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
-                <ScalarProperty Name="boss_name" ColumnName="boss_name" />
-                <ScalarProperty Name="contact_name" ColumnName="contact_name" />
-                <ScalarProperty Name="company_telphone" ColumnName="company_telphone" />
-                <ScalarProperty Name="contact_telphone" ColumnName="contact_telphone" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="company_address" ColumnName="company_address" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="contact_telphone" ColumnName="contact_telphone" />
+                <ScalarProperty Name="company_telphone" ColumnName="company_telphone" />
+                <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+                <ScalarProperty Name="boss_name" ColumnName="boss_name" />
+                <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
+                <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Titles">
-            <EntityTypeMapping TypeName="bookstoreModel.Titles">
-              <MappingFragment StoreEntitySet="Titles">
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-                <ScalarProperty Name="title_no" ColumnName="title_no" />
-                <ScalarProperty Name="title_name" ColumnName="title_name" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="bookstoreModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-                <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="bookstoreModel.Carts">
+              <MappingFragment StoreEntitySet="Carts">
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="product_spec" ColumnName="product_spec" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
                 <ScalarProperty Name="user_no" ColumnName="user_no" />
-                <ScalarProperty Name="user_name" ColumnName="user_name" />
-                <ScalarProperty Name="user_password" ColumnName="user_password" />
-                <ScalarProperty Name="department_no" ColumnName="department_no" />
-                <ScalarProperty Name="title_no" ColumnName="title_no" />
-                <ScalarProperty Name="in_date" ColumnName="in_date" />
-                <ScalarProperty Name="contact_email" ColumnName="contact_email" />
-                <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
-                <ScalarProperty Name="contact_address" ColumnName="contact_address" />
-                <ScalarProperty Name="validate_code" ColumnName="validate_code" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="bookstoreModel.Members">
-              <MappingFragment StoreEntitySet="Members">
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="validate_code" ColumnName="validate_code" />
-                <ScalarProperty Name="contact_address" ColumnName="contact_address" />
-                <ScalarProperty Name="contact_zip" ColumnName="contact_zip" />
-                <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
-                <ScalarProperty Name="contact_email" ColumnName="contact_email" />
-                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
-                <ScalarProperty Name="gender_code" ColumnName="gender_code" />
-                <ScalarProperty Name="member_password" ColumnName="member_password" />
-                <ScalarProperty Name="member_type_no" ColumnName="member_type_no" />
-                <ScalarProperty Name="member_name" ColumnName="member_name" />
-                <ScalarProperty Name="member_no" ColumnName="member_no" />
-                <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+                <ScalarProperty Name="lot_no" ColumnName="lot_no" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Admins">
-            <EntityTypeMapping TypeName="bookstoreModel.Admins">
-              <MappingFragment StoreEntitySet="Admins">
+          <EntitySetMapping Name="OrdersDetail">
+            <EntityTypeMapping TypeName="bookstoreModel.OrdersDetail">
+              <MappingFragment StoreEntitySet="OrdersDetail">
                 <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="validate_code" ColumnName="validate_code" />
-                <ScalarProperty Name="contact_email" ColumnName="contact_email" />
-                <ScalarProperty Name="admin_password" ColumnName="admin_password" />
-                <ScalarProperty Name="admin_name" ColumnName="admin_name" />
-                <ScalarProperty Name="admin_no" ColumnName="admin_no" />
-                <ScalarProperty Name="is_validate" ColumnName="is_validate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="product_spec" ColumnName="product_spec" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="vendor_no" ColumnName="vendor_no" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Securitys">
-            <EntityTypeMapping TypeName="bookstoreModel.Securitys">
-              <MappingFragment StoreEntitySet="Securitys">
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="bookstoreModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="is_undo" ColumnName="is_undo" />
-                <ScalarProperty Name="is_confirm" ColumnName="is_confirm" />
-                <ScalarProperty Name="is_download" ColumnName="is_download" />
-                <ScalarProperty Name="is_upload" ColumnName="is_upload" />
-                <ScalarProperty Name="is_print" ColumnName="is_print" />
-                <ScalarProperty Name="is_delete" ColumnName="is_delete" />
-                <ScalarProperty Name="is_edit" ColumnName="is_edit" />
-                <ScalarProperty Name="is_add" ColumnName="is_add" />
-                <ScalarProperty Name="program_no" ColumnName="program_no" />
-                <ScalarProperty Name="module_no" ColumnName="module_no" />
-                <ScalarProperty Name="account_no" ColumnName="account_no" />
+                <ScalarProperty Name="receive_email" ColumnName="receive_email" />
+                <ScalarProperty Name="order_guid" ColumnName="order_guid" />
+                <ScalarProperty Name="order_validate" ColumnName="order_validate" />
+                <ScalarProperty Name="order_closed" ColumnName="order_closed" />
+                <ScalarProperty Name="totals" ColumnName="totals" />
+                <ScalarProperty Name="taxs" ColumnName="taxs" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="receive_address" ColumnName="receive_address" />
+                <ScalarProperty Name="receive_mail" ColumnName="receive_mail" />
+                <ScalarProperty Name="receive_name" ColumnName="receive_name" />
+                <ScalarProperty Name="shipping_no" ColumnName="shipping_no" />
+                <ScalarProperty Name="payment_no" ColumnName="payment_no" />
+                <ScalarProperty Name="user_no" ColumnName="user_no" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -590,7 +979,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
       </DesignerInfoPropertySet>
     </Options>
