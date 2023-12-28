@@ -92,3 +92,5 @@ C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\obj\Release\bookstore.cs
 C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\obj\Release\bookstore.csproj.CopyComplete
 C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\obj\Release\bookstore.dll
 C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\obj\Release\bookstore.pdb
+C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\bin\Dapper.dll
+C:\Users\ShenJun\Desktop\New_ASPMVC\bookstore\bookstore\bin\Dapper.xml

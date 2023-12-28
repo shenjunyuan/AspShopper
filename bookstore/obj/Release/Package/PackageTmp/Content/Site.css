@@ -106,3 +106,8 @@
 .pr-2 .input-group {
     width: 200px !important;
 }
+
+
+#search_text {
+    width: 200px;
+}

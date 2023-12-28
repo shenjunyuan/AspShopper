@@ -68,7 +68,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("新增", "Add", "<#= ViewDataTypeShortName #>", new { Area = "" }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("新增", "Create", "<#= ViewDataTypeShortName #>", new { Area = "" }, new { @class = "btn btn-primary" })
         </th>
 <#
 string pkName = GetPrimaryKeyName();

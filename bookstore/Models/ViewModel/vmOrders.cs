@@ -26,6 +26,7 @@ public class vmOrders
     [Display(Name = "訂單備註")]
     public string remark { get; set; }
 
+
     public List<Payments> PaymentsList { get; set; }
     public List<Shippings> ShippingsList { get; set; }
     public List<Carts> CartsList { get; set; }

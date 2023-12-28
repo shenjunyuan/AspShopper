@@ -2,7 +2,7 @@
     string str_header = "後台管理專區";
     if (SessionService.RoleNo == "Member") { str_header = "會員專區"; }
     if (SessionService.RoleNo == "Vendor") { str_header = "廠商專區"; }
-    if (SessionService.RoleNo == "Aadmin") { str_header = "後台管理專區"; }
+    if (SessionService.RoleNo == "Admin") { str_header = "後台管理專區"; }
     if (SessionService.RoleNo == "User") { str_header = "使用者管理專區"; }
     if (ViewBag.PanelWidth == null) { ViewBag.PanelWidth = "col-md-12"; }
 }
