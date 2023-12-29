@@ -55,7 +55,7 @@
                                         @{ if (SessionService.IsLogined)
                                             {
                                                 <span>@SessionService.AccountName</span>
-                                                <a href="@Url.Action("Login" , "Account")">登出</a> }
+                                                <a href="@Url.Action("Login" , "Account")">(登出)</a> }
                                             else
                                             {
                                                 <a href="@Url.Action("Login" , "Account")">登入</a> } }

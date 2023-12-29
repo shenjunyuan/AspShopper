@@ -95,14 +95,14 @@ namespace bookstore.Controllers
         /// <param name="model">Books Model</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddToCart(FormCollection collection)
+        public ActionResult AddToCart(FormCollection collection )
         {
             string str_book_no = collection["book_no"];
             string str_qty = collection["Quantity"];
             int int_qty = 1;
             int.TryParse(str_qty, out int_qty);
             CarPage.AddCart(str_book_no, int_qty);
-            return RedirectToAction("Cart", "Shop");
+            return RedirectToAction("Detail", new { id = str_book_no}); // 停留在原本 Detail 畫面
         }
         /// <summary>
         /// 更新購物車

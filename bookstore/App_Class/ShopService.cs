@@ -177,7 +177,8 @@ public static class ShopService
     /// <returns></returns>
     public static string GetProductImageUrl(string productNo)
     {
-        string str_url = string.Format("~/Images/Product/{0}.jpg", productNo);
+        string product_no_trim = productNo.Trim(); // 資料庫的 product_no 有空白會抓不到圖片
+        string str_url = string.Format("~/Images/Product/{0}.jpg", product_no_trim);
         if (!File.Exists(HttpContext.Current.Server.MapPath(str_url))) // 相對路徑改成絕對路徑判斷
             str_url = "~/Images/Product/None.jpg";
         return str_url;

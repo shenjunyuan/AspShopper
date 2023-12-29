@@ -57,4 +57,30 @@ public  class Utility:BaseClass
     }
 
 
+    /// <summary>
+    ///  自動取得資料表的流水號
+    /// </summary>
+    /// <param name="tableName">資料表名稱</param>
+    /// <param name="colName">欄位名稱</param>
+    /// <param name="titleName">流水號字母開頭</param>
+    /// <returns></returns>
+    public static string GetTableNumber(string tableName,string colName,string titleName)
+    {
+        string newStr = "";
+        using (DapperRepository db = new DapperRepository())
+        {
+            DateTime now = DateTime.Today;
+            string YY = (now.Year % 1000).ToString(); // 年
+            string MM = now.Month.ToString(); // 月
+            string DD = now.Day.ToString(); // 日
+            string title = titleName;
+            string query = $"SELECT isnull(max(RIGHT({colName}, 4)),0) FROM {tableName} where LEFT({colName}, 8) = '{title}{YY}{MM}{DD}'";
+            var maxValue = db.GetTable<string>(query).FirstOrDefault();
+            int maxInt = Convert.ToInt32(maxValue) + 1;
+            string padNumber = maxInt.ToString().PadLeft(4, '0'); // 不足位數補 4 個0
+             newStr = string.Format("{0}{1}{2}{3}{4}", titleName, YY, MM,DD, padNumber);
+        }
+        return newStr;  
+    }
+
 }
