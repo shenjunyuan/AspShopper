@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-public static class CartService
+public static class CarPage
 {
     #region 公開屬性
     /// <summary>
@@ -46,8 +46,7 @@ public static class CartService
     public static string NewLotNo()
     {
         string str_lot_no = "";
-        //if (!SessionService.IsLogined)
-        str_lot_no = Guid.NewGuid().ToString().Substring(0, 15).ToUpper(); // Guid 取前 1 5碼後轉換大寫
+        str_lot_no = Guid.NewGuid().ToString().Substring(0, 15).ToUpper(); // Guid 取前 15 碼後轉換大寫
         LotNo = str_lot_no;
         LotCreateTime = DateTime.Now;
         return str_lot_no;

@@ -8,7 +8,7 @@ namespace bookstore.Controllers
 {
     public class HomeController : Controller
     {
-        //[LoginAuthorize(RoleNo ="")]
+        //[LoginAuthorize(RoleNo ="admin")]
         [AllowAnonymous]
         public ActionResult Index()
         {

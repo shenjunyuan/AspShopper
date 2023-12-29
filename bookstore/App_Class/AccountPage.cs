@@ -7,7 +7,7 @@ using bookstore.Models;
 /// <summary>
 /// 處理帳號相關的類別
 /// </summary>
-public class AccountService : BaseClass
+public class AccountPage : BaseClass
 {
     /// <summary>
     /// 取得 vmAccountProfile 函數
@@ -67,7 +67,7 @@ public class AccountService : BaseClass
         using (tblSecuritys securitys = new tblSecuritys())
         {
             return securitys.GetAccountModules();
-        }  
+        }
     }
     /// <summary>
     /// 取得帳號的模組程式列表

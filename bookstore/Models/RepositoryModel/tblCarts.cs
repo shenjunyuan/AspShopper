@@ -24,7 +24,7 @@ public class tblCarts : BaseClass
             int int_price = books.GetSalePrice(productNo);
             int int_amount = (buyQty * int_price);
             var datas = repo.ReadSingle(m =>
-              m.lot_no == CartService.LotNo &&
+              m.lot_no == CarPage.LotNo &&
                 m.user_no == SessionService.AccountNo &&
                m.product_no == productNo);
             //&&   m.product_spec == prod_Spec);
@@ -32,9 +32,9 @@ public class tblCarts : BaseClass
             if (datas == null)
             {
                 Carts models = new Carts();
-                models.lot_no = CartService.LotNo;
+                models.lot_no = CarPage.LotNo;
                 models.user_no = SessionService.AccountNo;
-                models.create_time = CartService.LotCreateTime;
+                models.create_time = CarPage.LotCreateTime;
                 models.product_no = productNo;
                 models.product_name = books.GetBookName(productNo);
                 models.product_spec = prod_Spec;

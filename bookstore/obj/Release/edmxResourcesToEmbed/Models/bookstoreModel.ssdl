@@ -293,6 +293,8 @@
     <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
     <Property Name="remark" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'bookstore.dbo.test_view' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
   <EntityContainer Name="bookstoreModelStoreContainer">
     <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />

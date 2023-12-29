@@ -17,6 +17,7 @@ public static class ShopService
     /// 最低售價
     /// </summary>
     public static int PriceLow { get { return GetSessionIntegerValue("ShopPriceLow", 50); } set { HttpContext.Current.Session["ShopPriceLow"] = value; } }
+   
     /// <summary>
     /// 最高售價
     /// </summary>

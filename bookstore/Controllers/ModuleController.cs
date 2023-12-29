@@ -144,34 +144,32 @@ namespace bookstore.Controllers
         {
             if (model != null)
             {
-                using (ApplicationService app = new ApplicationService())
+                using (tblModules modules = new tblModules())
                 {
-                    using (tblModules modules = new tblModules())
+                    int int_rowid = 0;
+                    string str_module_no = "";
+                    bool bln_enabled = false;
+                    List<string> rowidList = model["item.rowid"].Split(',').ToList();
+                    List<string> noList = model["item.module_no"].Split(',').ToList();
+                    List<bool> enabledList = Utility.GetCheckBoxListValue(model["item.is_enabled"]);
+                    for (int i = 0; i < rowidList.Count; i++)
                     {
-                        int int_rowid = 0;
-                        string str_module_no = "";
-                        bool bln_enabled = false;
-                        List<string> rowidList = model["item.rowid"].Split(',').ToList();
-                        List<string> noList = model["item.module_no"].Split(',').ToList();
-                        List<bool> enabledList = app.GetCheckBoxListValue(model["item.is_enabled"]);
-                        for (int i = 0; i < rowidList.Count; i++)
+                        int_rowid = int.Parse(rowidList[i]);
+                        str_module_no = noList[i];
+                        bln_enabled = enabledList[i];
+                        var data = modules.repo.ReadSingle(m => m.rowid == int_rowid);
+                        if (data != null)
                         {
-                            int_rowid = int.Parse(rowidList[i]);
-                            str_module_no = noList[i];
-                            bln_enabled = enabledList[i];
-                            var data = modules.repo.ReadSingle(m => m.rowid == int_rowid);
-                            if (data != null)
-                            {
-                                data.is_enabled = bln_enabled;
-                                //  mdModule.cs 限制 module_name 不可空白，所以要把模組名稱 null 跟 "" 給值
-                                if (data.module_name == "" || data.module_name == null) { data.module_name = "無模組名稱"; }
-                                else { data.module_name = data.module_name; }                                                                                        
-                                modules.repo.Update(data);
-                                modules.repo.SaveChanges();
-                            }
+                            data.is_enabled = bln_enabled;
+                            //  mdModule.cs 限制 module_name 不可空白，所以要把模組名稱 null 跟 "" 給值
+                            if (data.module_name == "" || data.module_name == null) { data.module_name = "無模組名稱"; }
+                            else { data.module_name = data.module_name; }                                                                                        
+                            modules.repo.Update(data);
+                            modules.repo.SaveChanges();
                         }
                     }
                 }
+                
             }
             return RedirectToAction("Index");
         }

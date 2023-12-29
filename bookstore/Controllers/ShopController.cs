@@ -69,7 +69,7 @@ namespace bookstore.Controllers
             object obj_low = formCollection["price_low"];
             object obj_high = formCollection["price_high"];
             string str_low = (obj_low == null) ? "0" : obj_low.ToString();
-            string str_high = (obj_high == null) ? "99999" : obj_high.ToString();
+            string str_high = (obj_high == null) ? "5000" : obj_high.ToString();
             int.TryParse(str_low, out int_low);
             int.TryParse(str_high, out int_high);
             ShopService.PriceLow = int_low;
@@ -101,7 +101,7 @@ namespace bookstore.Controllers
             string str_qty = collection["Quantity"];
             int int_qty = 1;
             int.TryParse(str_qty, out int_qty);
-            CartService.AddCart(str_book_no, int_qty);
+            CarPage.AddCart(str_book_no, int_qty);
             return RedirectToAction("Cart", "Shop");
         }
         /// <summary>
@@ -118,7 +118,7 @@ namespace bookstore.Controllers
             {
                 int_rowid = int.Parse(collection[i].ToString());
                 int_qty = int.Parse(collection[i + 1].ToString());
-                CartService.UpdateCart(int_rowid, int_qty);
+                CarPage.UpdateCart(int_rowid, int_qty);
             }
             return RedirectToAction("Cart", "Shop");
         }
@@ -129,7 +129,7 @@ namespace bookstore.Controllers
         /// <returns></returns>
         public ActionResult DeleteCart(int id)
         {
-            CartService.DeleteCart(id);
+            CarPage.DeleteCart(id);
             return RedirectToAction("Cart", "Shop");
         }
 
@@ -146,7 +146,7 @@ namespace bookstore.Controllers
                     var data1 = carts.repo.ReadAll(m => m.user_no == SessionService.AccountNo);
                     return View(data1);
                 }
-                var data2 = carts.repo.ReadAll(m => m.lot_no == CartService.LotNo);
+                var data2 = carts.repo.ReadAll(m => m.lot_no == CarPage.LotNo);
                 return View(data2);
             }
         }
@@ -158,7 +158,7 @@ namespace bookstore.Controllers
         public ActionResult Payment()
         {
             if (!SessionService.IsLogined) return RedirectToAction("Login", "Account");
-            if (CartService.Counts <= 0) return RedirectToAction("Index", "Shop");
+            if (CarPage.Counts <= 0) return RedirectToAction("Index", "Shop");
 
             using (tblPayments payments = new tblPayments())
             {
@@ -207,9 +207,9 @@ namespace bookstore.Controllers
                     }
                 }
             }
-            CartService.CartPayment(model);
-            CartService.ClearCart();
-            CartService.NewLotNo();
+            CarPage.CartPayment(model);
+            CarPage.ClearCart();
+            CarPage.NewLotNo();
 
             string pay_no = form["payment_no"];
             if(pay_no == "01" || pay_no =="03") return Redirect("~/ECPayment.aspx");

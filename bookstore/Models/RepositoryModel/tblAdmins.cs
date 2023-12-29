@@ -97,9 +97,9 @@ public class tblAdmins : BaseClass
         {
             using (Cryptographys cryp = new Cryptographys())
             {
-                //亂數產生一組8位數的密碼
+                // 亂數產生一組8位數的密碼
                 str_password = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
-                //寫回資料庫中
+                // 寫回資料庫中
                 data.admin_password = cryp.SHA256Encode(str_password);
                 data.validate_code = "";
                 repo.Update(data);
