@@ -4,11 +4,13 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
 using bookstore.Models;
 using Dapper;
+using Microsoft.Ajax.Utilities;
 
 namespace bookstore.Controllers
 {
@@ -20,7 +22,6 @@ namespace bookstore.Controllers
         {         
             SessionService.Logout();
             vmLogin model = new vmLogin();
-
             return View(model);
         }
 
@@ -104,6 +105,7 @@ namespace bookstore.Controllers
                     newData.contact_address = model.ContactAddress;
                     newData.is_validate = false;
                     newData.validate_code = str_validate_code;
+                    newData.member_no = Utility.GetTableNumber("Members", "member_no", "MM");
                     db.Members.Add(newData);
                     db.SaveChanges();
 

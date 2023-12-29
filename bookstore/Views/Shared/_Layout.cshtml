@@ -30,17 +30,15 @@
             <div class="site-navbar-top">
                 <div class="container">
                     <div class="row align-items-center">
-
                         <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
                             <form action="" class="site-block-top-search">
                                 <span class="icon icon-search2"></span>
                                 <input type="text" class="form-control border-0" placeholder="Search">
                             </form>
                         </div>
-
                         <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
                             <div class="site-logo">
-                                <a href="index.html" class="js-logo-clone">@SessionService.GetHomePageInfo("ShopName")</a>
+                                <a href="@Url.Action("Index" , "Home")" class="js-logo-clone">@SessionService.GetHomePageInfo("ShopName")</a>
                             </div>
                         </div>
 
@@ -51,11 +49,13 @@
                                         <span class="icon icon-person"></span>
                                         @{ if (SessionService.IsLogined)
                                             {
-                                                <span>@SessionService.AccountName</span>
-                                                <a href="@Url.Action("Login" , "Account")">登出</a> }
+                                                <span>@SessionService.AccountName</span><a href="@Url.Action("Login" , "Account")">(登出)</a>
+                                            }
                                             else
                                             {
-                                                <a href="@Url.Action("Login" , "Account")">登入</a> } }
+                                                <a href="@Url.Action("Login" , "Account")">登入</a>
+                                            }
+                                        }
                                     </li>
                                     <li>
                                         <a href="@Url.Action("Cart" , "Shop")" class="site-cart">

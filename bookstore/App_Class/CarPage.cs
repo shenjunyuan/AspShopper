@@ -335,7 +335,8 @@ public static class CarPage
             var neword = orders.repo.ReadSingle(m => m.order_guid == str_guid);
             if (neword != null)
             {
-                str_order_no = neword.rowid.ToString().PadLeft(8, '0');
+                //str_order_no = neword.rowid.ToString().PadLeft(8, '0');
+                str_order_no = Utility.GetTableNumber("Orders", "order_no", "OD");
                 neword.order_no = str_order_no;
                 orders.repo.Update(neword);
                 orders.repo.SaveChanges();

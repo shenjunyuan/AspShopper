@@ -90,10 +90,12 @@
                         <div class="item">
                             <div class="block-4 text-center">
                                 <figure class="block-4-image">
-                                    <img src="@Url.Content("~/Images/Product/" + item.product_no + ".jpg")" alt="Image placeholder" class="img-fluid">
+                                    <a href="@Url.Action("Detail" , "Shop" , new { id = item.product_no})">
+                                        <img src="@Url.Content("~/Images/Product/" + item.product_no + ".jpg")" alt="Image placeholder" class="img-fluid">
+                                    </a>
                                 </figure>
                                 <div class="block-4-text p-4">
-                                    <h3><a href="#">@item.category_name</a></h3>
+                                    <h3><a href="@Url.Action("Detail" , "Shop" , new { id = item.product_no})">@item.category_name</a></h3>
                                     <p class="mb-0">@item.product_name</p>
                                     <p class="text-primary font-weight-bold">$@item.sale_price</p>
                                 </div>
