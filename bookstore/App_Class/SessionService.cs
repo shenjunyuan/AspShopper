@@ -154,23 +154,23 @@ public static class SessionService
     /// <summary>
     /// 網站名稱
     /// </summary>
-    public static string AppName { get { return GetAppSettings("AppName", "網站名稱"); } }
+    public static string AppName { get { return Utility.GetAppSettings("AppName", "網站名稱"); } }
     /// <summary>
     /// 網站版本
     /// </summary>
-    public static string Version { get { return GetAppSettings("Version", "1.0.0"); } }
+    public static string Version { get { return Utility.GetAppSettings("Version", "1.0.0"); } }
     /// <summary>
     /// 版權宣告
     /// </summary>
-    public static string CopyRight { get { return GetAppSettings("CopyRight", DateTime.Now.Year.ToString()); } }
+    public static string CopyRight { get { return Utility.GetAppSettings("CopyRight", DateTime.Now.Year.ToString()); } }
     /// <summary>
     /// 公司名稱
     /// </summary>
-    public static string CompName { get { return GetAppSettings("CompName", "公司名稱"); } }
+    public static string CompName { get { return Utility.GetAppSettings("CompName", "公司名稱"); } }
     /// <summary>
     /// 網站網址
     /// </summary>
-    public static string WebSiteUrl { get { return GetAppSettings("WebSiteUrl", ""); } }
+    public static string WebSiteUrl { get { return Utility.GetAppSettings("WebSiteUrl", ""); } }
 
     /// <summary>
     /// 取得首頁資訊 
@@ -189,19 +189,6 @@ public static class SessionService
         }   
     }
 
-
-    /// <summary>
-    /// 取得 Web.config 中的 appSettings 的值
-    /// </summary>
-    /// <param name="keyName">Key 名</param>
-    /// <param name="defaultValue">預設值</param>
-    /// <returns></returns>
-    public static string GetAppSettings(string keyName, string defaultValue)
-    {
-        object obj_value = WebConfigurationManager.AppSettings[keyName];
-        string str_value = (obj_value == null) ? defaultValue : obj_value.ToString();
-        return str_value;
-    }
     /// <summary>
     /// 取得 Session 值-文字型別
     /// </summary>

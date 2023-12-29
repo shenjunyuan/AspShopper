@@ -38,12 +38,12 @@ namespace bookstore.Controllers
                     {
                         using (Cryptographys cryp = new Cryptographys())
                         {
-                            //空白密碼加密
+                            // 空白密碼加密
                             admins.EncodeEmptyPassword(model.AccountNo, model.Password);
                             members.EncodeEmptyPassword(model.AccountNo, model.Password);
                             users.EncodeEmptyPassword(model.AccountNo, model.Password);
 
-                            //檢查登入角色
+                            // 檢查登入角色
                             string str_password = cryp.SHA256Encode(model.Password);
                             if (admins.CheckAccountLogin(model.AccountNo, str_password))  return RedirectToAction("Index", "Admin");
                             if (users.CheckAccountLogin(model.AccountNo, str_password))  return RedirectToAction("Index", "Admin");
@@ -51,7 +51,7 @@ namespace bookstore.Controllers
                             {
                                 SessionService.AccountNo = model.AccountNo;
                                 // 登入時將現有遊客的購物車加入客戶的購物車
-                                CartService.LoginCart();                               
+                                CarPage.LoginCart();                               
                                 return RedirectToAction("Index", "Home");
                             }
                            
@@ -169,7 +169,7 @@ namespace bookstore.Controllers
             string str_user_name = "";
             bool bln_exists = false;
 
-            //檢查電子郵件是否存在
+            // 檢查電子郵件是否存在，若存在就更新驗證碼
             using (tblAdmins admins = new tblAdmins())
             { bln_exists = admins.CheckEmailExists(model.AccountEmail, str_validate_code, out str_user_name); }
             if (!bln_exists)
@@ -177,6 +177,7 @@ namespace bookstore.Controllers
                 using (tblMembers members = new tblMembers())
                 { bln_exists = members.CheckEmailExists(model.AccountEmail, str_validate_code, out str_user_name); }
             }
+            string str = str_user_name;
             if (!bln_exists)
             {
                 using (tblUsers users = new tblUsers())
@@ -215,6 +216,7 @@ namespace bookstore.Controllers
             ViewBag.MessageText = "";
             if (string.IsNullOrEmpty(id)) { ViewBag.MessageText = "驗證碼空白!!"; return View(); }
             string str_password = "";
+
             using (tblAdmins admins = new tblAdmins()) { str_password = admins.ForgetPasswordReset(id); }
             if (string.IsNullOrEmpty(str_password))
                 using (tblMembers members = new tblMembers()) { str_password = members.ForgetPasswordReset(id); }
@@ -237,7 +239,7 @@ namespace bookstore.Controllers
         [HttpGet]
         public ActionResult AccountProfile()
         {
-            using (AccountService account = new AccountService())
+            using (AccountPage account = new AccountPage())
             {
                 ViewBag.PanelWidth = SessionService.SetPrgInfo("", "我的帳號", "帳號資訊", 6);
                 vmAccountProfile model = new vmAccountProfile();
@@ -254,7 +256,7 @@ namespace bookstore.Controllers
         [HttpGet]
         public ActionResult ProfileEdit()
         {
-            using (AccountService account = new AccountService())
+            using (AccountPage account = new AccountPage())
             {
                 ViewBag.PanelWidth = SessionService.SetPrgInfo("", "我的帳號", "修改" , 6);
                 vmAccountProfile model = new vmAccountProfile();
@@ -271,7 +273,7 @@ namespace bookstore.Controllers
         [HttpPost]
         public ActionResult ProfileEdit(vmAccountProfile model)
         {
-            using (AccountService account = new AccountService())
+            using (AccountPage account = new AccountPage())
             {
                 account.UpdateAccountProfile(model);
                 return RedirectToAction("AccountProfile");
@@ -333,7 +335,7 @@ namespace bookstore.Controllers
         public ActionResult ResetPassword(vmResetPassword model)
         {
             if (!ModelState.IsValid) return View(model);
-            using (AccountService account = new AccountService())
+            using (AccountPage account = new AccountPage())
             {
                 if (!account.ValidAccountPassword(model.OldPassword))
                 {

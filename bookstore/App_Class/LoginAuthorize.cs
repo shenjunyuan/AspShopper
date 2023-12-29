@@ -25,8 +25,8 @@ public class LoginAuthorize : AuthorizeAttribute
 
         //檢查登入者角色是否包含在限制的角色中
         bool bln_authorized = false;
-        List<string> lists = RoleNo.Split(',').ToList();
-        foreach (string role in lists)
+        List<string> role_list = RoleNo.Split(',').ToList();
+        foreach (string role in role_list)
         {
             if (SessionService.RoleNo == role) { bln_authorized = true; break; }
         }

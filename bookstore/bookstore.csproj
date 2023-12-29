@@ -141,10 +141,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Class\AccountService.cs" />
-    <Compile Include="App_Class\ApplicationService.cs" />
+    <Compile Include="App_Class\AccountPage.cs" />
     <Compile Include="App_Class\BaseClass.cs" />
-    <Compile Include="App_Class\CartService.cs" />
+    <Compile Include="App_Class\CarPage.cs" />
     <Compile Include="App_Class\Cryptographys.cs" />
     <Compile Include="App_Class\GmailService.cs" />
     <Compile Include="App_Class\LoginAuthorize.cs" />
@@ -154,6 +153,7 @@
     <Compile Include="App_Class\SessionService.cs" />
     <Compile Include="App_Class\ShopECPay.cs" />
     <Compile Include="App_Class\ShopService.cs" />
+    <Compile Include="App_Class\Utility.cs" />
     <Compile Include="App_Enum\enumSecuritys.cs" />
     <Compile Include="App_Enum\enumSortDirection.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

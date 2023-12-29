@@ -47,7 +47,7 @@
             </header>
 
             <nav class="dash-nav-list">
-                @{ foreach (var modules in AccountService.GetAccountModules())
+                @{ foreach (var modules in AccountPage.GetAccountModules())
                     {
                         <div class="dash-nav-dropdown">
                             <a href="#" class="dash-nav-item dash-nav-dropdown-toggle">
@@ -55,7 +55,7 @@
                                 <span class="menu-module-text">@modules.module_name</span>
                             </a>
                             <div class="dash-nav-dropdown-menu">
-                                @foreach (var programs in AccountService.GetAccountPrograms(modules.module_no))
+                                @foreach (var programs in AccountPage.GetAccountPrograms(modules.module_no))
                                 {
                                     <a href="@Url.Action("PrgOpen", "Admin", new { id = programs.program_no })" class="dash-nav-dropdown-item">
                                         <i class="@programs.program_type_no p-2"></i>
