@@ -28,45 +28,42 @@ public class DapperRepository : BaseClass
         }
         return results;
     }
+
     /// <summary>
-    /// Insert Table 資料
+    /// 取得 Table 資料
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <param name="insertStr">Insert語法</param>
-    /// <param name="record">類別名稱</param>
-
-    public void InsertTable<T>(string insertStr, T record)
+    /// <param name="queryStr">查詢SQL語句</param>
+    /// <returns></returns>
+    public List<T> GetTable<T>(string queryStr, object param = null)
     {
+        List<T> results = null;
         using (SqlConnection conn = new SqlConnection(connect_str))
         {
-            conn.Open();
-            conn.Execute(insertStr, record);
+            if (param != null)
+            {
+                results = conn.Query<T>(queryStr, param).AsList();
+            }
+            else
+            {
+                results = conn.Query<T>(queryStr).AsList();
+            }
         }
+        return results;
     }
+
     /// <summary>
-    /// 更新 Table 資料
+    /// 執行SQL語法 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="updateStr">更新語法</param>
     /// <param name="record">類別名稱</param>
-    public void UpdateTable<T>(string updateStr, T record)
+    public void ExecuteSQL<T>(string SQLStr, T record)
     {
         using (SqlConnection conn = new SqlConnection(connect_str))
         {
             conn.Open();
-            conn.Execute(updateStr, new { Id = 0, record });
-        }
-    }
-    /// <summary>
-    /// 刪除 Table 資料
-    /// </summary>
-    /// <param name="del_str">刪除語法</param>
-    public void DeleteTableData(string del_str)
-    {
-        using (SqlConnection conn = new SqlConnection(connect_str))
-        {
-            conn.Open();
-            conn.Execute(del_str, new { Id = 0 });
+            conn.Execute(SQLStr, record);
         }
     }
 

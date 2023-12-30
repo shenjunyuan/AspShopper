@@ -8,7 +8,7 @@
 
 
 @using (Html.BeginForm("AddToCart", "Shop", FormMethod.Post))
-{
+ {
     @Html.AntiForgeryToken()
     // HiddenFor 隱藏紀錄值用
     @Html.HiddenFor(m => m.book_no)

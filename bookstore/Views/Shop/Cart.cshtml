@@ -6,6 +6,7 @@
     int i = 0;
     string str_row_id = "";
     string str_qty_id = "";
+    string str_qty_now = "";
 }
 
 @using (Html.BeginForm("UpdateCart", "Shop", FormMethod.Post))
@@ -38,13 +39,14 @@
                                 i++;
                                 str_qty_id = string.Format("qty{0}", i);
                                 str_row_id = string.Format("row{0}", i);
+                                str_qty_now = string.Format("qty_now{0}", i);
                                 <tr>
                                     <td class="product-thumbnail">
                                         <img src="@Url.Content(ShopService.GetProductImageUrl(item.product_no))" alt="Image" class="img-fluid">
                                     </td>
                                     <td class="product-name">
                                         <input id="@str_row_id" name="@str_row_id" value="@item.rowid" hidden="hidden" />
-                                        <h2 class="h5 text-black">@item.product_name</h2>
+                                        <h2 class="h5 text-black" id="product_name">@item.product_name</h2>
                                     </td>
                                     <td>$@item.price</td>
                                     <td>
@@ -58,7 +60,8 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>@item.qty_now</td>
+                                    <td id="@str_qty_now" name="@str_qty_now" value="@item.qty_now">@item.qty_now</td>
+
                                     <td>$@item.amount</td>
                                     <td><a href="@Url.Action("DeleteCart", "Shop", new { id = item.rowid })" class="btn btn-primary btn-sm">X</a></td>
                                 </tr>
@@ -70,11 +73,12 @@
         </div>
 
         <script>
-        var minVal = 1;
-        var maxVal = 500; /*上限 */
-        sitePlusMinus(minVal, maxVal);
+            var minVal = 1;
+            var maxVal = 50; /*上限 */
+            sitePlusMinus(minVal, maxVal);
         </script>
     }
+    <span style="color: red;">@Request.QueryString["message"]</span>
     <div class="row">
         <div class="col-md-6">
             <div class="row mb-5">

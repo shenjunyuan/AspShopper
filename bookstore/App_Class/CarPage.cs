@@ -361,8 +361,8 @@ public static class CarPage
     {
         using (DapperRepository db = new DapperRepository())
         {
-            string updataSQL = $"update books set qty_out = qty_out + '{buyQty}' where book_no = '{productNo}'"; // 更新庫存
-            db.UpdateTable(updataSQL, 0);
+            string updataSQL = $"update books set qty_out = qty_out + @qtyOut where book_no = @bookNo"; // 更新庫存
+            db.ExecuteSQL(updataSQL, new { qtyOut = buyQty, bookNo = productNo });
         }
 
     }
