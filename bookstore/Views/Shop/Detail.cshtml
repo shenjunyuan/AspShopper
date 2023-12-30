@@ -8,7 +8,7 @@
 
 
 @using (Html.BeginForm("AddToCart", "Shop", FormMethod.Post))
- {
+{
     @Html.AntiForgeryToken()
     // HiddenFor 隱藏紀錄值用
     @Html.HiddenFor(m => m.book_no)
@@ -38,10 +38,19 @@
                         <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                     </div>
                 </div>
-            </div>
-            <h6 class="text-black"> <span>庫存量：@Model.qty_now</span><br /></h6>
+            </div>         
             <p>
-                <input type="submit" value="加入購物車" class="buy-now btn btn-sm btn-primary" />
+                @{
+                    if (@Model.qty_now > 0)
+                    {
+                        <h6 class="text-black"> <span>庫存量：@Model.qty_now</span><br /></h6>
+                        <input type="submit" value="加入購物車" class="buy-now btn btn-sm btn-primary" />
+                    }
+                    else
+                    {
+                        <h6 class="text-black"> <span style="color: red;">商品已完售!!</span><br /></h6>
+                    }
+                }
                 <a href="@Url.Action("Index", "Shop")" class="buy-now btn btn-sm btn-success">繼續購物</a>
             </p>
         </div>

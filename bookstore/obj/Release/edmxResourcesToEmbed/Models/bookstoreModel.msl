@@ -205,25 +205,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Books">
-      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Books)">
-        <MappingFragment StoreEntitySet="Books">
-          <ScalarProperty Name="rowid" ColumnName="rowid" />
-          <ScalarProperty Name="book_no" ColumnName="book_no" />
-          <ScalarProperty Name="isbn_no" ColumnName="isbn_no" />
-          <ScalarProperty Name="book_name" ColumnName="book_name" />
-          <ScalarProperty Name="author_name" ColumnName="author_name" />
-          <ScalarProperty Name="publish_date" ColumnName="publish_date" />
-          <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
-          <ScalarProperty Name="language_no" ColumnName="language_no" />
-          <ScalarProperty Name="category_no" ColumnName="category_no" />
-          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
-          <ScalarProperty Name="content_text" ColumnName="content_text" />
-          <ScalarProperty Name="detail_text" ColumnName="detail_text" />
-          <ScalarProperty Name="remark" ColumnName="remark" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Payments">
       <EntityTypeMapping TypeName="bookstoreModel.Payments">
         <MappingFragment StoreEntitySet="Payments">
@@ -312,6 +293,28 @@
           <ScalarProperty Name="order_status" ColumnName="order_status" />
           <ScalarProperty Name="order_date" ColumnName="order_date" />
           <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="bookstoreModel.Books">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="qty_now" ColumnName="qty_now" />
+          <ScalarProperty Name="qty_out" ColumnName="qty_out" />
+          <ScalarProperty Name="qty_in" ColumnName="qty_in" />
+          <ScalarProperty Name="detail_text" ColumnName="detail_text" />
+          <ScalarProperty Name="content_text" ColumnName="content_text" />
+          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+          <ScalarProperty Name="category_no" ColumnName="category_no" />
+          <ScalarProperty Name="language_no" ColumnName="language_no" />
+          <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
+          <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+          <ScalarProperty Name="author_name" ColumnName="author_name" />
+          <ScalarProperty Name="book_name" ColumnName="book_name" />
+          <ScalarProperty Name="isbn_no" ColumnName="isbn_no" />
+          <ScalarProperty Name="book_no" ColumnName="book_no" />
           <ScalarProperty Name="rowid" ColumnName="rowid" />
         </MappingFragment>
       </EntityTypeMapping>

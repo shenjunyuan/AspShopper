@@ -107,13 +107,13 @@
     <EntitySet Name="BigSales" EntityType="bookstoreModel.BigSales" />
     <EntitySet Name="Categorys" EntityType="bookstoreModel.Categorys" />
     <EntitySet Name="Featureds" EntityType="bookstoreModel.Featureds" />
-    <EntitySet Name="Books" EntityType="bookstoreModel.Books" />
     <EntitySet Name="Payments" EntityType="bookstoreModel.Payments" />
     <EntitySet Name="Shippings" EntityType="bookstoreModel.Shippings" />
     <EntitySet Name="Publishers" EntityType="bookstoreModel.Publishers" />
     <EntitySet Name="Carts" EntityType="bookstoreModel.Carts" />
     <EntitySet Name="OrdersDetail" EntityType="bookstoreModel.OrdersDetail" />
     <EntitySet Name="Orders" EntityType="bookstoreModel.Orders" />
+    <EntitySet Name="Books" EntityType="bookstoreModel.Books" />
   </EntityContainer>
   <EntityType Name="Members">
     <Key>
@@ -213,24 +213,6 @@
     <Property Name="sort_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="Books">
-    <Key>
-      <PropertyRef Name="rowid" />
-    </Key>
-    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="book_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="isbn_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="book_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="language_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="sale_price" Type="Int32" Nullable="false" />
-    <Property Name="content_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="detail_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="Payments">
     <Key>
       <PropertyRef Name="rowid" />
@@ -315,6 +297,27 @@
     <Property Name="order_validate" Type="Int32" />
     <Property Name="order_guid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="receive_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="book_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isbn_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="book_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="language_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sale_price" Type="Int32" Nullable="false" />
+    <Property Name="content_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="detail_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="qty_in" Type="Int32" />
+    <Property Name="qty_out" Type="Int32" />
+    <Property Name="qty_now" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>
