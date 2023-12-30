@@ -130,22 +130,34 @@ jQuery(document).ready(function($) {
 	}; 
 	siteMenuClone();
 
-
-	var sitePlusMinus = function() {
-		$('.js-btn-minus').on('click', function(e){
+	var sitePlusMinus = function (minValue, maxValue) {
+		$('.js-btn-minus').on('click', function (e) {
 			e.preventDefault();
-			if ( $(this).closest('.input-group').find('.form-control').val() != 0  ) {
-				$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
+			var $input = $(this).closest('.input-group').find('.form-control');
+			var value = parseInt($input.val());
+			if (value > minValue) {
+				$input.val(value - 1);
 			} else {
-				$(this).closest('.input-group').find('.form-control').val(parseInt(0));
+				$input.val(minValue);
 			}
 		});
-		$('.js-btn-plus').on('click', function(e){
+		$('.js-btn-plus').on('click', function (e) {
 			e.preventDefault();
-			$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+			var $input = $(this).closest('.input-group').find('.form-control');
+			var value = parseInt($input.val());
+
+			if (value < maxValue) {
+				$input.val(value + 1);
+			} else {
+				$input.val(maxValue);
+			}
 		});
 	};
-	sitePlusMinus();
+	// ㄏノㄧ计肚患程㎝程
+	//var minVal = 1; // 眖场砞﹚
+	//var maxVal = 9999; // 眖场砞﹚
+	sitePlusMinus(minVal, maxVal);
+
 
 
 	var siteSliderRange = function () {
@@ -204,3 +216,5 @@ jQuery(document).ready(function($) {
 
 
 });
+
+

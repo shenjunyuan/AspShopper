@@ -20,13 +20,13 @@
         <EntityTypeShape EntityType="bookstoreModel.BigSales" Width="1.5" PointX="0.875" PointY="11.375" />
         <EntityTypeShape EntityType="bookstoreModel.Categorys" Width="1.5" PointX="2.625" PointY="7.875" />
         <EntityTypeShape EntityType="bookstoreModel.Featureds" Width="1.5" PointX="4.875" PointY="8.625" />
-        <EntityTypeShape EntityType="bookstoreModel.Books" Width="1.5" PointX="8.625" PointY="4.25" />
         <EntityTypeShape EntityType="bookstoreModel.Payments" Width="1.5" PointX="10.5" PointY="0.625" />
         <EntityTypeShape EntityType="bookstoreModel.Shippings" Width="1.5" PointX="10.375" PointY="2.5" />
         <EntityTypeShape EntityType="bookstoreModel.Publishers" Width="1.5" PointX="6.5" PointY="6.5" />
         <EntityTypeShape EntityType="bookstoreModel.Carts" Width="1.5" PointX="10.875" PointY="4.875" />
         <EntityTypeShape EntityType="bookstoreModel.OrdersDetail" Width="1.5" PointX="6.875" PointY="9.25" />
         <EntityTypeShape EntityType="bookstoreModel.Orders" Width="1.5" PointX="9.375" PointY="8.75" />
+        <EntityTypeShape EntityType="bookstoreModel.Books" Width="1.5" PointX="3.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
