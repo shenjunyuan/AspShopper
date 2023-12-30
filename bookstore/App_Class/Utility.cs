@@ -93,13 +93,13 @@ public  class Utility:BaseClass
 
 
     /// <summary>
-    ///  自動取得資料表的流水號
+    ///  自動取得資料表雙字母的流水號
     /// </summary>
     /// <param name="tableName">資料表名稱</param>
     /// <param name="colName">欄位名稱</param>
     /// <param name="titleName">流水號字母開頭</param>
     /// <returns></returns>
-    public static string GetTableNumber(string tableName,string colName,string titleName)
+    public static string GetTableNumber(string tableName,string colName,string title)
     {
         string newStr = "";
         using (DapperRepository db = new DapperRepository())
@@ -108,15 +108,37 @@ public  class Utility:BaseClass
             string YY = (now.Year % 1000).ToString(); // 年
             string MM = now.Month.ToString(); // 月
             string DD = now.Day.ToString(); // 日
-            string title = titleName;
             string query = $"SELECT isnull(max(RIGHT({colName}, 4)),0) FROM {tableName} where LEFT({colName}, 8) = '{title}{YY}{MM}{DD}'";
             var maxValue = db.GetTable<string>(query).FirstOrDefault();
             int maxInt = Convert.ToInt32(maxValue) + 1;
-            string padNumber = maxInt.ToString().PadLeft(4, '0'); // 不足位數補 4 個0
-             newStr = string.Format("{0}{1}{2}{3}{4}", titleName, YY, MM,DD, padNumber);
+            string padNumber = maxInt.ToString().PadLeft(4, '0'); // 不足位數補 4 個 0
+            newStr = string.Format("{0}{1}{2}{3}{4}", title, YY, MM,DD, padNumber);
         }
         return newStr;  
     }
+
+
+    /// <summary>
+    ///  自動取得資料表的單字母流水號-沒日期
+    /// </summary>
+    /// <param name="tableName">資料表名稱</param>
+    /// <param name="colName">欄位名稱</param>
+    /// <param name="titleName">流水號字母開頭</param>
+    /// <returns></returns>
+    public static string GetTableNumNoDate(string tableName, string colName, string title)
+    {
+        string newStr = "";
+        using (DapperRepository db = new DapperRepository())
+        {
+            string query = $"SELECT isnull(max(RIGHT({colName}, 5)),0) FROM {tableName} where LEFT({colName}, 1) = '{title}'";
+            int maxValue = db.GetTable<int>(query).FirstOrDefault();
+            int maxInt = maxValue + 1;
+            string padNumber = maxInt.ToString().PadLeft(5, '0'); // 不足位數補 5 個 0
+            newStr = string.Format("{0}{1}", title, padNumber);
+        }
+        return newStr;
+    }
+
 
     /// <summary>
     /// 取得資料表的筆數
