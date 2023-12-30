@@ -79,4 +79,20 @@ public class tblBooks : BaseClass
             return bookModel;
         }
     }
+
+
+
+    /// <summary>
+    /// 取得書本數量
+    /// </summary>
+    /// <param name="book_no">書本編號</param>
+    /// <returns></returns>
+    public int GetBooksQtyNow(string book_no)
+    {
+        int qty_now = 0;
+        var data = repo.ReadSingle(m => m.book_no == book_no);
+        if (data != null) qty_now = (int)data.qty_now;
+        return qty_now;
+    }
+
 }

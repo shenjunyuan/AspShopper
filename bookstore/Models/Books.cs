@@ -26,6 +26,9 @@ namespace bookstore.Models
         public int sale_price { get; set; }
         public string content_text { get; set; }
         public string detail_text { get; set; }
+        public Nullable<int> qty_in { get; set; }
+        public Nullable<int> qty_out { get; set; }
+        public Nullable<int> qty_now { get; set; }
         public string remark { get; set; }
     }
 }

@@ -40,9 +40,9 @@ public class LoginAuthorize : AuthorizeAttribute
         string url = HttpContext.Current.Request.Url.AbsoluteUri; // 抓目前的 url 判斷在 VS 執行 or 發佈執行
         string str_url = "";
         if (url.Contains("http://localhost:2349"))
-            str_url = "/Admin/Index";
+            str_url = "/Home/Index";
         else
-            str_url = "/bookstore/Admin/Index";
+            str_url = "/bookstore/Home/Index";
 
         filterContext.Result = new RedirectResult(str_url);
     }

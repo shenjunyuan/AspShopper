@@ -81,7 +81,7 @@ namespace bookstore.Controllers
             using (bookstoreEntities db = new bookstoreEntities())
             {
                 using (Cryptographys crpy = new Cryptographys())
-                {
+                {                    
                     //檢查電子信箱重覆註冊
                     var memberData = db.Members
                         .Where(m => m.contact_email == model.ContactEmail).FirstOrDefault();

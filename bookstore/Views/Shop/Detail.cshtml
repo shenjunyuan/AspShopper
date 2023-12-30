@@ -5,8 +5,10 @@
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
 
+
+
 @using (Html.BeginForm("AddToCart", "Shop", FormMethod.Post))
-{
+ {
     @Html.AntiForgeryToken()
     // HiddenFor 隱藏紀錄值用
     @Html.HiddenFor(m => m.book_no)
@@ -37,13 +39,21 @@
                     </div>
                 </div>
             </div>
+            <h6 class="text-black"> <span>庫存量：@Model.qty_now</span><br /></h6>
             <p>
                 <input type="submit" value="加入購物車" class="buy-now btn btn-sm btn-primary" />
                 <a href="@Url.Action("Index", "Shop")" class="buy-now btn btn-sm btn-success">繼續購物</a>
             </p>
         </div>
     </div>
-}
+
+    <script>
+        var minVal = 1;
+        var maxVal = @Model.qty_now; /*上限 = 目前庫存*/ 
+        sitePlusMinus(minVal, maxVal);
+    </script>
+
+ }
 <hr />
 <div class="row">
     <div class="col-md-12">
@@ -53,3 +63,5 @@
         @Model.detail_text
     </div>
 </div>
+
+

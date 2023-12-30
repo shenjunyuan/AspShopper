@@ -184,7 +184,7 @@ namespace bookstore.Controllers
             }
         }
         /// <summary>
-        /// 結帳付款成訂單
+        /// 結帳付款完成訂單
         /// </summary>
         /// <returns></returns>
         [HttpPost]

@@ -52,6 +52,7 @@ public class tblCarts : BaseClass
                 repo.SaveChanges();
             }
         }
+
     }
 
     public void UpdateCart(int rowID, int qty)
@@ -60,6 +61,7 @@ public class tblCarts : BaseClass
         data.qty = qty;
         repo.Update(data);
         repo.SaveChanges();
+
     }
 
     public void DeleteCart(int rowID)
@@ -70,6 +72,7 @@ public class tblCarts : BaseClass
             repo.Delete(data);
             repo.SaveChanges();
         }
+
     }
 
     /// <summary>

@@ -62,6 +62,9 @@
           <Property Name="sale_price" Type="int" Nullable="false" />
           <Property Name="content_text" Type="nvarchar(max)" />
           <Property Name="detail_text" Type="nvarchar(max)" />
+          <Property Name="qty_in" Type="int" />
+          <Property Name="qty_out" Type="int" />
+          <Property Name="qty_now" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Carts">
@@ -298,8 +301,6 @@
           <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'bookstore.dbo.test_view' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityContainer Name="bookstoreModelStoreContainer">
           <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
@@ -435,13 +436,13 @@
           <EntitySet Name="BigSales" EntityType="bookstoreModel.BigSales" />
           <EntitySet Name="Categorys" EntityType="bookstoreModel.Categorys" />
           <EntitySet Name="Featureds" EntityType="bookstoreModel.Featureds" />
-          <EntitySet Name="Books" EntityType="bookstoreModel.Books" />
           <EntitySet Name="Payments" EntityType="bookstoreModel.Payments" />
           <EntitySet Name="Shippings" EntityType="bookstoreModel.Shippings" />
           <EntitySet Name="Publishers" EntityType="bookstoreModel.Publishers" />
           <EntitySet Name="Carts" EntityType="bookstoreModel.Carts" />
           <EntitySet Name="OrdersDetail" EntityType="bookstoreModel.OrdersDetail" />
           <EntitySet Name="Orders" EntityType="bookstoreModel.Orders" />
+          <EntitySet Name="Books" EntityType="bookstoreModel.Books" />
         </EntityContainer>
         <EntityType Name="Members">
           <Key>
@@ -541,24 +542,6 @@
           <Property Name="sort_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Books">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="book_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="isbn_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="book_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="language_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sale_price" Type="Int32" Nullable="false" />
-          <Property Name="content_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="detail_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Payments">
           <Key>
             <PropertyRef Name="rowid" />
@@ -643,6 +626,27 @@
           <Property Name="order_validate" Type="Int32" />
           <Property Name="order_guid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="receive_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="book_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isbn_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="book_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="language_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sale_price" Type="Int32" Nullable="false" />
+          <Property Name="content_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="detail_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="qty_in" Type="Int32" />
+          <Property Name="qty_out" Type="Int32" />
+          <Property Name="qty_now" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
@@ -855,25 +859,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Books">
-      <EntityTypeMapping TypeName="IsTypeOf(bookstoreModel.Books)">
-        <MappingFragment StoreEntitySet="Books">
-          <ScalarProperty Name="rowid" ColumnName="rowid" />
-          <ScalarProperty Name="book_no" ColumnName="book_no" />
-          <ScalarProperty Name="isbn_no" ColumnName="isbn_no" />
-          <ScalarProperty Name="book_name" ColumnName="book_name" />
-          <ScalarProperty Name="author_name" ColumnName="author_name" />
-          <ScalarProperty Name="publish_date" ColumnName="publish_date" />
-          <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
-          <ScalarProperty Name="language_no" ColumnName="language_no" />
-          <ScalarProperty Name="category_no" ColumnName="category_no" />
-          <ScalarProperty Name="sale_price" ColumnName="sale_price" />
-          <ScalarProperty Name="content_text" ColumnName="content_text" />
-          <ScalarProperty Name="detail_text" ColumnName="detail_text" />
-          <ScalarProperty Name="remark" ColumnName="remark" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
           <EntitySetMapping Name="Payments">
             <EntityTypeMapping TypeName="bookstoreModel.Payments">
               <MappingFragment StoreEntitySet="Payments">
@@ -962,6 +947,28 @@
                 <ScalarProperty Name="order_status" ColumnName="order_status" />
                 <ScalarProperty Name="order_date" ColumnName="order_date" />
                 <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="bookstoreModel.Books">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="qty_now" ColumnName="qty_now" />
+                <ScalarProperty Name="qty_out" ColumnName="qty_out" />
+                <ScalarProperty Name="qty_in" ColumnName="qty_in" />
+                <ScalarProperty Name="detail_text" ColumnName="detail_text" />
+                <ScalarProperty Name="content_text" ColumnName="content_text" />
+                <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+                <ScalarProperty Name="category_no" ColumnName="category_no" />
+                <ScalarProperty Name="language_no" ColumnName="language_no" />
+                <ScalarProperty Name="publisher_no" ColumnName="publisher_no" />
+                <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+                <ScalarProperty Name="author_name" ColumnName="author_name" />
+                <ScalarProperty Name="book_name" ColumnName="book_name" />
+                <ScalarProperty Name="isbn_no" ColumnName="isbn_no" />
+                <ScalarProperty Name="book_no" ColumnName="book_no" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
