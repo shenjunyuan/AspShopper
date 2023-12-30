@@ -7,7 +7,7 @@ using System.Web;
 namespace bookstore.Models
 {
     [MetadataType(typeof(mdCategorys))]
-    public partial class Categorys
+    public partial class Categorys : BaseClass
     {
         public int book_counts { get; set; }
         private class mdCategorys

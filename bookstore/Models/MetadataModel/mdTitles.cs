@@ -8,7 +8,7 @@ using System.Web;
 namespace bookstore.Models
 {
     [MetadataType(typeof(mdTitles))]
-    public partial class Titles
+    public partial class Titles : BaseClass
     {
         private class mdTitles
         {

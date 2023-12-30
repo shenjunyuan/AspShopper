@@ -5,6 +5,9 @@ using System.Linq;
 using System.Web;
 
 
+/// <summary>
+/// 購物車頁面類別
+/// </summary>
 public static class CarPage
 {
     #region 公開屬性

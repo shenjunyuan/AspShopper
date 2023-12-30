@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace bookstore.Models
 {
     [MetadataType(typeof(mdAdmins))]
-    public partial class Admins
+    public partial class Admins : BaseClass
     {
         private class mdAdmins
         {

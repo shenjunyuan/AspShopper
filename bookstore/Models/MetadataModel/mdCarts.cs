@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace bookstore.Models
 {
     [MetadataType(typeof(mdCarts))]
-    public partial class Carts
+    public partial class Carts : BaseClass
     {
         [Display(Name = "目前數量")] 
         public int qty_now { get { using (tblBooks model = new tblBooks()) { return model.GetBooksQtyNow(product_no); } } }
@@ -26,5 +26,23 @@ namespace bookstore.Models
             public Nullable<System.DateTime> create_time { get; set; }
             public Nullable<int> amount { get; set; }
         }
+
+        /// <summary>
+        /// 取得購物車 row_id 的 product_no
+        /// </summary>
+        /// <param name="rowId"></param>
+        /// <returns></returns>
+        public string GetProductNo(string rowId)
+        {
+            string prod_no = "";
+            using (DapperRepository db = new DapperRepository()) 
+            {
+                string query = $"SELECT  [product_no] FROM [Carts] where rowid = @row_id ";
+                prod_no = db.GetTable<string>(query, new { @row_id = rowId }).FirstOrDefault().ToString();
+            }
+                return prod_no;     
+        }
+
+
     }
 }
