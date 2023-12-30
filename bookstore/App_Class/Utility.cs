@@ -56,6 +56,41 @@ public  class Utility:BaseClass
         return str_value;
     }
 
+    /// <summary>
+    /// 取得 Session 值-文字型別
+    /// </summary>
+    /// <param name="sessionName">Session 名稱</param>
+    /// <returns></returns>
+    public static string GetSessionValue(string sessionName, string defauleValue)
+    {
+        return (HttpContext.Current.Session[sessionName] == null) ? defauleValue : HttpContext.Current.Session[sessionName].ToString();
+    }
+
+    /// <summary>
+    /// 取得 Session 值-數字型別
+    /// </summary>
+    /// <param name="sessionName">Session 名稱</param>
+    /// <returns></returns>
+    public static int GetSessionIntegerValue(string sessionName, int defauleValue)
+    {
+        object obj_value = HttpContext.Current.Session[sessionName];
+        if (obj_value == null) return defauleValue;
+        string str_value = obj_value.ToString();
+        int int_value = 0;
+        if (int.TryParse(str_value, out int_value)) return int_value;
+        return defauleValue;
+    }
+
+    /// <summary>
+    /// 取得 Session 值-布林值型別
+    /// </summary>
+    /// <param name="sessionName">Session 名稱</param>
+    /// <returns></returns>
+    public static bool GetSessionBoolValue(string sessionName, bool defaultValue)
+    {
+        return (HttpContext.Current.Session[sessionName] == null) ? defaultValue : (bool)HttpContext.Current.Session[sessionName];
+    }
+
 
     /// <summary>
     ///  自動取得資料表的流水號
@@ -81,6 +116,22 @@ public  class Utility:BaseClass
              newStr = string.Format("{0}{1}{2}{3}{4}", titleName, YY, MM,DD, padNumber);
         }
         return newStr;  
+    }
+
+    /// <summary>
+    /// 取得資料表的筆數
+    /// </summary>
+    /// <param name="queryStr">查詢SQL語句</param>
+    /// <returns></returns>
+    public static int GetTableCount(string queryStr)
+    {    
+        int count = 0;
+        using (DapperRepository db = new DapperRepository())
+        {           
+            int dataCount = db.GetTable<int>(queryStr).FirstOrDefault();
+            count = dataCount;
+        }
+        return count;
     }
 
 }

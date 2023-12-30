@@ -12,30 +12,30 @@ public static class ShopService
     /// <summary>
     /// 分類方式
     /// </summary>
-    public static string CategoryNo { get { return GetSessionValue("ShopCategoryNo", ""); } set { HttpContext.Current.Session["ShopCategoryNo"] = value; } }
+    public static string CategoryNo { get { return Utility.GetSessionValue("ShopCategoryNo", ""); } set { HttpContext.Current.Session["ShopCategoryNo"] = value; } }
     /// <summary>
     /// 最低售價
     /// </summary>
-    public static int PriceLow { get { return GetSessionIntegerValue("ShopPriceLow", 50); } set { HttpContext.Current.Session["ShopPriceLow"] = value; } }
+    public static int PriceLow { get { return Utility.GetSessionIntegerValue("ShopPriceLow", 50); } set { HttpContext.Current.Session["ShopPriceLow"] = value; } }
    
     /// <summary>
     /// 最高售價
     /// </summary>
-    public static int PriceHigh { get { return GetSessionIntegerValue("ShopPriceHigh", 1000); } set { HttpContext.Current.Session["ShopPriceHigh"] = value; } }
+    public static int PriceHigh { get { return Utility.GetSessionIntegerValue("ShopPriceHigh", 1000); } set { HttpContext.Current.Session["ShopPriceHigh"] = value; } }
     public static int OrderID { get; set; }
     public static string OrderNo { get; set; }
     /// <summary>
     /// 排序方式
     /// </summary>
-    public static string SortNo { get { return GetSessionValue("ShopSortNo", "NameAsc"); } set { HttpContext.Current.Session["ShopSortNo"] = value; } }
+    public static string SortNo { get { return Utility.GetSessionValue("ShopSortNo", "NameAsc"); } set { HttpContext.Current.Session["ShopSortNo"] = value; } }
     /// <summary>
     /// 搜尋文字
     /// </summary>
-    public static string SearchText { get { return GetSessionValue("ShopSearchText", ""); } set { HttpContext.Current.Session["ShopSearchText"] = value; } }
+    public static string SearchText { get { return Utility.GetSessionValue("ShopSearchText", ""); } set { HttpContext.Current.Session["ShopSearchText"] = value; } }
     /// <summary>
     /// 目前頁數
     /// </summary>
-    public static int Page { get { return GetSessionIntegerValue("ShopPage", 1); } set { HttpContext.Current.Session["ShopPage"] = value; } }
+    public static int Page { get { return Utility.GetSessionIntegerValue("ShopPage", 1); } set { HttpContext.Current.Session["ShopPage"] = value; } }
     /// <summary>
     /// 總頁數
     /// </summary>
@@ -52,15 +52,15 @@ public static class ShopService
     /// <summary>
     /// 每頁筆數
     /// </summary>
-    public static int PageSize { get { return GetSessionIntegerValue("ShopPageSize", 10); } set { HttpContext.Current.Session["ShopPageSize"] = value; } }
+    public static int PageSize { get { return Utility.GetSessionIntegerValue("ShopPageSize", 10); } set { HttpContext.Current.Session["ShopPageSize"] = value; } }
     /// <summary>
     /// 每頁顯示頁數
     /// </summary>
-    public static int PageCount { get { return GetSessionIntegerValue("ShopPageCount", 10); } set { HttpContext.Current.Session["ShopPageCount"] = value; } }
+    public static int PageCount { get { return Utility.GetSessionIntegerValue("ShopPageCount", 10); } set { HttpContext.Current.Session["ShopPageCount"] = value; } }
     /// <summary>
     /// 總筆數
     /// </summary>
-    public static int PageRowCount { get { return GetSessionIntegerValue("ShopRowCount", 0); } set { HttpContext.Current.Session["ShopRowCount"] = value; } }
+    public static int PageRowCount { get { return Utility.GetSessionIntegerValue("ShopRowCount", 0); } set { HttpContext.Current.Session["ShopRowCount"] = value; } }
     /// <summary>
     /// 開始頁數
     /// </summary>
@@ -147,29 +147,9 @@ public static class ShopService
             return "";
         }
     }
-    /// <summary>
-    /// 取得 Session 值-文字型別
-    /// </summary>
-    /// <param name="sessionName">Session 名稱</param>
-    /// <returns></returns>
-    public static string GetSessionValue(string sessionName, string defauleValue)
-    {
-        return (HttpContext.Current.Session[sessionName] == null) ? defauleValue : HttpContext.Current.Session[sessionName].ToString();
-    }
-    /// <summary>
-    /// 取得 Session 值-數字型別
-    /// </summary>
-    /// <param name="sessionName">Session 名稱</param>
-    /// <returns></returns>
-    public static int GetSessionIntegerValue(string sessionName, int defauleValue)
-    {
-        object obj_value = HttpContext.Current.Session[sessionName];
-        if (obj_value == null) return defauleValue;
-        string str_value = obj_value.ToString();
-        int int_value = 0;
-        if (int.TryParse(str_value, out int_value)) return int_value;
-        return defauleValue;
-    }
+
+
+
     /// <summary>
     /// 取得圖片路徑
     /// </summary>

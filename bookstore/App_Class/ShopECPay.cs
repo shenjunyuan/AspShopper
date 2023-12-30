@@ -70,7 +70,7 @@ public static class ShopECPay
 
 
                             //訂單編號前置碼
-                            string ECPayOrderCode = Utility .GetAppSettings("ECPayOrderCode", "");
+                            string ECPayOrderCode = Utility.GetAppSettings("ECPayOrderCode", "");
 
                             //廠商的交易編號
                             oPayment.Send.MerchantTradeNo = ECPayOrderCode + new Random().Next(0, 99999).ToString();

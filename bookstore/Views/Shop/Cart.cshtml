@@ -27,6 +27,7 @@
                                 <th class="product-name">商品名稱</th>
                                 <th class="product-price">單價</th>
                                 <th class="product-quantity">數量</th>
+                                <th class="product-qty_now">庫存</th>
                                 <th class="product-total">合計</th>
                                 <th class="product-remove">刪除</th>
                             </tr>
@@ -37,10 +38,9 @@
                                 i++;
                                 str_qty_id = string.Format("qty{0}", i);
                                 str_row_id = string.Format("row{0}", i);
-
                                 <tr>
                                     <td class="product-thumbnail">
-                                        <img src="@Url.Content(ShopService.GetProductImageUrl(item.product_no))" alt="Image" class="img-fluid">                                                                     
+                                        <img src="@Url.Content(ShopService.GetProductImageUrl(item.product_no))" alt="Image" class="img-fluid">
                                     </td>
                                     <td class="product-name">
                                         <input id="@str_row_id" name="@str_row_id" value="@item.rowid" hidden="hidden" />
@@ -54,12 +54,13 @@
                                             </div>
                                             <input id="@str_qty_id" name="@str_qty_id" type="text" class="form-control text-center" value="@item.qty" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>                                    
+                                                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                                             </div>
                                         </div>
                                     </td>
+                                    <td>@item.qty_now</td>
                                     <td>$@item.amount</td>
-                                    <td><a href="@Url.Action("DeleteCart", "Shop", new { id = item.rowid })" class="btn btn-primary btn-sm">X</a></td>                                
+                                    <td><a href="@Url.Action("DeleteCart", "Shop", new { id = item.rowid })" class="btn btn-primary btn-sm">X</a></td>
                                 </tr>
                             }
                         </tbody>
@@ -67,6 +68,12 @@
                 </div>
             </div>
         </div>
+
+        <script>
+        var minVal = 1;
+        var maxVal = 500; /*上限 */
+        sitePlusMinus(minVal, maxVal);
+        </script>
     }
     <div class="row">
         <div class="col-md-6">

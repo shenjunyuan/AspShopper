@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 public static class CarPage
 {
     #region 公開屬性
@@ -206,7 +207,7 @@ public static class CarPage
                                 orders.repo.Update(data);
                                 orders.repo.SaveChanges();
                             }
-
+                            // 產生訂單明細
                             foreach (var item in datas)
                             {
                                 OrdersDetail detail = new OrdersDetail();
@@ -220,9 +221,11 @@ public static class CarPage
                                 detail.price = item.price;
                                 detail.amount = item.amount;
                                 detail.remark = "";
-
                                 ordersDetail.repo.Create(detail);
                                 ordersDetail.repo.SaveChanges();
+
+                                UpdateBooksStock(item.product_no, (int)item.qty);
+
                             }
                         }
                     }
@@ -348,4 +351,20 @@ public static class CarPage
         return str_order_no;
     }
     #endregion
+
+    /// <summary>
+    /// 更新商品庫存
+    /// </summary>
+    /// <param name="productNo"></param>
+    /// <param name="buyQty"></param>
+    private static void UpdateBooksStock(string productNo,int buyQty)
+    {
+        using (DapperRepository db = new DapperRepository())
+        {
+            string updataSQL = $"update books set qty_out = qty_out + '{buyQty}' where book_no = '{productNo}'"; // 更新庫存
+            db.UpdateTable(updataSQL, 0);
+        }
+
+    }
+
 }

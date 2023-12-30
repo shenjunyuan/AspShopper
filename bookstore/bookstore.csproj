@@ -230,6 +230,7 @@
     </Compile>
     <Compile Include="Models\MetadataModel\mdAdmin.cs" />
     <Compile Include="Models\MetadataModel\mdBooks.cs" />
+    <Compile Include="Models\MetadataModel\mdCarts.cs" />
     <Compile Include="Models\MetadataModel\mdCategorys.cs" />
     <Compile Include="Models\MetadataModel\mdFeatureds.cs" />
     <Compile Include="Models\MetadataModel\mdModules.cs" />

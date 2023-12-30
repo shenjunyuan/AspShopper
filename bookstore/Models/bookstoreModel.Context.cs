@@ -40,12 +40,12 @@ namespace bookstore.Models
         public virtual DbSet<BigSales> BigSales { get; set; }
         public virtual DbSet<Categorys> Categorys { get; set; }
         public virtual DbSet<Featureds> Featureds { get; set; }
-        public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<Payments> Payments { get; set; }
         public virtual DbSet<Shippings> Shippings { get; set; }
         public virtual DbSet<Publishers> Publishers { get; set; }
         public virtual DbSet<Carts> Carts { get; set; }
         public virtual DbSet<OrdersDetail> OrdersDetail { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Books> Books { get; set; }
     }
 }
