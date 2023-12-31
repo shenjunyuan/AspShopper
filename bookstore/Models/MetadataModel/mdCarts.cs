@@ -10,9 +10,7 @@ namespace bookstore.Models
     [MetadataType(typeof(mdCarts))]
     public partial class Carts : BaseClass
     {
-        [Display(Name = "目前數量")] 
         public int qty_now { get { using (tblBooks model = new tblBooks()) { return model.GetBooksQtyNow(product_no); } } }
-
         private class mdCarts
         {
             public int rowid { get; set; }
@@ -42,7 +40,5 @@ namespace bookstore.Models
             }
                 return prod_no;     
         }
-
-
     }
 }

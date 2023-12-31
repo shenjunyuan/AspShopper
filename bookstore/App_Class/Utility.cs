@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.UI.WebControls;
 using bookstore.Models;
+using PagedList;
+
 
 
 /// <summary>
@@ -136,9 +141,12 @@ public  class Utility:BaseClass
             string padNumber = maxInt.ToString().PadLeft(5, '0'); // 不足位數補 5 個 0
             newStr = string.Format("{0}{1}", title, padNumber);
         }
+
+
+     
+
         return newStr;
     }
-
 
     /// <summary>
     /// 取得資料表的筆數

@@ -24,10 +24,5 @@ namespace bookstore.Models
             public string remark { get; set; }
         }
 
-
-
-
-
-
     }
 }

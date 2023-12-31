@@ -12,6 +12,7 @@ public class tblCarts : BaseClass
         repo = new EFGenericRepository<Carts>(new bookstoreEntities());
     }
 
+
     public List<Carts> CartList()
     {
         return repo.ReadAll(m => m.user_no == SessionService.AccountNo).ToList();

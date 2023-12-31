@@ -33,7 +33,7 @@ namespace bookstore.Models
         }
 
         /// <summary>
-        /// 取得第一筆 BookNo
+        /// 取得第一筆 book_no
         /// </summary>
         /// <returns></returns>
         public string GetTop1BookNo()
@@ -58,21 +58,6 @@ namespace bookstore.Models
                 var model = db.GetTable<Books>(queryStr, new { book_no = bookNo }).FirstOrDefault();            
                 return model;
             }        
-        }
-
-        /// <summary>
-        /// 取得商品庫存 & 商品名稱
-        /// </summary>
-        /// <param name="productNo"></param>
-        /// <returns></returns>
-        public Books GetBookQtyNow(string productNo)
-        {
-            using (DapperRepository db = new DapperRepository())
-            {
-                string query2 = $"SELECT  book_name,qty_now FROM books where book_no = @ProductNo ";
-                var model = db.GetTable<Books>(query2, new { ProductNo = productNo }).FirstOrDefault();
-                return model;
-            }
         }
 
 
