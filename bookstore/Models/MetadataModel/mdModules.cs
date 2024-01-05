@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace bookstore.Models
 {
     [MetadataType(typeof(mdModules))]
-    public partial class Modules
+    public partial class Modules : BaseClass
     {
         private class mdModules
         {

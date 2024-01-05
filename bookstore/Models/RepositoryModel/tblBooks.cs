@@ -80,8 +80,6 @@ public class tblBooks : BaseClass
         }
     }
 
-
-
     /// <summary>
     /// 取得書本數量
     /// </summary>

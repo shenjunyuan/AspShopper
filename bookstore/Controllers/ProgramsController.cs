@@ -16,6 +16,7 @@ namespace bookstore.Controllers
         public ActionResult Index(int page = 1, int pageSize = 10 , string searchText = "")
         {
             ViewBag.PanelWidth = SessionService.SetPrgInfo("資料列表");
+
             using (tblPrograms models = new tblPrograms())
             {
                 var model = models.GetModelList(0 , page , pageSize , searchText);

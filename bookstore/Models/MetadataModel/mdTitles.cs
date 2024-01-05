@@ -8,7 +8,7 @@ using System.Web;
 namespace bookstore.Models
 {
     [MetadataType(typeof(mdTitles))]
-    public partial class Titles
+    public partial class Titles : BaseClass
     {
         private class mdTitles
         {
@@ -23,11 +23,6 @@ namespace bookstore.Models
             [Display(Name = "備註")]
             public string remark { get; set; }
         }
-
-
-
-
-
 
     }
 }

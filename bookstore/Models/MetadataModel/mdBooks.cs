@@ -7,7 +7,7 @@ using System.Web;
 namespace bookstore.Models
 {
     [MetadataType(typeof(mdBooks))]
-    public partial class Books
+    public partial class Books : BaseClass
     {
         public string publisher_name { get { using (tblBooks books = new tblBooks()) { return books.GetPublisherName(book_no); } } }
         public string category_name { get { using (tblBooks books = new tblBooks()) { return books.GetCategoryName(book_no); } } }
@@ -31,5 +31,35 @@ namespace bookstore.Models
             public string detail_text { get; set; }
             public string remark { get; set; }
         }
+
+        /// <summary>
+        /// 取得第一筆 book_no
+        /// </summary>
+        /// <returns></returns>
+        public string GetTop1BookNo()
+        {
+            string bookNo = "";
+            using (DapperRepository db = new DapperRepository())
+            {
+                string queryStr = "select top 1 book_no from Books";
+                bookNo = db.GetTable<string>(queryStr).FirstOrDefault();
+            }
+            return bookNo;
+        }
+        /// <summary>
+        /// 取得 Book 的明細
+        /// </summary>
+        /// <returns></returns>
+        public Books GetBookDetail(string bookNo)
+        {
+            using (DapperRepository db = new DapperRepository())
+            {
+                string queryStr = "select *  from Books where book_no = @book_no";
+                var model = db.GetTable<Books>(queryStr, new { book_no = bookNo }).FirstOrDefault();            
+                return model;
+            }        
+        }
+
+
     }
 }

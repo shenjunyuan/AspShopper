@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace bookstore.Models
 {
     [MetadataType(typeof(mdPrograms))]
-    public partial class Programs
+    public partial class Programs : BaseClass
     {
         [Display(Name = "模組名稱")] // 關聯 module_no 代入 module_name
         public string module_name { get { using (tblModules model = new tblModules()) { return model.GetModuleName(module_no); } } }

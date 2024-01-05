@@ -105,7 +105,7 @@ namespace bookstore.Controllers
                     newData.contact_address = model.ContactAddress;
                     newData.is_validate = false;
                     newData.validate_code = str_validate_code;
-                    newData.member_no = Utility.GetTableNumber("Members", "member_no", "MM");
+                    newData.member_no = Utility.GetTableNumNoDate("Members", "member_no", "M");
                     db.Members.Add(newData);
                     db.SaveChanges();
 

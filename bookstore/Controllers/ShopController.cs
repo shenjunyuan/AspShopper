@@ -1,4 +1,5 @@
 ﻿using bookstore.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,10 +84,14 @@ namespace bookstore.Controllers
         /// <returns></returns>
         public ActionResult Detail(string id)
         {
-            using (tblBooks books = new tblBooks())
+            using (Books book = new Books())
             {
-                var model = books.repo.ReadSingle(m => m.book_no == id);
-                return View(model);
+                if (string.IsNullOrEmpty(id)) // 若有空值 預設第一筆 book_no
+                {
+                   id = book.GetTop1BookNo();      
+                }
+                var model = book.GetBookDetail(id); 
+                return View(model);   
             }
         }
         /// <summary>
@@ -114,13 +119,31 @@ namespace bookstore.Controllers
         {
             int int_rowid = 0;
             int int_qty = 0;
+            string message = "";
             for (int i = 1; i < collection.Count; i += 2)
             {
                 int_rowid = int.Parse(collection[i].ToString());
                 int_qty = int.Parse(collection[i + 1].ToString());
-                CarPage.UpdateCart(int_rowid, int_qty);
+                using (Carts cart = new Carts())
+                {
+                    using (Books book = new Books())
+                    {
+                        string product_no = cart.GetProductNo(int_rowid.ToString());
+                        Books bookInfo = book.GetBookDetail(product_no);
+                        string book_name = bookInfo.book_name;
+                        int qty_now = (int)bookInfo.qty_now;
+                        if (int_qty > qty_now)
+                        {
+                            message = $"商品名稱:{book_name}，庫存不足!!! 更新數量失敗";
+                        }
+                        else
+                        {
+                            CarPage.UpdateCart(int_rowid, int_qty);
+                        }
+                    }
+                }            
             }
-            return RedirectToAction("Cart", "Shop");
+            return RedirectToAction("Cart", "Shop",new{message});
         }
         /// <summary>
         /// 刪除購物車

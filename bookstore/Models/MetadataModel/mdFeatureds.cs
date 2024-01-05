@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace bookstore.Models
 {
     [MetadataType(typeof(mdFeatureds))]
-    public partial class Featureds
+    public partial class Featureds : BaseClass
     {
         /// <summary>
         /// 額外追加的欄位 Featureds Table 裡沒有的 虛擬欄位
