@@ -141,10 +141,6 @@ public  class Utility:BaseClass
             string padNumber = maxInt.ToString().PadLeft(5, '0'); // 不足位數補 5 個 0
             newStr = string.Format("{0}{1}", title, padNumber);
         }
-
-
-     
-
         return newStr;
     }
 
