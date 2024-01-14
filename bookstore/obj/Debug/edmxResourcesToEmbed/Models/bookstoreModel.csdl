@@ -319,5 +319,6 @@
     <Property Name="qty_out" Type="Int32" />
     <Property Name="qty_now" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="yt_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

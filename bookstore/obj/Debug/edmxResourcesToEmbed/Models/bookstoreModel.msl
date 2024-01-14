@@ -300,6 +300,7 @@
     <EntitySetMapping Name="Books">
       <EntityTypeMapping TypeName="bookstoreModel.Books">
         <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="yt_url" ColumnName="yt_url" />
           <ScalarProperty Name="remark" ColumnName="remark" />
           <ScalarProperty Name="qty_now" ColumnName="qty_now" />
           <ScalarProperty Name="qty_out" ColumnName="qty_out" />
