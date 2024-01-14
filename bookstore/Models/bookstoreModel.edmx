@@ -66,6 +66,7 @@
           <Property Name="qty_out" Type="int" />
           <Property Name="qty_now" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
+          <Property Name="yt_url" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Carts">
           <Key>
@@ -648,6 +649,7 @@
           <Property Name="qty_out" Type="Int32" />
           <Property Name="qty_now" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="yt_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -954,6 +956,7 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="bookstoreModel.Books">
               <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="yt_url" ColumnName="yt_url" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="qty_now" ColumnName="qty_now" />
                 <ScalarProperty Name="qty_out" ColumnName="qty_out" />

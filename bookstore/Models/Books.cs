@@ -30,5 +30,6 @@ namespace bookstore.Models
         public Nullable<int> qty_out { get; set; }
         public Nullable<int> qty_now { get; set; }
         public string remark { get; set; }
+        public string yt_url { get; set; }
     }
 }

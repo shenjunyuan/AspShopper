@@ -101,19 +101,21 @@
 .data-list-max {
     width:100% !important;
 }
-
-
 .pr-2 .input-group {
     width: 200px !important;
 }
-
-
 #search_text {
     width: 200px;
 }
 
-
-
 .dropdown-item {
     font-size: 15px; /* 這裡可以調整你想要的文字大小 */
+}
+
+.boxShadow:hover {
+    box-shadow: -6px 6px 10px gray;
+    -ms-transform: translate(4px,-4px); /* 往右4，往下-4=往上4*/
+    -webkit-transform: translate(4px,-4px);
+    transform: translate(4px,-4px);
+    cursor: pointer;
 }

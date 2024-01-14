@@ -32,7 +32,7 @@
             @foreach (var item in Model.BookList)
             {
                 <div class="col-sm-6 col-lg-4 mb-4">
-                    <div class="block-4 text-center border">
+                    <div class="block-4 text-center border"  >
                         <figure class="block-4-image">
                             <a href="@Url.Action("Detail" , "Shop" , new { id = item.book_no})"><img src="@Url.Content(ShopService.GetProductImageUrl(item.book_no))" alt="Image placeholder" class="img-fluid"></a>
                         </figure>

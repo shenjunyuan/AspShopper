@@ -61,6 +61,7 @@
     <Property Name="qty_out" Type="int" />
     <Property Name="qty_now" Type="int" StoreGeneratedPattern="Computed" />
     <Property Name="remark" Type="nvarchar" MaxLength="250" />
+    <Property Name="yt_url" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Carts">
     <Key>

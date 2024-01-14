@@ -751,3 +751,11 @@ a {
   width: 120px;
   border-radius: 50%;
   margin-bottom: 20px; }
+
+.boxShadow:hover {
+    box-shadow: -6px 6px 10px gray;
+    -ms-transform: translate(4px,-4px); /* 往右4，往下-4=往上4*/
+    -webkit-transform: translate(4px,-4px);
+    transform: translate(4px,-4px);
+    cursor: pointer;
+}
