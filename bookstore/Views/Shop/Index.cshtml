@@ -17,11 +17,11 @@
                         <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">@ShopService.SortName</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
                             <a class="dropdown-item" href="@Url.Action("Sort" , "Shop" , new { id = "Hot"})">熱門商品</a>
-                            <a class="dropdown-item" href="@Url.Action("Sort" , "Shop" , new { id = "NameAsc"})">依名稱,由小到大</a>
-                            <a class="dropdown-item" href="@Url.Action("Sort" , "Shop" , new { id = "NameDesc"})">依名稱,由大到小</a>
-                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="@Url.Action("Sort" , "Shop" , new { id = "PriceAsc"})">依價格,由小到大</a>
                             <a class="dropdown-item" href="@Url.Action("Sort" , "Shop" , new { id = "PriceDesc"})">依價格,由大到小</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="@Url.Action("Sort" , "Shop" , new { id = "NameAsc"})">依名稱,由小到大</a>
+                            <a class="dropdown-item" href="@Url.Action("Sort" , "Shop" , new { id = "NameDesc"})">依名稱,由大到小</a>
                         </div>
                     </div>
                 </div>
@@ -31,8 +31,8 @@
         <div class="row mb-5">
             @foreach (var item in Model.BookList)
             {
-                <div class="col-sm-6 col-lg-4 mb-4">
-                    <div class="block-4 text-center border"  >
+                <div class="col-sm-6 col-lg-4 mb-4 bigWidth">
+                    <div class="block-4 text-center border">
                         <figure class="block-4-image">
                             <a href="@Url.Action("Detail" , "Shop" , new { id = item.book_no})"><img src="@Url.Content(ShopService.GetProductImageUrl(item.book_no))" alt="Image placeholder" class="img-fluid"></a>
                         </figure>
@@ -70,7 +70,6 @@
                 }
             </ul>
         </div>
-
         <div class="border p-4 rounded mb-4">
             <div class="mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">價格區間</h3>
@@ -82,34 +81,6 @@
                     <input type="text" name="amount" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
                     <div>
                         <input type="submit" value="查詢" class="btn btn-success" />
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="site-section site-blocks-2">
-            <div class="row justify-content-center text-center mb-5">
-                <div class="col-md-7 site-section-heading pt-4">
-                    <h2>商品分類</h2>
-                </div>
-            </div>
-            <div class="row">
-                @foreach (var item in Model.CategoryList)
-                {
-                    <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                        <a class="block-2-item" href="#">
-                            <figure class="image">
-                                <img src="@Url.Content("~/Images/Categorys/" + item.mno +".jpg")" alt="" class="img-fluid">
-                            </figure>
-                            <div class="text">
-                                <span class="text-uppercase">收藏</span>
-                                <h3>@item.mname</h3>
-                            </div>
-                        </a>
                     </div>
                 }
             </div>

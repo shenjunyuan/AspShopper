@@ -22,12 +22,17 @@
     <script src="@Url.Content("~/shoppers/js/owl.carousel.min.js")"></script>
     <script src="@Url.Content("~/shoppers/js/jquery.magnific-popup.min.js")"></script>
     <script src="@Url.Content("~/shoppers/js/main.js")"></script>
+    <style>
+        .img-logo {
+            width: 80px;
+            height: 80px;
+        }
+    </style>
 
     @RenderSection("styles", required: false)
     @RenderSection("scripts", required: false)
 </head>
 <body>
-
     <div class="site-wrap">
         <header class="site-navbar" role="banner">
             <div class="site-navbar-top">
@@ -36,29 +41,31 @@
 
                         <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
                             @using (Html.BeginForm("Search", "Shop", FormMethod.Post, new { @class = "site-block-top-search" }))
-                            {
+                             {
                                 <span class="icon icon-search2"></span>
-                                <input type="text" name="SearchText" id="SearchText" class="form-control border-0" placeholder="搜尋商品">}
+                                <input type="text" name="SearchText" id="SearchText" class="form-control border-0" placeholder="搜尋商品">
+                             }
                         </div>
 
                         <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
                             <div class="site-logo">
+                                <a href="@Url.Action("Index" , "Home")"><img src="~/Images/Application/ps_logo.png" class="img-logo"></a>
                                 <a href="@Url.Action("Index" , "Home")" class="js-logo-clone">@SessionService.GetHomePageInfo("ShopName")</a>
                             </div>
                         </div>
-
                         <div class="col-6 col-md-4 order-3 order-md-3 text-right">
                             <div class="site-top-icons">
                                 <ul>
                                     <li>
                                         <span class="icon icon-person"></span>
                                         @{ if (SessionService.IsLogined)
-                                            {
+                                           {
                                                 <span>@SessionService.AccountName</span>
                                                 <a href="@Url.Action("Login" , "Account")">(登出)</a> }
-                                            else
-                                            {
-                                                <a href="@Url.Action("Login" , "Account")">登入</a> } }
+                                           else
+                                           {
+                                                <a href="@Url.Action("Login" , "Account")">登入</a> }
+                                          }
                                     </li>
                                     <li>
                                         <a href="@Url.Action("Cart" , "Shop")" class="site-cart">
@@ -77,33 +84,9 @@
             <nav class="site-navigation text-right text-md-center" role="navigation">
                 <div class="container">
                     <ul class="site-menu js-clone-nav d-none d-md-block">
-                        <li class="has-children active">
-                            <a href="@Url.Action("Index" , "Home")">首頁</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Menu One</a></li>
-                                <li><a href="#">Menu Two</a></li>
-                                <li><a href="#">Menu Three</a></li>
-                                <li class="has-children">
-                                    <a href="#">Sub Menu</a>
-                                    <ul class="dropdown">
-                                        <li><a href="#">Menu One</a></li>
-                                        <li><a href="#">Menu Two</a></li>
-                                        <li><a href="#">Menu Three</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-children">
-                            <a href="@Url.Action("About" , "Home")">關於我們</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Menu One</a></li>
-                                <li><a href="#">Menu Two</a></li>
-                                <li><a href="#">Menu Three</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="@Url.Action("Index" , "Shop")">購物商城</a></li>
-                        <li><a href="@Url.Action("Category" , "Shop")">商品分類</a></li>
-                        <li><a href="@Url.Action("NewArrivals" , "Shop")">新貨</a></li>
+                        <li><a href="@Url.Action("Index" , "Home")"class = "boxShadow">首頁</a></li>
+                        <li><a href="@Url.Action("About" , "Home")"class = "boxShadow">關於我們</a></li>
+                        <li><a href="@Url.Action("Index" , "Shop")"class = "boxShadow">購物商城</a></li>
                     </ul>
                 </div>
             </nav>
@@ -120,73 +103,11 @@
                 </div>
             </div>
         </div>
-
         <div class="site-section">
             <div class="container">
                 @RenderBody()
             </div>
         </div>
-
-        <footer class="site-footer border-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3 class="footer-heading mb-4">Navigations</h3>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Sell online</a></li>
-                                    <li><a href="#">Features</a></li>
-                                    <li><a href="#">Shopping cart</a></li>
-                                    <li><a href="#">Store builder</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Mobile commerce</a></li>
-                                    <li><a href="#">Dropshipping</a></li>
-                                    <li><a href="#">Website development</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Point of sale</a></li>
-                                    <li><a href="#">Hardware</a></li>
-                                    <li><a href="#">Software</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-                        <h3 class="footer-heading mb-4">Promo</h3>
-                        <a href="#" class="block-6">
-                            <img src="@Url.Content("~/shoppers/images/hero_1.jpg")" alt="Image placeholder" class="img-fluid rounded mb-4">
-                            <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-                            <p>Promo from  nuary 15 &mdash; 25, 2019</p>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="block-5 mb-5">
-                            <h3 class="footer-heading mb-4">連絡資訊</h3>
-                            <ul class="list-unstyled">
-                                <li class="address">@SessionService.GetHomePageInfo("ShopAddress")</li>
-                                <li class="phone">@SessionService.GetHomePageInfo("ShopTel")</li>
-                                <li class="email">@SessionService.GetHomePageInfo("ShopEmail")</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row pt-5 mt-5 text-center">
-                    <div class="col-md-12">
-                        <p>
-                            Copyright &copy; @DateTime.Today.Year 版權所有 - @SessionService.GetHomePageInfo("ShopName")
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 </body>
 </html>

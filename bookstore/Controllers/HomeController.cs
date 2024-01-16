@@ -13,12 +13,19 @@ namespace bookstore.Controllers
         public ActionResult Index()
         {
             vmHome model = new vmHome();
+
+            var items = model.NewItemData;
+            foreach (var item in items)
+            {
+                string bname = item.category_name;
+                Console.WriteLine(bname);
+            }
             return View(model);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+
 
             return View();
         }

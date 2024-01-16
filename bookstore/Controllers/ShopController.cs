@@ -70,7 +70,7 @@ namespace bookstore.Controllers
             object obj_low = formCollection["price_low"];
             object obj_high = formCollection["price_high"];
             string str_low = (obj_low == null) ? "0" : obj_low.ToString();
-            string str_high = (obj_high == null) ? "5000" : obj_high.ToString();
+            string str_high = (obj_high == null) ? "30000" : obj_high.ToString();
             int.TryParse(str_low, out int_low);
             int.TryParse(str_high, out int_high);
             ShopService.PriceLow = int_low;

@@ -15,7 +15,9 @@ public class tblFeatureds : BaseClass
     {
         using (tblBooks books = new tblBooks())
         {
-            var data = repo.ReadAll(m => m.is_enabled == true).OrderBy(m => m.product_no).ToList();
+            // 取最後三筆
+            var data = repo.ReadAll(m => m.is_enabled == true).OrderByDescending(m => m.rowid).Take(3).ToList();
+            //var data = repo.ReadAll(m => m.is_enabled == true).OrderBy(m => m.rowid).ToList();
             foreach (var item in data)
             {
                 item.product_name = books.GetBookName(item.product_no);

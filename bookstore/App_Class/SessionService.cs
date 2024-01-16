@@ -185,7 +185,8 @@ public static class SessionService
             if (infoType == "ShopAddress") return applications.GetApplicationsData().contact_address;
             if (infoType == "ShopTel") return applications.GetApplicationsData().contact_tel;
             if (infoType == "ShopEmail") return applications.GetApplicationsData().contact_email;
-            return "";
+            if (infoType == "ShopIntro") return applications.GetApplicationsData().banner_description;
+            return "資料庫沒存資料";
         }   
     }
 

@@ -18,15 +18,14 @@
         </div>
         <div class="col-md-6">
             <h5 class="text-black">
-                <span>商品編號：@Model.book_no</span><br />
-                <span>書籍名稱：@Model.book_name</span><br />
-                <span>書本語言：@Model.language_name </span><br />
-                <span>出版社名：@Model.publisher_name </span><br />
-                <span>作者姓名：@Model.author_name </span><br />
-                <span>出版日期：@Model.publish_date.ToString("yyyy/mm/dd")</span><br />
+                <span>遊戲編號： @Model.book_no</span><br />
+                <span>遊戲名稱： @Model.book_name</span><br />
+                <span>遊戲公司： @Model.publisher_name </span><br />
+                <span>遊戲語言： @Model.language_name </span><br />
+                <span>發售日期： @Model.publish_date.ToString("yyyy/mm/dd")</span><br />
             </h5>
             <h5 class="text-black">
-                <span>銷售單價：<strong class="text-primary h4">@Model.sale_price</strong></span>
+                <span>價格：<strong class="text-primary h4">@Model.sale_price</strong></span>
             </h5>
             <div class="mb-5">
                 <div class="input-group mb-3" style="max-width: 120px;">
@@ -43,7 +42,7 @@
                 @{
                     if (@Model.qty_now > 0)
                     {
-                        <h6 class="text-black"> <span>庫存量：@Model.qty_now</span><br /></h6>
+                                <h6 class="text-black">庫存量： <span>@Model.qty_now</span></h6>
                         <input type="submit" value="加入購物車" class="buy-now btn btn-sm btn-primary" />
                     }
                     else
@@ -61,19 +60,14 @@
         var maxVal = @Model.qty_now; /*上限 = 目前庫存*/ 
         sitePlusMinus(minVal, maxVal);
     </script>
-
  }
 <hr />
-<div class="row">
+<div class="row text-center">
     <div class="col-md-12">
-        <h5>
-            詳細規格：
-        </h5>
-        @Model.detail_text
-        <h5>
-            介紹影片:
-        </h5>
-        <iframe width="500" height="350" src="@Model.yt_url" frameborder="0" allowfullscreen></iframe>
+        <h3>遊戲介紹</h3>
+        <p class="text-left"> @Model.detail_text<p>
+        <h3 class="mt-3">介紹影片</h3>
+        <iframe width="500" height="350" src="@Model.yt_url" frameborder="0" allowfullscreen class="cust-rd"></iframe>
     </div>
 </div>
 
