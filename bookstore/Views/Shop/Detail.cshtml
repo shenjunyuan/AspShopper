@@ -5,10 +5,12 @@
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
 
+@using System.Globalization  @*轉換日期用*@
+
 
 
 @using (Html.BeginForm("AddToCart", "Shop", FormMethod.Post))
- {
+{
     @Html.AntiForgeryToken()
     // HiddenFor 隱藏紀錄值用
     @Html.HiddenFor(m => m.book_no)
@@ -22,7 +24,9 @@
                 <span>遊戲名稱： @Model.book_name</span><br />
                 <span>遊戲公司： @Model.publisher_name </span><br />
                 <span>遊戲語言： @Model.language_name </span><br />
-                <span>發售日期： @Model.publish_date.ToString("yyyy/mm/dd")</span><br />
+                <span>發售日期： @Model.publish_date.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture)</span><br />
+                @*.ToString("yyyy/mm/dd"*@
+
             </h5>
             <h5 class="text-black">
                 <span>價格：<strong class="text-primary h4">@Model.sale_price</strong></span>
@@ -37,12 +41,12 @@
                         <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                     </div>
                 </div>
-            </div>         
+            </div>
             <p>
                 @{
                     if (@Model.qty_now > 0)
                     {
-                                <h6 class="text-black">庫存量： <span>@Model.qty_now</span></h6>
+                        <h6 class="text-black">庫存量： <span>@Model.qty_now</span></h6>
                         <input type="submit" value="加入購物車" class="buy-now btn btn-sm btn-primary" />
                     }
                     else
@@ -57,17 +61,17 @@
 
     <script>
         var minVal = 1;
-        var maxVal = @Model.qty_now; /*上限 = 目前庫存*/ 
+        var maxVal = @Model.qty_now; /*上限 = 目前庫存*/
         sitePlusMinus(minVal, maxVal);
     </script>
- }
+}
 <hr />
 <div class="row text-center">
     <div class="col-md-12">
         <h3>遊戲介紹</h3>
         <p class="text-left"> @Model.detail_text<p>
-        <h3 class="mt-3">介紹影片</h3>
-        <iframe width="500" height="350" src="@Model.yt_url" frameborder="0" allowfullscreen class="cust-rd"></iframe>
+            <h3 class="mt-3">介紹影片</h3>
+            <iframe width="500" height="350" src="@Model.yt_url" frameborder="0" allowfullscreen class="cust-rd"></iframe>
     </div>
 </div>
 

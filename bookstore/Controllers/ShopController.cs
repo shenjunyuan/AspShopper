@@ -10,7 +10,7 @@ namespace bookstore.Controllers
 {
     public class ShopController : Controller
     {
-        public ActionResult Index(int page = 1, int pageSize = 12)
+        public ActionResult Index(int page = 1, int pageSize = 9)
         {
             using (tblBooks books = new tblBooks())
             {
@@ -90,7 +90,8 @@ namespace bookstore.Controllers
                 {
                    id = book.GetTop1BookNo();      
                 }
-                var model = book.GetBookDetail(id); 
+                var model = book.GetBookDetail(id);
+                
                 return View(model);   
             }
         }

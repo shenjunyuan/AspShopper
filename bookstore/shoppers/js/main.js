@@ -161,7 +161,7 @@ jQuery(document).ready(function ($) {
         $("#slider-range").slider({
             range: true,
             min: 0,
-            max: 2000,
+            max: 20000,
             values: [low, high],
             slide: function (event, ui) {
                 $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);

@@ -45,7 +45,8 @@
                         </div>
                         <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
                             <div class="site-logo bigWidth">
-                                <a href="@Url.Action("Index" , "Home")"><img src="~/Images/Application/ps_logo.png" class="img-logo"></a>
+                               
+                                <a href="@Url.Action("Index" , "Home")"><img src=" @Url.Content(@Url.Content(ShopService.GetLogoImgUrl()))" class="img-logo"></a>
                                 <a href="@Url.Action("Index" , "Home")" class="js-logo-clone">@SessionService.GetHomePageInfo("ShopName")</a>
                             </div>
                         </div>
@@ -106,7 +107,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 text-start">
-                        <a href="@Url.Action("Index" , "Home")"><img src="~/Images/Application/ps_logo.png" alt=""></a>
+
+                        <a href="@Url.Action("Index" , "Home")"><img src="@Url.Content(@Url.Content(ShopService.GetLogoImgUrl()))" alt=""></a>
                         <p>@SessionService.GetHomePageInfo("ShopIntro")</p>
                     </div>
                     <div class="col-md-4 text-start">

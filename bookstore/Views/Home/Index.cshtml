@@ -32,10 +32,10 @@
 <style>
 </style>
 @{
-    List<string> pics = new List<string> { "bg", "FF7", "LD8", "MH", "Spiderman2" }; // 4 張圖片
+    List<string> pics = new List<string> { "BG", "FF7", "LD", "MH", "SM" }; // 4 張圖片
     foreach (string pic in pics)
     {
-        string img_url = @Url.Content("~/Images/HomeMain/" + pic + ".jpg");
+        string img_url = @Url.Content("~/Images/MainBG/" + pic + ".jpg");
        
         <div class="container-fluid">
             <div class="site-blocks-cover mainImg" style="background-image: url( @Url.Content(img_url) )" data-aos="fade" title="">
@@ -89,7 +89,7 @@
                 <div class="col-md-4 mt-1-cust">
                     <div class="hotItem position-relative bigWidth">
                         <img src="@Url.Content("~/Images/Product/" + item.product_no +".jpg")" alt="">
-                        <h4>@item.product_name</h4>
+                        <h4 class="text-center">@item.product_name</h4>
                     </div>
                 </div>
             }
