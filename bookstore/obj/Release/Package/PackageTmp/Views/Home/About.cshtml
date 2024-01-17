@@ -1,7 +1,25 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<section id="about">
+    <div class="container">
+        <!-- 使用1個row配版 -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <!--offset-md-2 內縮2攔-->
+                <h3>關於我們</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                       
+                        <img src="@Url.Content("~/Images/Application/old_ps_logo.jpg")" alt="">
+                        <h3>豪好玩電玩</h3>
+                    </div>
+                    <div class="col-md-8 text-start">
+                        <p class="text-left">歡迎來到我們的電玩天地！我們是一家擁有豐富遊戲文化的電玩店，提供最新、最熱門的遊戲作品，滿足各種遊戲愛好者的需求。無論您是新手還是老手，我們都擁有多款遊戲供您選擇，從動作冒險到策略模擬應有盡有。我們店內設有舒適的遊戲區域，讓您盡情體驗遊戲樂趣。此外，我們也提供遊戲主機、周邊產品及專業的遊戲建議服務。歡迎來店一探究竟，與我們一同打造屬於您的遊戲時光！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -3,23 +3,46 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
-<div class="site-blocks-cover" style="background-image: url(@Url.Content("~/shoppers/images/hero_1.jpg"));" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-start align-items-md-center justify-content-end">
-            <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
-                <h1 class="mb-2">@Model.ApplicationsData.banner_header</h1>
-                <div class="intro-text text-center text-md-left">
-                    <p class="mb-4">@Model.ApplicationsData.banner_description</p>
-                    <p>
-                        <a href="@Url.Action("Index" , "Shop")" class="btn btn-sm btn-primary">開始購物</a>
-                    </p>
-                </div>
+<script>
+    var home_url = document.getElementsByClassName("cusImg");
+    function redirectToShop() {
+            window.location.href = "@Url.Action("Index" , "Shop")";
+    };
+    // 圖片輪流顯示功能
+    $(document).ready(function () {
+        var currentIndex = 0;
+        var imgElements = $(".mainImg");
+        updateImage(); // 先執行一次，顯示第一張
+        // 更新顯示圖片
+        function updateImage() {
+            imgElements.hide(); //隱藏所有圖片
+            imgElements.eq(currentIndex).show(); // 顯示圖片
+        }
+        function nextImage() {
+            currentIndex = (currentIndex - 1 + imgElements.length) % imgElements.length;
+            updateImage();
+        }
+        function prevButton() {
+            currentIndex = (currentIndex + 1) % imgElements.length;
+            updateImage();
+        }
+        setInterval(prevButton, 5000); // 每隔5秒自動執行
+    });
+</script>
+<style>
+</style>
+@{
+    List<string> pics = new List<string> { "BG", "FF7", "LD", "MH", "SM" }; // 4 張圖片
+    foreach (string pic in pics)
+    {
+        string img_url = @Url.Content("~/Images/MainBG/" + pic + ".jpg");
+       
+        <div class="container-fluid">
+            <div class="site-blocks-cover mainImg" style="background-image: url( @Url.Content(img_url) )" data-aos="fade" title="">
             </div>
         </div>
-    </div>
-</div>
-
+    }
+}
 <div class="site-section site-section-sm site-blocks-1">
     <div class="container">
         <div class="row">
@@ -56,23 +79,18 @@
 <div class="site-section site-blocks-2">
     <div class="container">
         <div class="row justify-content-center text-center mb-5">
-            <div class="col-md-7 site-section-heading pt-4">
-                <h2>商品分類</h2>
+            <div class="col-md-7 site-section-heading text-center pt-4">
+                <h2>熱銷排行</h2>
             </div>
         </div>
         <div class="row">
-            @foreach (var item in Model.CategorysData)
+            @foreach (var item in Model.FeaturedsData)
             {
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                    <a class="block-2-item" href="#">
-                        <figure class="image">
-                            <img src="@Url.Content("~/Images/Categorys/" + item.mno +".jpg")" alt="" class="img-fluid">
-                        </figure>
-                        <div class="text">
-                            <span class="text-uppercase">收藏</span>
-                            <h3>@item.mname</h3>
-                        </div>
-                    </a>
+                <div class="col-md-4 mt-1-cust">
+                    <div class="hotItem position-relative bigWidth">
+                        <img src="@Url.Content("~/Images/Product/" + item.product_no +".jpg")" alt="">
+                        <h4 class="text-center">@item.product_name</h4>
+                    </div>
                 </div>
             }
         </div>
@@ -83,24 +101,24 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7 site-section-heading text-center pt-4">
-                <h2>特色商品</h2>
+                <h2>最新上市</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="nonloop-block-3 owl-carousel">
-                    @foreach (var item in Model.FeaturedsData)
+                    @foreach (var item in Model.NewItemData)
                     {
-                        <div class="item">
+                        <div class="item boxShadow">
                             <div class="block-4 text-center">
                                 <figure class="block-4-image">
-                                    <a href="@Url.Action("Detail" , "Shop" , new { id = item.product_no})">
-                                        <img src="@Url.Content("~/Images/Product/" + item.product_no + ".jpg")" alt="Image placeholder" class="img-fluid">
+                                    <a href="@Url.Action("Detail" , "Shop" , new { id = item.book_no})">
+                                        <img src="@Url.Content("~/Images/Product/" + item.book_no + ".jpg")" alt="Image placeholder" class="newItemImg">
                                     </a>
                                 </figure>
                                 <div class="block-4-text p-4">
-                                    <h3><a href="@Url.Action("Detail" , "Shop" , new { id = item.product_no})">@item.category_name</a></h3>
-                                    <p class="mb-0">@item.product_name</p>
+                                    <h3><a href="@Url.Action("Detail" , "Shop" , new { id = item.book_no})">@item.book_name</a></h3>
+                                    <p class="mb-0">@item.category_name</p>
                                     <p class="text-primary font-weight-bold">$@item.sale_price</p>
                                 </div>
                             </div>
@@ -109,28 +127,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="site-section block-8">
-    <div class="container">
-        <div class="row justify-content-center  mb-5">
-            <div class="col-md-7 site-section-heading text-center pt-4">
-                <h2>本期促銷商品</h2>
-            </div>
-        </div>
-        @foreach (var item in Model.BigSalesData)
-        {
-            <div class="row align-items-center">
-                <div class="col-md-12 col-lg-7 mb-5">
-                    <a href="#"><img src="@Url.Content("~/Images/Product/" + item.product_no + ".jpg")" alt="Image placeholder" class="img-fluid rounded"></a>
-                </div>
-                <div class="col-md-12 col-lg-5 text-center pl-md-5">
-                    <h2><a href="#">折扣價： @item.sale_price</a></h2>
-                    <p>@item.remark</p>
-                    <p><a href="#" class="btn btn-primary btn-sm">購買此商品</a></p>
-                </div>
-            </div>
-        }
     </div>
 </div>

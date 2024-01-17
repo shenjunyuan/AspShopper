@@ -11,6 +11,7 @@ public class tblBooks : BaseClass
     {
         repo = new EFGenericRepository<Books>(new bookstoreEntities());
     }
+
     public string GetBookName(string bookNo)
     {
         return repo.ReadSingle(m => m.book_no == bookNo).book_name;
@@ -79,6 +80,23 @@ public class tblBooks : BaseClass
             return bookModel;
         }
     }
+
+
+    public List<Books> GetNewBooksList()
+    {
+        var bookModel = repo.ReadAll().OrderByDescending(m => m.rowid).Take(10).ToList();
+        return bookModel;
+    }
+
+
+
+
+
+
+
+
+
+
 
     /// <summary>
     /// 取得書本數量

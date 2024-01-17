@@ -111,7 +111,6 @@
 .dropdown-item {
     font-size: 15px; /* 這裡可以調整你想要的文字大小 */
 }
-
 .boxShadow:hover {
     box-shadow: -6px 6px 10px gray;
     -ms-transform: translate(4px,-4px); /* 往右4，往下-4=往上4*/

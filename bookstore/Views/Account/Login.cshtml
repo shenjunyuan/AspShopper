@@ -5,6 +5,9 @@
     Layout = "~/Views/Shared/_LayoutLite.cshtml";
 }
 
+<style>
+</style>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -13,6 +16,10 @@
             <div class="login-box">
                 <div class="card">
                     <div class="card-header text-center">
+                        @{
+                            string style_srt = "margin-right: 380px;width: 60px;height: 60px;";
+                            <a href="@Url.Action("Index" , "Home")"><img src="@Url.Content(ShopService.GetLogoImgUrl())" alt="" style="@style_srt"></a>
+                        }
                         <h3>@SessionService.AppName - 會員登入</h3>
                     </div>
                     <div class="card-body">
@@ -50,9 +57,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
             </div>
         </div>
     </div>

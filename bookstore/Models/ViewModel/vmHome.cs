@@ -22,6 +22,10 @@ public class vmHome : BaseClass
     /// 特色商品資料
     /// </summary>
     public List<Featureds> FeaturedsData { get; set; }
+    /// <summary>
+    /// 最新商品資料
+    /// </summary>
+    public List<Books> NewItemData { get; set; }
 
     /// <summary>
     ///  建構子 抓每個 Table 裡面的資料
@@ -32,10 +36,17 @@ public class vmHome : BaseClass
         { ApplicationsData = applications.GetApplicationsData(); }
         using (tblBigSales bigSales = new tblBigSales())
         { BigSalesData = bigSales.GetBigSalesDataList(); }
+
         using (tblCategorys categorys = new tblCategorys())
         { CategorysData = categorys.GetCategoryDataList(); }
+
         using (tblFeatureds featureds = new tblFeatureds())
         { FeaturedsData = featureds.GetFeaturedsDataList(); }
+
+        using (tblBooks books = new tblBooks())
+        {
+           NewItemData = books.GetNewBooksList();
+        }
     }
 
 
