@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECPay.Payment.Integration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,21 +14,14 @@ namespace bookstore.Controllers
         public ActionResult Index()
         {
             vmHome model = new vmHome();
-
-            var items = model.NewItemData;
-            foreach (var item in items)
-            {
-                string bname = item.category_name;
-                Console.WriteLine(bname);
-            }
-            return View(model);
+                return View(model);
         }
-
+        [AllowAnonymous]
         public ActionResult About()
         {
 
-
-            return View();
+            vmHome model = new vmHome();
+            return View(model);
         }
 
         public ActionResult Contact()

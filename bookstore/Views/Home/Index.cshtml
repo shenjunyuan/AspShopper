@@ -4,10 +4,6 @@
     ViewBag.Title = "Home Page";
 }
 <script>
-    var home_url = document.getElementsByClassName("cusImg");
-    function redirectToShop() {
-            window.location.href = "@Url.Action("Index" , "Shop")";
-    };
     // 圖片輪流顯示功能
     $(document).ready(function () {
         var currentIndex = 0;
@@ -18,7 +14,7 @@
             imgElements.hide(); //隱藏所有圖片
             imgElements.eq(currentIndex).show(); // 顯示圖片
         }
-        function nextImage() {
+        function nextButton() {
             currentIndex = (currentIndex - 1 + imgElements.length) % imgElements.length;
             updateImage();
         }
@@ -31,18 +27,17 @@
 </script>
 <style>
 </style>
-@{
-    List<string> pics = new List<string> { "BG", "FF7", "LD", "MH", "SM" }; // 4 張圖片
-    foreach (string pic in pics)
-    {
-        string img_url = @Url.Content("~/Images/MainBG/" + pic + ".jpg");
-       
-        <div class="container-fluid">
-            <div class="site-blocks-cover mainImg" style="background-image: url( @Url.Content(img_url) )" data-aos="fade" title="">
-            </div>
+
+@foreach (var banner in Model.ApplicationBannerData)
+{
+    string bannerNane = banner;
+    string img_url = @Url.Content("~/Images/MainBG/" + bannerNane);
+    <div class="container-fluid">
+        <div class="site-blocks-cover mainImg" style="background-image: url( @Url.Content(img_url) )" data-aos="fade" title="">
         </div>
-    }
+    </div>
 }
+
 <div class="site-section site-section-sm site-blocks-1">
     <div class="container">
         <div class="row">

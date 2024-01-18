@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="bookstoreEntities-Web.config Connection String" description="bookstoreEntities 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="metadata=res://*/Models.bookstoreModel.csdl|res://*/Models.bookstoreModel.ssdl|res://*/Models.bookstoreModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.;initial catalog=bookstore;persist security info=True;user id=sa;password=1qaz@WSX;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\ShenJun\\Desktop\\New_ASPMVC\\bookstore\\bookstore\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='bookstoreEntities']/@connectionString" />
-  </parameter>
-</parameters>

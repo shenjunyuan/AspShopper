@@ -27,13 +27,18 @@ public class vmHome : BaseClass
     /// </summary>
     public List<Books> NewItemData { get; set; }
 
+    public List<string> ApplicationBannerData { get;set;}
+
     /// <summary>
     ///  建構子 抓每個 Table 裡面的資料
     /// </summary>
     public vmHome()
     {
         using (tblApplications applications = new tblApplications())
-        { ApplicationsData = applications.GetApplicationsData(); }
+        {
+            ApplicationsData = applications.GetApplicationsData(); 
+        }
+
         using (tblBigSales bigSales = new tblBigSales())
         { BigSalesData = bigSales.GetBigSalesDataList(); }
 
@@ -47,7 +52,11 @@ public class vmHome : BaseClass
         {
            NewItemData = books.GetNewBooksList();
         }
+
+        using (tblApplicationBanner banners = new tblApplicationBanner())
+        {
+            string shop_name = "豪好玩電玩";
+            ApplicationBannerData = banners.GetBannerDataList(shop_name);
+        }
     }
-
-
 }

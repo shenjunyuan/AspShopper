@@ -13,6 +13,16 @@
     <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
     <Property Name="remark" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <EntityType Name="ApplicationBanner">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="is_show" Type="bit" Nullable="false" />
+    <Property Name="banner_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="shop_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ramark" Type="nvarchar" MaxLength="200" />
+  </EntityType>
   <EntityType Name="Applications">
     <Key>
       <PropertyRef Name="rowid" />
@@ -299,6 +309,7 @@
   </EntityType>
   <EntityContainer Name="bookstoreModelStoreContainer">
     <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApplicationBanner" EntityType="Self.ApplicationBanner" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BigSales" EntityType="Self.BigSales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />

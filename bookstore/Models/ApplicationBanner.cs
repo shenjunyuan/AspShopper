@@ -11,20 +11,13 @@ namespace bookstore.Models
 {
     using System;
     using System.Collections.Generic;
-
-
-    public partial class Applications
+    
+    public partial class ApplicationBanner
     {
         public int rowid { get; set; }
+        public bool is_show { get; set; }
+        public string banner_name { get; set; }
         public string shop_name { get; set; }
-        public string banner_header { get; set; }
-        public string banner_description { get; set; }
-        public string shipping_description { get; set; }
-        public string return_description { get; set; }
-        public string support_description { get; set; }
-        public string contact_address { get; set; }
-        public string contact_tel { get; set; }
-        public string contact_email { get; set; }
-        public string shop_about { get; set; }
+        public string ramark { get; set; }
     }
 }
