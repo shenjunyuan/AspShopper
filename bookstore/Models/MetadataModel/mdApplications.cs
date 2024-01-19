@@ -9,8 +9,6 @@ namespace bookstore.Models
     [MetadataType(typeof(mdApplications))] // 改 mdTableName
     public partial class Applications : BaseClass // TableName
     {
-        public List<string> banner_name;
-
         public class mdApplications // mdTableName
         {
             // Table 欄位宣告
@@ -25,15 +23,6 @@ namespace bookstore.Models
             public string contact_tel { get; set; }
             public string contact_email { get; set; }
             public string shop_about { get; set; }
-        }
-        // 建構子
-        public Applications() {
-            using (tblApplicationBanner AppBanner = new tblApplicationBanner())
-            {
-                var bannerNames = AppBanner.GetBannerDataList(shop_name);
-                banner_name = bannerNames;
-
-            }
         }
     }
 }

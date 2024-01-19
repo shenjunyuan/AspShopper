@@ -21,7 +21,7 @@ public static class ShopService
     /// <summary>
     /// 最高售價
     /// </summary>
-    public static int PriceHigh { get { return Utility.GetSessionIntegerValue("ShopPriceHigh", 2000); } set { HttpContext.Current.Session["ShopPriceHigh"] = value; } }
+    public static int PriceHigh { get { return Utility.GetSessionIntegerValue("ShopPriceHigh", 20000); } set { HttpContext.Current.Session["ShopPriceHigh"] = value; } }
     public static int OrderID { get; set; }
     public static string OrderNo { get; set; }
     /// <summary>

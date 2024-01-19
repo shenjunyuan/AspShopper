@@ -39,11 +39,10 @@ namespace bookstore.Models
         public string GetTop1BookNo()
         {
             string bookNo = "";
-            using (DapperRepository db = new DapperRepository())
-            {
-                string queryStr = "select top 1 book_no from Books";
-                bookNo = db.GetTable<string>(queryStr).FirstOrDefault();
-            }
+
+            string queryStr = "select top 1 book_no from Books";
+            bookNo = DapperHelp.GetTable<string>(queryStr).FirstOrDefault();
+
             return bookNo;
         }
         /// <summary>
@@ -52,12 +51,10 @@ namespace bookstore.Models
         /// <returns></returns>
         public Books GetBookDetail(string bookNo)
         {
-            using (DapperRepository db = new DapperRepository())
-            {
-                string queryStr = "select *  from Books where book_no = @book_no";
-                var model = db.GetTable<Books>(queryStr, new { book_no = bookNo }).FirstOrDefault();            
-                return model;
-            }        
+           string queryStr = "select *  from Books where book_no = @book_no";
+           var model = DapperHelp.GetTable<Books>(queryStr, new { book_no = bookNo }).FirstOrDefault();            
+              return model;
+       
         }
 
 

@@ -14,7 +14,7 @@ namespace bookstore.Controllers
         public ActionResult Index()
         {
             vmHome model = new vmHome();
-                return View(model);
+            return View(model);
         }
         [AllowAnonymous]
         public ActionResult About()

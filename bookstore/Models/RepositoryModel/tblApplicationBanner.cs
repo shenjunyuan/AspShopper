@@ -12,14 +12,12 @@ public class tblApplicationBanner : BaseClass
     {
         repo = new EFGenericRepository<ApplicationBanner>(new bookstoreEntities());
     }
-    /* 下面開始撰寫程式-專門處理 tb 的 CRUD */
-
     /// <summary>
     /// 取得 shopName 的 Banner 資料列表-倒排
     /// </summary>
     /// <param name="shopName"></param>
     /// <returns></returns>
-    public List<string> GetBannerDataList(string shopName) 
+    public List<string> GetBannerNameList(string shopName) 
     {
         using (tblApplicationBanner banners = new tblApplicationBanner()) 
         { 
@@ -28,7 +26,7 @@ public class tblApplicationBanner : BaseClass
                     m.shop_name == shopName)
                 .OrderByDescending(m => m.rowid)
                 .Select(m=>m.banner_name)
-                .ToList();                
+                .ToList();
             return data;
         }  
     }

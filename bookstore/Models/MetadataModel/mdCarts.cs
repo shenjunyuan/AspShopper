@@ -33,11 +33,8 @@ namespace bookstore.Models
         public string GetProductNo(string rowId)
         {
             string prod_no = "";
-            using (DapperRepository db = new DapperRepository()) 
-            {
-                string query = $"SELECT  [product_no] FROM [Carts] where rowid = @row_id ";
-                prod_no = db.GetTable<string>(query, new { @row_id = rowId }).FirstOrDefault().ToString();
-            }
+            string query = $"SELECT  [product_no] FROM [Carts] where rowid = @row_id ";
+            prod_no = DapperHelp.GetTable<string>(query, new { @row_id = rowId }).FirstOrDefault().ToString();
                 return prod_no;     
         }
     }
