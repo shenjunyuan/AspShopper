@@ -180,6 +180,9 @@
     <Compile Include="Models\Admins.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ApplicationBanner.cs">
+      <DependentUpon>bookstoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Applications.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
@@ -228,6 +231,8 @@
     <Compile Include="Models\MemberTypes.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetadataModel\mdApplications.cs" />
+    <Compile Include="Models\MetadataModel\mdApplicationBanner.cs" />
     <Compile Include="Models\MetadataModel\mdAdmin.cs" />
     <Compile Include="Models\MetadataModel\mdBooks.cs" />
     <Compile Include="Models\MetadataModel\mdCarts.cs" />
@@ -260,6 +265,7 @@
     <Compile Include="Models\RepositoryModel\EFGenericRepository.cs" />
     <Compile Include="Models\RepositoryModel\IRepository.cs" />
     <Compile Include="Models\RepositoryModel\tblAdmins.cs" />
+    <Compile Include="Models\RepositoryModel\tblApplicationBanner.cs" />
     <Compile Include="Models\RepositoryModel\tblApplications.cs" />
     <Compile Include="Models\RepositoryModel\tblBigSales.cs" />
     <Compile Include="Models\RepositoryModel\tblBooks.cs" />

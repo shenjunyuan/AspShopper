@@ -47,5 +47,6 @@ namespace bookstore.Models
         public virtual DbSet<OrdersDetail> OrdersDetail { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Books> Books { get; set; }
+        public virtual DbSet<ApplicationBanner> ApplicationBanner { get; set; }
     }
 }

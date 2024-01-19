@@ -320,5 +320,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationBanner">
+      <EntityTypeMapping TypeName="bookstoreModel.ApplicationBanner">
+        <MappingFragment StoreEntitySet="ApplicationBanner">
+          <ScalarProperty Name="ramark" ColumnName="ramark" />
+          <ScalarProperty Name="shop_name" ColumnName="shop_name" />
+          <ScalarProperty Name="banner_name" ColumnName="banner_name" />
+          <ScalarProperty Name="is_show" ColumnName="is_show" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

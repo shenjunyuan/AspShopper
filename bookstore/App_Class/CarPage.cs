@@ -362,11 +362,9 @@ public static class CarPage
     /// <param name="buyQty"></param>
     private static void UpdateBooksStock(string productNo,int buyQty)
     {
-        using (DapperRepository db = new DapperRepository())
-        {
+
             string updataSQL = $"update books set qty_out = qty_out + @qtyOut where book_no = @bookNo"; // 更新庫存
-            db.ExecuteSQL(updataSQL, new { qtyOut = buyQty, bookNo = productNo });
-        }
+            DapperHelp.ExecuteSQL<object>(updataSQL, new { qtyOut = buyQty, bookNo = productNo });
 
     }
 

@@ -18,6 +18,16 @@
           <Property Name="validate_code" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="ApplicationBanner">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="is_show" Type="bit" Nullable="false" />
+          <Property Name="banner_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="shop_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ramark" Type="nvarchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="Applications">
           <Key>
             <PropertyRef Name="rowid" />
@@ -304,6 +314,7 @@
         </EntityType>
         <EntityContainer Name="bookstoreModelStoreContainer">
           <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationBanner" EntityType="Self.ApplicationBanner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BigSales" EntityType="Self.BigSales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
@@ -444,6 +455,7 @@
           <EntitySet Name="OrdersDetail" EntityType="bookstoreModel.OrdersDetail" />
           <EntitySet Name="Orders" EntityType="bookstoreModel.Orders" />
           <EntitySet Name="Books" EntityType="bookstoreModel.Books" />
+          <EntitySet Name="ApplicationBanner" EntityType="bookstoreModel.ApplicationBanner" />
         </EntityContainer>
         <EntityType Name="Members">
           <Key>
@@ -650,6 +662,16 @@
           <Property Name="qty_now" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="yt_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ApplicationBanner">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="is_show" Type="Boolean" Nullable="false" />
+          <Property Name="banner_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shop_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ramark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -972,6 +994,17 @@
                 <ScalarProperty Name="book_name" ColumnName="book_name" />
                 <ScalarProperty Name="isbn_no" ColumnName="isbn_no" />
                 <ScalarProperty Name="book_no" ColumnName="book_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationBanner">
+            <EntityTypeMapping TypeName="bookstoreModel.ApplicationBanner">
+              <MappingFragment StoreEntitySet="ApplicationBanner">
+                <ScalarProperty Name="ramark" ColumnName="ramark" />
+                <ScalarProperty Name="shop_name" ColumnName="shop_name" />
+                <ScalarProperty Name="banner_name" ColumnName="banner_name" />
+                <ScalarProperty Name="is_show" ColumnName="is_show" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>

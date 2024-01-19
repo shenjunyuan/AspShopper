@@ -114,6 +114,7 @@
     <EntitySet Name="OrdersDetail" EntityType="bookstoreModel.OrdersDetail" />
     <EntitySet Name="Orders" EntityType="bookstoreModel.Orders" />
     <EntitySet Name="Books" EntityType="bookstoreModel.Books" />
+    <EntitySet Name="ApplicationBanner" EntityType="bookstoreModel.ApplicationBanner" />
   </EntityContainer>
   <EntityType Name="Members">
     <Key>
@@ -320,5 +321,15 @@
     <Property Name="qty_now" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="yt_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ApplicationBanner">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="is_show" Type="Boolean" Nullable="false" />
+    <Property Name="banner_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shop_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ramark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

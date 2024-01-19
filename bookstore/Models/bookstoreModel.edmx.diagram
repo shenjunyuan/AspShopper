@@ -27,6 +27,7 @@
         <EntityTypeShape EntityType="bookstoreModel.OrdersDetail" Width="1.5" PointX="6.875" PointY="9.25" />
         <EntityTypeShape EntityType="bookstoreModel.Orders" Width="1.5" PointX="9.375" PointY="8.75" />
         <EntityTypeShape EntityType="bookstoreModel.Books" Width="1.5" PointX="3.375" PointY="11.75" />
+        <EntityTypeShape EntityType="bookstoreModel.ApplicationBanner" Width="1.5" PointX="11.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
