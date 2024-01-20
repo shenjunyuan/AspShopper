@@ -59,7 +59,7 @@ namespace bookstore.Controllers
             return RedirectToAction("Index", "Shop");
         }
         /// <summary>
-        /// 價格區間
+        /// 價格區間查詢
         /// </summary>
         /// <param name="formCollection"></param>
         /// <returns></returns>

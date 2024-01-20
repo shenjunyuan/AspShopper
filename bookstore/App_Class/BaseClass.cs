@@ -7,7 +7,7 @@ using Microsoft.Win32.SafeHandles;
 using System.Runtime.InteropServices;
 
 /// <summary>
-/// 
+/// 供需要解構的class繼承用
 /// </summary>
 public class BaseClass : IDisposable
 {

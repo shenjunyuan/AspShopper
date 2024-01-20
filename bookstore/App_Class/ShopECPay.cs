@@ -6,11 +6,10 @@ using System.Web;
 using ECPay.Payment.Integration;
 using bookstore.Models;
 using System.Web.Configuration;
-
 /// <summary>
 /// 綠界科技支付
 /// </summary>
-public static class ShopECPay
+public  class ShopECPay
 {
     /// <summary>
     /// 錯誤訊息
@@ -34,8 +33,8 @@ public static class ShopECPay
                     {
                         var order = orders.repo.ReadSingle(m => m.rowid == orderID);
                         if (order != null)
-                        {
-                            string str_home_url = Utility.GetAppSettings("ECPayHomeURL", "");
+                        {                         
+                            string str_home_url = SessionService.GetAppSettings("ECPayHomeURL", "");
                             string str_prod_url = "";
                             string str_order_no = order.order_no;
                             string str_total = ordersDetail.repo.ReadAll(m => m.order_no == str_order_no).Sum(m => m.amount).ToString(); 
@@ -46,31 +45,31 @@ public static class ShopECPay
                             //要呼叫介接服務的網址
                             //測試環境：https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5
                             //正式環境：https://payment.ecpay.com.tw/Cashier/AioCheckOut/V5
-                            oPayment.ServiceURL = Utility.GetAppSettings("ECPayServiceURL", "");
+                            oPayment.ServiceURL = SessionService.GetAppSettings("ECPayServiceURL", "");
 
                             //ECPay提供的Hash Key Demo = 5294y06JbISpM5x9
-                            oPayment.HashKey = Utility.GetAppSettings("ECPayHashKey", "");
+                            oPayment.HashKey = SessionService.GetAppSettings("ECPayHashKey", "");
 
 
                             //ECPay提供的Hash IV Demo = v77hoKGq4kWxNNIS
-                            oPayment.HashIV = Utility.GetAppSettings("ECPayHashIV", "");
+                            oPayment.HashIV = SessionService.GetAppSettings("ECPayHashIV", "");
 
                             //ECPay提供的特店編號 Demo = 2000132
-                            oPayment.MerchantID = Utility.GetAppSettings("ECPayMerchantID", "");
+                            oPayment.MerchantID = SessionService.GetAppSettings("ECPayMerchantID", "");
 
                             /* 基本參數 */
                             //付款完成通知回傳的網址
-                            oPayment.Send.ReturnURL = Utility.GetAppSettings("ECPayReturnURL", "");
+                            oPayment.Send.ReturnURL = SessionService.GetAppSettings("ECPayReturnURL", "");
 
                             //瀏覽器端返回的廠商網址
-                            oPayment.Send.ClientBackURL = Utility.GetAppSettings("ECPayClientBackURL", "");
+                            oPayment.Send.ClientBackURL = SessionService.GetAppSettings("ECPayClientBackURL", "");
 
                             //瀏覽器端回傳付款結果網址
-                            oPayment.Send.OrderResultURL = Utility.GetAppSettings("ECPayOrderResultURL", "");
+                            oPayment.Send.OrderResultURL = SessionService.GetAppSettings("ECPayOrderResultURL", "");
 
 
                             //訂單編號前置碼
-                            string ECPayOrderCode = Utility.GetAppSettings("ECPayOrderCode", "");
+                            string ECPayOrderCode = SessionService.GetAppSettings("ECPayOrderCode", "");
 
                             //廠商的交易編號
                             oPayment.Send.MerchantTradeNo = ECPayOrderCode + new Random().Next(0, 99999).ToString();

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using bookstore.Models;
+using PagedList;
 
 public class tblBooks : BaseClass
 {
@@ -45,6 +47,13 @@ public class tblBooks : BaseClass
         return repo.ReadSingle(m => m.book_no == bookNo).sale_price;
     }
 
+
+    /// <summary>
+    /// 購物商場-取得商品列表
+    /// </summary>
+    /// <param name="page"></param>
+    /// <param name="pageSize"></param>
+    /// <returns></returns>
     public List<Books> GetShopBooksList(int page = 1, int pageSize = 10)
     {
         using (tblPublishers publishers = new tblPublishers())
@@ -81,23 +90,15 @@ public class tblBooks : BaseClass
         }
     }
 
-
+    /// <summary>
+    /// 取得最新10筆資料
+    /// </summary>
+    /// <returns></returns>
     public List<Books> GetNewBooksList()
     {
         var bookModel = repo.ReadAll().OrderByDescending(m => m.rowid).Take(10).ToList();
         return bookModel;
     }
-
-
-
-
-
-
-
-
-
-
-
     /// <summary>
     /// 取得書本數量
     /// </summary>
@@ -110,5 +111,52 @@ public class tblBooks : BaseClass
         if (data != null) qty_now = (int)data.qty_now;
         return qty_now;
     }
+
+
+    /// <summary>
+    /// 取得模組資料集
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    /// <summary>
+    /// 取得程式資料集
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    public IPagedList<Books> GetModelList(int index, int page, int pageSize, string searchText) // IPagedList 有分頁的型別
+    {
+        var model = repo.ReadAll().OrderBy(m=>m.rowid); //撈全部資料
+        var dataSort = SessionService.GetColumnSort(index);
+        if (!string.IsNullOrEmpty(searchText))
+        {
+            //要搜尋的欄位
+           model = model.Where(m =>
+           m.book_no.Contains(searchText) ||
+           m.book_name.Contains(searchText) ||
+           m.publisher_no.Contains(searchText) ||
+           m.remark.Contains(searchText)).OrderBy(m => m.rowid);
+        }
+        if (model != null)
+        {
+            // 要排序的欄位
+            if (string.IsNullOrEmpty(dataSort.SortColumn)) dataSort.SortColumn = "program_no";
+            if (dataSort.SortColumn == "book_name" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.book_name);
+            if (dataSort.SortColumn == "book_name" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.book_name);
+            if (dataSort.SortColumn == "book_no" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.book_no);
+            if (dataSort.SortColumn == "book_no" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.book_no);
+            if (dataSort.SortColumn == "publisher_no" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.publisher_no);
+            if (dataSort.SortColumn == "publisher_no" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.publisher_no);
+            if (dataSort.SortColumn == "category_no" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.category_no);
+            if (dataSort.SortColumn == "category_no" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.category_no);
+            if (dataSort.SortColumn == "language_no" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.language_no);
+            if (dataSort.SortColumn == "language_no" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.language_no);
+        }
+        var datas = model.ToPagedList(page, pageSize);
+        SessionService.SetCurrentPage(index, page, searchText, model.ToList().Count, datas.PageCount); // model.ToList().Count : 總筆數
+        return datas;
+    }
+
+
+
 
 }

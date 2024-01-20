@@ -66,7 +66,7 @@ public class tblPrograms : BaseClass
     /// <returns></returns>
     public IPagedList<Programs> GetModelList(int index, int page, int pageSize, string searchText) // IPagedList 有分頁的型別
     {
-        var model = repo.ReadAll();
+        var model = repo.ReadAll().OrderBy(m=>m.rowid);
         var dataSort = SessionService.GetColumnSort(index);
         if (!string.IsNullOrEmpty(searchText))
         {
@@ -75,17 +75,16 @@ public class tblPrograms : BaseClass
             m.module_no.Contains(searchText) ||        
             m.program_no.Contains(searchText) ||
             m.program_name.Contains(searchText) ||
-            //m.module_name.Contains(searchText) ||
-            //m.program_type_name.Contains(searchText) ||
             m.area_name.Contains(searchText) ||          
             m.controller_name.Contains(searchText) ||
             m.action_name.Contains(searchText) ||
-            m.remark.Contains(searchText));
+            m.remark.Contains(searchText)).OrderBy(m => m.rowid);
         }
         if (model != null)
         {
             // 要排序的欄位
             if (string.IsNullOrEmpty(dataSort.SortColumn)) dataSort.SortColumn = "program_no";
+
             if (dataSort.SortColumn == "is_enabled" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.is_enabled);
             if (dataSort.SortColumn == "is_enabled" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.is_enabled);
             if (dataSort.SortColumn == "module_no" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.module_no);
@@ -102,9 +101,6 @@ public class tblPrograms : BaseClass
             if (dataSort.SortColumn == "action_name" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.action_name);
             if (dataSort.SortColumn == "remark" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.remark);
             if (dataSort.SortColumn == "remark" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.remark);
-
-            //if (dataSort.SortColumn == "module_name" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.module_name);
-            //if (dataSort.SortColumn == "module_name" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.module_name);
             if (dataSort.SortColumn == "program_type_name" && dataSort.SortDirection == enumSortDirection.Asc) model = model.OrderBy(m => m.program_type_name);
             if (dataSort.SortColumn == "program_type_name" && dataSort.SortDirection == enumSortDirection.Desc) model = model.OrderByDescending(m => m.program_type_name);
 

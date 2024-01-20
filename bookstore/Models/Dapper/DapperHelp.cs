@@ -20,11 +20,7 @@ using Dapper;
 /// </summary>
 public static class DapperHelp
 {
-    /// <summary>
-    /// 設定連線字串 WebConfig裡面的 Key = SQLConnectStr 值
-    /// </summary>
-    private static string connect_str { get; set; } = WebConfigurationManager.AppSettings["SQLConnectStr"].ToString();
-
+    private static string connect_str { get; set; } = SessionService.GetAppSettings("SQLConnectStr", "");
     /// <summary>
     /// 取得 Table 資料
     /// </summary>

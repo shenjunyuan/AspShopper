@@ -297,6 +297,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationBanner">
+      <EntityTypeMapping TypeName="bookstoreModel.ApplicationBanner">
+        <MappingFragment StoreEntitySet="ApplicationBanner">
+          <ScalarProperty Name="ramark" ColumnName="ramark" />
+          <ScalarProperty Name="shop_name" ColumnName="shop_name" />
+          <ScalarProperty Name="banner_name" ColumnName="banner_name" />
+          <ScalarProperty Name="is_show" ColumnName="is_show" />
+          <ScalarProperty Name="rowid" ColumnName="rowid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Books">
       <EntityTypeMapping TypeName="bookstoreModel.Books">
         <MappingFragment StoreEntitySet="Books">
@@ -316,17 +327,6 @@
           <ScalarProperty Name="book_name" ColumnName="book_name" />
           <ScalarProperty Name="isbn_no" ColumnName="isbn_no" />
           <ScalarProperty Name="book_no" ColumnName="book_no" />
-          <ScalarProperty Name="rowid" ColumnName="rowid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ApplicationBanner">
-      <EntityTypeMapping TypeName="bookstoreModel.ApplicationBanner">
-        <MappingFragment StoreEntitySet="ApplicationBanner">
-          <ScalarProperty Name="ramark" ColumnName="ramark" />
-          <ScalarProperty Name="shop_name" ColumnName="shop_name" />
-          <ScalarProperty Name="banner_name" ColumnName="banner_name" />
-          <ScalarProperty Name="is_show" ColumnName="is_show" />
           <ScalarProperty Name="rowid" ColumnName="rowid" />
         </MappingFragment>
       </EntityTypeMapping>

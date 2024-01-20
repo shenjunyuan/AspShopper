@@ -32,6 +32,7 @@ public class tblCarts : BaseClass
             // 判斷購物車 user 有無新增資料
             if (datas == null)
             {
+               
                 Carts models = new Carts();
                 models.lot_no = CarPage.LotNo;
                 models.user_no = SessionService.AccountNo;

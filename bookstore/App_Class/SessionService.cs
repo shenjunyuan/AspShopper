@@ -5,28 +5,28 @@ using System.IO;
 using System.Web;
 using System.Web.Configuration;
 
-public static class SessionService
+public class SessionService:BaseClass
 {
     /// <summary>
     /// 登入帳號
     /// </summary>
-    public static string AccountNo { get { return Utility.GetSessionValue("AccountNo", "guest"); } set { HttpContext.Current.Session["AccountNo"] = value; } }
+    public static string AccountNo { get { return GetSessionValue("AccountNo", "guest"); } set { HttpContext.Current.Session["AccountNo"] = value; } }
     /// <summary>
     /// 登入名稱
     /// </summary>
-    public static string AccountName { get { return Utility.GetSessionValue("AccountName", "遊客"); } set { HttpContext.Current.Session["AccountName"] = value; } }
+    public static string AccountName { get { return GetSessionValue("AccountName", "遊客"); } set { HttpContext.Current.Session["AccountName"] = value; } }
     /// <summary>
     /// 登入角色代號
     /// </summary>
-    public static string RoleNo { get { return Utility.GetSessionValue("RoleNo", ""); } set { HttpContext.Current.Session["RoleNo"] = value; } }
+    public static string RoleNo { get { return GetSessionValue("RoleNo", ""); } set { HttpContext.Current.Session["RoleNo"] = value; } }
     /// <summary>
     /// 登入角色名稱
     /// </summary>
-    public static string RoleName { get { return Utility.GetSessionValue("RoleName", "未登入"); } set { HttpContext.Current.Session["RoleName"] = value; } }
+    public static string RoleName { get { return GetSessionValue("RoleName", "未登入"); } set { HttpContext.Current.Session["RoleName"] = value; } }
     /// <summary>
     /// 是否已登入
     /// </summary>
-    public static bool IsLogined { get { return Utility.GetSessionBoolValue("IsLogined", false); } set { HttpContext.Current.Session["IsLogined"] = value; } }
+    public static bool IsLogined { get { return GetSessionBoolValue("IsLogined", false); } set { HttpContext.Current.Session["IsLogined"] = value; } }
 
     /// <summary>
     /// 欄位排序方式
@@ -47,27 +47,27 @@ public static class SessionService
     /// <summary>
     /// 模組代號
     /// </summary>
-    public static string ModuleNo { get { return Utility.GetSessionValue("ModuleNo", ""); } set { HttpContext.Current.Session["ModuleNo"] = value; } }
+    public static string ModuleNo { get { return GetSessionValue("ModuleNo", ""); } set { HttpContext.Current.Session["ModuleNo"] = value; } }
     /// <summary>
     /// 模組名稱
     /// </summary>
-    public static string ModuleName { get { return Utility.GetSessionValue("ModuleName", ""); } set { HttpContext.Current.Session["ModuleName"] = value; } }
+    public static string ModuleName { get { return GetSessionValue("ModuleName", ""); } set { HttpContext.Current.Session["ModuleName"] = value; } }
     /// <summary>
     /// 程式代號
     /// </summary>
-    public static string PrgNo { get { return Utility.GetSessionValue("PrgNo", ""); } set { HttpContext.Current.Session["PrgNo"] = value; } }
-    /// <summary>
+    public static string PrgNo { get { return GetSessionValue("PrgNo", ""); } set { HttpContext.Current.Session["PrgNo"] = value; } }
+    /// <summary
     /// 程式名稱
     /// </summary>
-    public static string PrgName { get { return Utility.GetSessionValue("PrgName", ""); } set { HttpContext.Current.Session["PrgName"] = value; } }
+    public static string PrgName { get { return GetSessionValue("PrgName", ""); } set { HttpContext.Current.Session["PrgName"] = value; } }
     /// <summary>
     /// 程式功能
     /// </summary>
-    public static string PrgAction { get { return Utility.GetSessionValue("PrgAction", ""); } set { HttpContext.Current.Session["PrgAction"] = value; } }
+    public static string PrgAction { get { return GetSessionValue("PrgAction", ""); } set { HttpContext.Current.Session["PrgAction"] = value; } }
     /// <summary>
     /// 程式圖示
     /// </summary>
-    public static string PrgIcon { get { return Utility.GetSessionValue("PrgIcon", "nav-icon fas fa-circle"); } set { HttpContext.Current.Session["PrgIcon"] = value; } }
+    public static string PrgIcon { get { return GetSessionValue("PrgIcon", "nav-icon fas fa-circle"); } set { HttpContext.Current.Session["PrgIcon"] = value; } }
     /// <summary>
     /// 程式資訊
     /// </summary>
@@ -96,15 +96,15 @@ public static class SessionService
     /// <summary>
     /// 區域名稱
     /// </summary>
-    public static string AreaName { get { return Utility.GetSessionValue("AreaName", ""); } set { HttpContext.Current.Session["AreaName"] = value; } }
+    public static string AreaName { get { return GetSessionValue("AreaName", ""); } set { HttpContext.Current.Session["AreaName"] = value; } }
     /// <summary>
     /// 控制器名稱
     /// </summary>
-    public static string ControllerName { get { return Utility.GetSessionValue("ControllerName", ""); } set { HttpContext.Current.Session["ControllerName"] = value; } }
+    public static string ControllerName { get { return GetSessionValue("ControllerName", ""); } set { HttpContext.Current.Session["ControllerName"] = value; } }
     /// <summary>
     /// 動作名稱
     /// </summary>
-    public static string ActionName { get { return Utility.GetSessionValue("ActionName", ""); } set { HttpContext.Current.Session["ActionName"] = value; } }
+    public static string ActionName { get { return GetSessionValue("ActionName", ""); } set { HttpContext.Current.Session["ActionName"] = value; } }
     /// <summary>
     /// 動作提示
     /// </summary>
@@ -112,7 +112,7 @@ public static class SessionService
     {
         get
         {
-            string str_value = Utility.GetSessionValue("ActionTips", "");
+            string str_value = GetSessionValue("ActionTips", "");
             return (string.IsNullOrEmpty(str_value)) ? "" : string.Format(" - {0}", str_value);
         }
         set { HttpContext.Current.Session["ActionTips"] = value; }
@@ -120,7 +120,7 @@ public static class SessionService
     /// <summary>
     /// 參數名稱
     /// </summary>
-    public static string ActionParm { get { return Utility.GetSessionValue("ActionParm", ""); } set { HttpContext.Current.Session["ActionParm"] = value; } }
+    public static string ActionParm { get { return GetSessionValue("ActionParm", ""); } set { HttpContext.Current.Session["ActionParm"] = value; } }
     /// <summary>
     /// 程式權限
     /// </summary>
@@ -154,26 +154,75 @@ public static class SessionService
     /// <summary>
     /// 網站名稱
     /// </summary>
-    public static string AppName { get { return Utility.GetAppSettings("AppName", "網站名稱"); } }
+    public static string AppName { get { return GetAppSettings("AppName", "網站名稱"); } }
     /// <summary>
     /// 網站版本
     /// </summary>
-    public static string Version { get { return Utility.GetAppSettings("Version", "1.0.0"); } }
+    public static string Version { get { return GetAppSettings("Version", "1.0.0"); } }
     /// <summary>
     /// 版權宣告
     /// </summary>
-    public static string CopyRight { get { return Utility.GetAppSettings("CopyRight", DateTime.Now.Year.ToString()); } }
+    public static string CopyRight { get { return GetAppSettings("CopyRight", DateTime.Now.Year.ToString()); } }
     /// <summary>
     /// 公司名稱
     /// </summary>
-    public static string CompName { get { return Utility.GetAppSettings("CompName", "公司名稱"); } }
+    public static string CompName { get { return GetAppSettings("CompName", "公司名稱"); } }
     /// <summary>
     /// 網站網址
     /// </summary>
-    public static string WebSiteUrl { get { return Utility.GetAppSettings("WebSiteUrl", ""); } }
+    public static string WebSiteUrl { get { return GetAppSettings("WebSiteUrl", ""); } }
+
 
     /// <summary>
-    /// 取得首頁資訊 
+    /// 取得 Web.config 中的 appSettings 的值
+    /// </summary>
+    /// <param name="keyName">Key 名</param>
+    /// <param name="defaultValue">預設值</param>
+    /// <returns></returns>
+    public static string GetAppSettings(string keyName, string defaultValue)
+    {
+        object obj_value = WebConfigurationManager.AppSettings[keyName];
+        string str_value = (obj_value == null) ? defaultValue : obj_value.ToString();
+        return str_value;
+    }
+
+    /// <summary>
+    /// 取得 Session 值-文字型別
+    /// </summary>
+    /// <param name="sessionName">Session 名稱</param>
+    /// <returns></returns>
+    public static string GetSessionValue(string sessionName, string defauleValue)
+    {
+        return (HttpContext.Current.Session[sessionName] == null) ? defauleValue : HttpContext.Current.Session[sessionName].ToString();
+    }
+
+    /// <summary>
+    /// 取得 Session 值-數字型別
+    /// </summary>
+    /// <param name="sessionName">Session 名稱</param>
+    /// <returns></returns>
+    public static int GetSessionIntegerValue(string sessionName, int defauleValue)
+    {
+        object obj_value = HttpContext.Current.Session[sessionName];
+        if (obj_value == null) return defauleValue;
+        string str_value = obj_value.ToString();
+        int int_value = 0;
+        if (int.TryParse(str_value, out int_value)) return int_value;
+        return defauleValue;
+    }
+
+    /// <summary>
+    /// 取得 Session 值-布林值型別
+    /// </summary>
+    /// <param name="sessionName">Session 名稱</param>
+    /// <returns></returns>
+    public static bool GetSessionBoolValue(string sessionName, bool defaultValue)
+    {
+        return (HttpContext.Current.Session[sessionName] == null) ? defaultValue : (bool)HttpContext.Current.Session[sessionName];
+    }
+
+    /// <summary>
+    /// 取得購物商城 首頁資訊 
     /// </summary>
     /// <param name="infoType">類別</param>
     /// <returns></returns>
@@ -189,7 +238,6 @@ public static class SessionService
             return "資料庫沒存資料";
         }   
     }
-
     /// <summary>
     /// 登出改變屬性值
     /// </summary>
