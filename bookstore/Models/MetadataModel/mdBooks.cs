@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace bookstore.Models
 {
@@ -17,9 +19,9 @@ namespace bookstore.Models
         public string language_name { get { using (tblBooks books = new tblBooks()) { return books.GetLanguageName(book_no); } } }
 
         //下拉選單代值
-        public List<Publishers> PublishersList { get { using (tblPublishers publishers = new tblPublishers()) { return publishers.PublishersList();} } }
-        public List<Languages> LanguagesList { get { using (tblLanguages language = new tblLanguages()) { return language.LanguagesList();} } }
-        public List<Categorys> CategorysList { get { using (tblCategorys categorys = new tblCategorys()) { return categorys.GetCategoryDataList(); } } }
+        public List<Publishers> PublishersList { get { return DapperHelp.GetTable<Publishers>("select * from Publishers"); } }
+        public List<Languages> LanguagesList { get { return DapperHelp.GetTable<Languages>("select * from Languages"); } }
+        public List<Categorys> CategorysList { get { return DapperHelp.GetTable<Categorys>("select * from Categorys"); } }
 
         private class mdBooks
         {
@@ -50,12 +52,15 @@ namespace bookstore.Models
             public string detail_text { get; set; }
             [Display(Name = "備註")]
             public string remark { get; set; }
+            [Display(Name = "進貨數量")]
+            public Nullable<int> qty_in { get; set; }
+            [Display(Name = "出貨數量")]
+            public Nullable<int> qty_out { get; set; }
+            [Display(Name = "目前數量")]
+            public Nullable<int> qty_now { get; set; }
+            [Display(Name = "YT影片網址")]
+            public string yt_url { get; set; }
         }
-
-        public Books()
-        {
-        }
-
         /// <summary>
         /// 取得第一筆 book_no
         /// </summary>
@@ -63,7 +68,6 @@ namespace bookstore.Models
         public string GetTop1BookNo()
         {
             string bookNo = "";
-
             string queryStr = "select top 1 book_no from Books";
             bookNo = DapperHelp.GetTable<string>(queryStr).FirstOrDefault();
 

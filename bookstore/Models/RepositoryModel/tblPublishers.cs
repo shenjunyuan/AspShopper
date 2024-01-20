@@ -17,17 +17,5 @@ public class tblPublishers : BaseClass
         return repo.ReadSingle(m => m.publisher_no == publisherNo).publisher_name;
     }
 
-    /// <summary>
-    /// Publishers下拉選單
-    /// </summary>
-    /// <returns></returns>
-    public List<Publishers> PublishersList()
-    {
-        return repo.ReadAll().OrderBy(m => m.rowid).ToList();
-    }
-
-
-
-
 
 }

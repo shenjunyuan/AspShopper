@@ -398,7 +398,6 @@
     <Content Include="Images\Product\B005.png" />
     <Content Include="Images\Product\B006.jpg" />
     <Content Include="Images\Product\None.jpg" />
-    <Content Include="Models\AppModel\紀錄參數用的class.txt" />
     <Content Include="Models\bookstoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>bookstoreModel.Context.cs</LastGenOutput>
