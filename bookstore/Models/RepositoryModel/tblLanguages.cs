@@ -18,15 +18,5 @@ public class tblLanguages : BaseClass
         return repo.ReadSingle(m => m.language_no == languageNo).language_name;
     }
 
-    /// <summary>
-    /// Language下拉選單
-    /// </summary>
-    /// <returns></returns>
-    public List<Languages> LanguagesList()
-    {
-        return repo.ReadAll().OrderBy(m => m.rowid).ToList();
-    }
-
-
 
 }

@@ -8,7 +8,7 @@ namespace bookstore.Controllers
 {
     public class AdminController : Controller
     {
-        [LoginAuthorize(RoleNo = "User,Admin")]
+        [LoginAuthorize(RoleNo = "User,Admin,Member")]
         //[AllowAnonymous]
         // GET: Admin
         public ActionResult Index()
