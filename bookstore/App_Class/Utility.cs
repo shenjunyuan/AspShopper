@@ -15,9 +15,8 @@ using PagedList;
 /// <summary>
 /// 公用的程式類別
 /// </summary>
-public class Utility: BaseClass
+public static class Utility
 {
-
     /// <summary>
     /// 取得 FormCollection 中讀取的 CheckBox 字串 傳回布林值字串List
     /// </summary>
@@ -48,55 +47,6 @@ public class Utility: BaseClass
         }
         return valueList;
     }
-
-    /// <summary>
-    /// 取得 Web.config 中的 appSettings 的值
-    /// </summary>
-    /// <param name="keyName">Key 名</param>
-    /// <param name="defaultValue">預設值</param>
-    /// <returns></returns>
-    public static string GetAppSettings(string keyName, string defaultValue)
-    {
-        object obj_value = WebConfigurationManager.AppSettings[keyName];
-        string str_value = (obj_value == null) ? defaultValue : obj_value.ToString();
-        return str_value;
-    }
-
-    /// <summary>
-    /// 取得 Session 值-文字型別
-    /// </summary>
-    /// <param name="sessionName">Session 名稱</param>
-    /// <returns></returns>
-    public static string GetSessionValue(string sessionName, string defauleValue)
-    {
-        return (HttpContext.Current.Session[sessionName] == null) ? defauleValue : HttpContext.Current.Session[sessionName].ToString();
-    }
-
-    /// <summary>
-    /// 取得 Session 值-數字型別
-    /// </summary>
-    /// <param name="sessionName">Session 名稱</param>
-    /// <returns></returns>
-    public static int GetSessionIntegerValue(string sessionName, int defauleValue)
-    {
-        object obj_value = HttpContext.Current.Session[sessionName];
-        if (obj_value == null) return defauleValue;
-        string str_value = obj_value.ToString();
-        int int_value = 0;
-        if (int.TryParse(str_value, out int_value)) return int_value;
-        return defauleValue;
-    }
-
-    /// <summary>
-    /// 取得 Session 值-布林值型別
-    /// </summary>
-    /// <param name="sessionName">Session 名稱</param>
-    /// <returns></returns>
-    public static bool GetSessionBoolValue(string sessionName, bool defaultValue)
-    {
-        return (HttpContext.Current.Session[sessionName] == null) ? defaultValue : (bool)HttpContext.Current.Session[sessionName];
-    }
-
 
     /// <summary>
     ///  自動取得資料表雙字母的流水號
@@ -210,7 +160,7 @@ public class Utility: BaseClass
         return convert_str;
     }
 
-
+   
 
 
 

@@ -226,9 +226,7 @@ public static class CarPage
                                 detail.remark = "";
                                 ordersDetail.repo.Create(detail);
                                 ordersDetail.repo.SaveChanges();
-
                                 UpdateBooksStock(item.product_no, (int)item.qty);
-
                             }
                         }
                     }
@@ -342,7 +340,7 @@ public static class CarPage
             if (neword != null)
             {
                 //str_order_no = neword.rowid.ToString().PadLeft(8, '0');
-                str_order_no = Utility.GetTableNumber("Orders", "order_no", "OD");
+                str_order_no = Utility.GetTableNumber("Orders", "order_no", "OD"); // 產生訂單號碼
                 neword.order_no = str_order_no;
                 orders.repo.Update(neword);
                 orders.repo.SaveChanges();
@@ -362,10 +360,9 @@ public static class CarPage
     /// <param name="buyQty"></param>
     private static void UpdateBooksStock(string productNo,int buyQty)
     {
-
-            string updataSQL = $"update books set qty_out = qty_out + @qtyOut where book_no = @bookNo"; // 更新庫存
-            DapperHelp.ExecuteSQL<object>(updataSQL, new { qtyOut = buyQty, bookNo = productNo });
-
+        string updataSQL = $"update books set qty_out = qty_out + @qtyOut where book_no = @bookNo"; // 更新庫存
+        DapperHelp.ExecuteSQL<object>(updataSQL, new { qtyOut = buyQty, bookNo = productNo });
+       
     }
 
 }

@@ -27,12 +27,12 @@ public class GmailService : BaseClass
         //<add key="MailHostPort" value= "587" />
         //<add key="MailUseSSL" value= "1" />
 
-        SenderName = GetAppSettingValue("MailSenderName", "網站管理員");
-        SenderEmail = GetAppSettingValue("MailSenderEmail", "xxxxxxxxxx@gmail.com");
-        AppPassword = GetAppSettingValue("MailAppPassword", "xxxxxxxxxxxxxxx");
-        HostUrl = GetAppSettingValue("MailHostUrl", "smtp.gmail.com");
-        string str_port = GetAppSettingValue("MailHostPort", "587");
-        string str_ssl = GetAppSettingValue("MailUseSSL", "1");
+        SenderName = SessionService.GetAppSettings("MailSenderName", "網站管理員");
+        SenderEmail = SessionService.GetAppSettings("MailSenderEmail", "xxxxxxxxxx@gmail.com");
+        AppPassword = SessionService.GetAppSettings("MailAppPassword", "xxxxxxxxxxxxxxx");
+        HostUrl = SessionService.GetAppSettings("MailHostUrl", "smtp.gmail.com");
+        string str_port = SessionService.GetAppSettings("MailHostPort", "587");
+        string str_ssl = SessionService.GetAppSettings("MailUseSSL", "1");
         int int_port = 587;
         int.TryParse(str_port, out int_port);
         HostPort = int_port;
@@ -118,13 +118,6 @@ public class GmailService : BaseClass
         {
             MessageText = ex.Message;
         }
-    }
-    #endregion
-    #region 函數
-    private string GetAppSettingValue(string keyName, string defaultValue)
-    {
-        object obj_value = WebConfigurationManager.AppSettings[keyName];
-        return (obj_value == null) ? defaultValue : obj_value.ToString();
     }
     #endregion
 }

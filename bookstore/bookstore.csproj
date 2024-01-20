@@ -154,8 +154,7 @@
     <Compile Include="App_Class\ShopECPay.cs" />
     <Compile Include="App_Class\ShopService.cs" />
     <Compile Include="App_Class\Utility.cs" />
-    <Compile Include="App_Enum\enumSecuritys.cs" />
-    <Compile Include="App_Enum\enumSortDirection.cs" />
+    <Compile Include="App_Enum\enumService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -215,7 +214,7 @@
     <Compile Include="Models\Categorys.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DapperRepository\DapperRepository.cs" />
+    <Compile Include="Models\Dapper\DapperHelp.cs" />
     <Compile Include="Models\Departments.cs">
       <DependentUpon>bookstoreModel.tt</DependentUpon>
     </Compile>
