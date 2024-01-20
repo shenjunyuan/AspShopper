@@ -60,7 +60,7 @@
     <Property Name="isbn_no" Type="nvarchar" MaxLength="50" />
     <Property Name="book_name" Type="nvarchar" MaxLength="250" />
     <Property Name="author_name" Type="nvarchar" MaxLength="50" />
-    <Property Name="publish_date" Type="datetime" Nullable="false" />
+    <Property Name="publish_date" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="publisher_no" Type="nvarchar" MaxLength="50" />
     <Property Name="language_no" Type="nvarchar" MaxLength="50" />
     <Property Name="category_no" Type="nvarchar" MaxLength="50" />

@@ -113,8 +113,8 @@
     <EntitySet Name="Carts" EntityType="bookstoreModel.Carts" />
     <EntitySet Name="OrdersDetail" EntityType="bookstoreModel.OrdersDetail" />
     <EntitySet Name="Orders" EntityType="bookstoreModel.Orders" />
-    <EntitySet Name="Books" EntityType="bookstoreModel.Books" />
     <EntitySet Name="ApplicationBanner" EntityType="bookstoreModel.ApplicationBanner" />
+    <EntitySet Name="Books" EntityType="bookstoreModel.Books" />
   </EntityContainer>
   <EntityType Name="Members">
     <Key>
@@ -300,6 +300,16 @@
     <Property Name="receive_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="ApplicationBanner">
+    <Key>
+      <PropertyRef Name="rowid" />
+    </Key>
+    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="is_show" Type="Boolean" Nullable="false" />
+    <Property Name="banner_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shop_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ramark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="Books">
     <Key>
       <PropertyRef Name="rowid" />
@@ -309,7 +319,7 @@
     <Property Name="isbn_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="book_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="publisher_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="language_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -321,15 +331,5 @@
     <Property Name="qty_now" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="yt_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="ApplicationBanner">
-    <Key>
-      <PropertyRef Name="rowid" />
-    </Key>
-    <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="is_show" Type="Boolean" Nullable="false" />
-    <Property Name="banner_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="shop_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ramark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

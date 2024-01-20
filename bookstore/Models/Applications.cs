@@ -11,8 +11,7 @@ namespace bookstore.Models
 {
     using System;
     using System.Collections.Generic;
-
-
+    
     public partial class Applications
     {
         public int rowid { get; set; }

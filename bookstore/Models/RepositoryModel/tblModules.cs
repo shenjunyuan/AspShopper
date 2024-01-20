@@ -5,6 +5,8 @@ using System.Web;
 using bookstore.Models;
 using PagedList;
 
+
+
 public class tblModules : BaseClass
 {
     public IRepository<Modules> repo;
@@ -32,7 +34,7 @@ public class tblModules : BaseClass
     /// <returns></returns>
     public IPagedList<Modules> GetModelList(int index, int page, int pageSize, string searchText) // IPagedList 有分頁的型別
     {
-        var model = repo.ReadAll();
+        var model = repo.ReadAll().OrderBy(m=>m.rowid);
         var dataSort = SessionService.GetColumnSort(index);
         if (!string.IsNullOrEmpty(searchText))
         {
@@ -41,7 +43,7 @@ public class tblModules : BaseClass
             m.module_no.Contains(searchText) ||
             m.module_name.Contains(searchText) ||
             m.icon_name.Contains(searchText) ||
-            m.remark.Contains(searchText));
+            m.remark.Contains(searchText)).OrderBy(m => m.rowid);
         }
         if (model != null)
         {
@@ -63,4 +65,9 @@ public class tblModules : BaseClass
     }
 
 
+
+
 }
+
+
+
