@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="@Url.Content("~/shoppers/css/jquery-ui.css")">
     <link rel="stylesheet" href="@Url.Content("~/shoppers/css/owl.carousel.min.css")">
     <link rel="stylesheet" href="@Url.Content("~/shoppers/css/owl.theme.default.min.css")">
-    @*<link rel="stylesheet" href="@Url.Content("~/shoppers/css/aos.css")">*@
+    <link rel="stylesheet" href="@Url.Content("~/Content/Site.css")" />
     <link rel="stylesheet" href="@Url.Content("~/shoppers/css/style.css")">
     <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" rel="stylesheet" />
     <script src="@Url.Content("~/shoppers/js/jquery-3.3.1.min.js")"></script>
@@ -21,15 +21,7 @@
     <script src="@Url.Content("~/shoppers/js/bootstrap.min.js")"></script>
     <script src="@Url.Content("~/shoppers/js/owl.carousel.min.js")"></script>
     <script src="@Url.Content("~/shoppers/js/jquery.magnific-popup.min.js")"></script>
-    @*<script src="@Url.Content("~/shoppers/js/aos.js")"></script>*@
     <script src="@Url.Content("~/shoppers/js/main.js")"></script>
-    <style>
-        .img-logo {
-            width: 80px;
-            height: 80px;
-        }
-    </style>
-
 </head>
 <body>
     <div class="site-wrap">
@@ -46,7 +38,7 @@
                         <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
                             <div class="site-logo bigWidth">
                                
-                                <a href="@Url.Action("Index" , "Home")"><img src=" @Url.Content(@Url.Content(ShopService.GetLogoImgUrl()))" class="img-logo"></a>
+                                <a href="@Url.Action("Index" , "Home")"><img src=" @Url.Content(@Url.Content(ShopService.GetLogoImgUrl()))" id="img-logo"></a>
                                 <a href="@Url.Action("Index" , "Home")" class="js-logo-clone">@SessionService.GetHomePageInfo("ShopName")</a>
                             </div>
                         </div>
@@ -92,7 +84,7 @@
                             <a href="@Url.Action("Index" , "Home")" class="boxShadow">首頁</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("About" , "Home")" class="boxShadow">關於我們</a>
+                            <a href="@Url.Action("About" , "Home")" class="boxShadow">@ShopService.About</a>
                         </li>
                         <li><a href="@Url.Action("Index" , "Shop")" class="boxShadow">購物商城</a></li>
                     </ul>
@@ -114,8 +106,8 @@
                     <div class="col-md-4 text-start">
                         <h4>連結</h4>
                         <ul>
-                            <li><a href="@Url.Action("Index" , "Shop")">首頁</a></li>
-                            <li><a href="@Url.Action("About" , "Home")">關於我們</a></li>
+                            <li><a href="@Url.Action("Index" , "Home")">首頁</a></li>
+                            <li><a href="@Url.Action("About" , "Home")">@ShopService.About</a></li>
                         </ul>
                         <ul>
                             <li><a href="@Url.Action("Index" , "Shop")">購物商城</a></li>

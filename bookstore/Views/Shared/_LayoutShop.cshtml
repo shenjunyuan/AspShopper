@@ -22,13 +22,6 @@
     <script src="@Url.Content("~/shoppers/js/owl.carousel.min.js")"></script>
     <script src="@Url.Content("~/shoppers/js/jquery.magnific-popup.min.js")"></script>
     <script src="@Url.Content("~/shoppers/js/main.js")"></script>
-    <style>
-        .img-logo {
-            width: 80px;
-            height: 80px;
-        }
-    </style>
-
     @RenderSection("styles", required: false)
     @RenderSection("scripts", required: false)
 </head>
@@ -48,9 +41,8 @@
                         </div>
 
                         <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-                            <div class="site-logo">
-                               
-                                <a href="@Url.Action("Index" , "Home")"><img src="@Url.Content(ShopService.GetLogoImgUrl())" class="img-logo"></a>
+                            <div class="site-logo">                              
+                                <a href="@Url.Action("Index" , "Home")"><img src="@Url.Content(ShopService.GetLogoImgUrl())" id="img-logo"></a>
                                 <a href="@Url.Action("Index" , "Home")" class="js-logo-clone">@SessionService.GetHomePageInfo("ShopName")</a>
                             </div>
                         </div>
@@ -86,7 +78,7 @@
                 <div class="container">
                     <ul class="site-menu js-clone-nav d-none d-md-block">
                         <li><a href="@Url.Action("Index" , "Home")"class = "boxShadow">首頁</a></li>
-                        <li><a href="@Url.Action("About" , "Home")"class = "boxShadow">關於我們</a></li>
+                        <li><a href="@Url.Action("About" , "Home")" class="boxShadow">@ShopService.About</a></li>
                         <li><a href="@Url.Action("Index" , "Shop")"class = "boxShadow">購物商城</a></li>
                     </ul>
                 </div>

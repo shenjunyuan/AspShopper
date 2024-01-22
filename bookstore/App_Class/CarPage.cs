@@ -88,7 +88,9 @@ public static class CarPage
         }
     }
 
-
+    /// <summary>
+    /// 更新會員購物車訂單批號
+    /// </summary>
     public static void UpdateMemberCartLotNo()
     {
         if (SessionService.IsLogined)
@@ -358,10 +360,11 @@ public static class CarPage
     /// </summary>
     /// <param name="productNo"></param>
     /// <param name="buyQty"></param>
-    private static void UpdateBooksStock(string productNo,int buyQty)
+    private static void UpdateBooksStock(string bookNo, int buyQty)
     {
-        string updataSQL = $"update books set qty_out = qty_out + @qtyOut where book_no = @bookNo"; // 更新庫存
-        DapperHelp.ExecuteSQL<object>(updataSQL, new { qtyOut = buyQty, bookNo = productNo });
+        // 用rowid 更新
+        string updataSQL = $"update books set qty_out = qty_out + @qtyOut where book_no = @book_no"; // 更新庫存       
+        DapperHelp.ExecuteSQL<object>(updataSQL, new { qtyOut = buyQty, book_no = bookNo });
        
     }
 

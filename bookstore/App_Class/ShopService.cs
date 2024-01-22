@@ -19,7 +19,10 @@ public  class ShopService
     /// </summary>
     public static int PriceLow { get { return SessionService.GetSessionIntegerValue("ShopPriceLow", 800); } set { HttpContext.Current.Session["ShopPriceLow"] = value; } }
 
-
+    /// <summary>
+    /// 關於我們-文字
+    /// </summary>
+    public static string About { get { return SessionService.GetSessionValue("About", "關於我們"); } set { HttpContext.Current.Session["About"] = value; } }
 
     /// <summary>
     /// 最高售價
@@ -167,8 +170,7 @@ public  class ShopService
     public static string GetLogoImgUrl() 
     {
         string ImgUrl = "~/Images/Application/ps_logo.jpg";
-        return ImgUrl;
-  
+        return ImgUrl; 
     }
     /// <summary>
     /// 將訂單改為已付款

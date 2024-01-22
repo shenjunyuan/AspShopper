@@ -391,6 +391,12 @@
     <Content Include="Images\Categorys\Information.jpg" />
     <Content Include="Images\Categorys\Photo.jpg" />
     <Content Include="Images\Categorys\Travel.jpg" />
+    <Content Include="Images\MainBG\BG.jpg" />
+    <Content Include="Images\MainBG\DEADORALIVE.png" />
+    <Content Include="Images\MainBG\FF7.jpg" />
+    <Content Include="Images\MainBG\LD.jpg" />
+    <Content Include="Images\MainBG\MH.jpg" />
+    <Content Include="Images\MainBG\SM.jpg" />
     <Content Include="Images\Product\B001.jpg" />
     <Content Include="Images\Product\B002.jpg" />
     <Content Include="Images\Product\B003.jpg" />

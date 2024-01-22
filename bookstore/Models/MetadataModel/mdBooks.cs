@@ -34,7 +34,7 @@ namespace bookstore.Models
             public string book_name { get; set; }
             public string author_name { get; set; }
             [Display(Name = "上架時間")]
-            [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+            [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)] // 日期格式轉換
             public System.DateTime publish_date { get; set; }
             [Display(Name = "廠商代碼")]
             [Required(ErrorMessage = "廠商不可空白")]
@@ -70,7 +70,6 @@ namespace bookstore.Models
             string bookNo = "";
             string queryStr = "select top 1 book_no from Books";
             bookNo = DapperHelp.GetTable<string>(queryStr).FirstOrDefault();
-
             return bookNo;
         }
         /// <summary>
@@ -79,12 +78,10 @@ namespace bookstore.Models
         /// <returns></returns>
         public Books GetBookDetail(string bookNo)
         {
-           string queryStr = "select *  from Books where book_no = @book_no";
-           var model = DapperHelp.GetTable<Books>(queryStr, new { book_no = bookNo }).FirstOrDefault();            
-              return model;
-       
+            string queryStr = "select *  from Books where book_no = @book_no";
+            var model = DapperHelp.GetTable<Books>(queryStr, new { book_no = bookNo }).FirstOrDefault();            
+            return model;    
         }
-
 
     }
 }
